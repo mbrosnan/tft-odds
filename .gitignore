@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# Data
+*.json
+
+# VS Code
+.vscode/
