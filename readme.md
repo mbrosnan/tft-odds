@@ -30,6 +30,30 @@ The probabilities will be derived using a monte-carlo style simulation.
        - each round which lobby they were in
        - each round what placement they got
        - all tiebreaker info (# firsts, # top 4s, # 2nds, # 3rds, etc)
+
+// tour_state.json
+{
+  "players": [
+    {
+      "name": "Player A",
+      "points": 26,
+      "avg_placement": 3.7,
+      "rounds": [
+        {"round": 1, "lobby": "A", "placement": 2},
+        ...
+      ],
+      "tiebreakers": {
+        "firsts": 2,
+        "top4s": 5,
+        ...
+      }
+    }
+  ]
+}
+
+
+
+
 - tour_format.json
     - This contains info about the tournament.  It will have:
         - Each round of the tournament what happens after.  Could be:
@@ -40,11 +64,67 @@ The probabilities will be derived using a monte-carlo style simulation.
             - cut to X players
             - note that rounds may be represented as day X, round Y, or overall_round Z (Day 2 round 2 may be overall_round 8)
         - potentially in the future, player info coming INTO the tournament such as qualifier points or similar
+
+
+{
+  "tournament_name": "Mid-Set Finale NA",
+  "round_structure": [
+    {
+      "overall_round": 1,
+      "day": 1,
+      "round_in_day": 1,
+      "after_round": "shuffle",
+      "shuffle_type": "snake"
+    },
+    {
+      "overall_round": 2,
+      "day": 1,
+      "round_in_day": 2,
+      "after_round": "nothing"
+    },
+    {
+      "overall_round": 3,
+      "day": 1,
+      "round_in_day": 3,
+      "after_round": "cut",
+      "cut_to": 32
+    },
+    {
+      "overall_round": 4,
+      "day": 2,
+      "round_in_day": 1,
+      "after_round": "shuffle",
+      "shuffle_type": "random"
+    },
+    {
+      "overall_round": 5,
+      "day": 2,
+      "round_in_day": 2,
+      "after_round": "end"
+    }
+  ],
+  "tiebreaker_order": [
+    "points",
+    "firsts",
+    "top4s",
+    "avg_placement"
+  ],
+  "cut_stages": [32, 16, 8]
+
 - sim_settings.json
     - this shorter JSON will contain the parameters for the individual sim.  It will have:
         - number_of_sims: how many loops of the monte carlo simulation to run through
         - duration_of_sim: how long to loop through the monte carlo simulation before stopping
         - first_or_last: whether to stop when the first criteria (number or duration) is completed, or the last is completed
+
+{
+  "number_of_sims": 10000,
+  "duration_of_sim": 60,
+  "stop_condition": "first", 
+  "random_seed": 42,
+  "log_every_n_sims": 1000,
+  "output_file": "probabilities.json"
+}
 
 ### Outputs
 - probabilities.json
@@ -53,7 +133,16 @@ The probabilities will be derived using a monte-carlo style simulation.
 
    
 ### Simulation
-With the above inputs, it will randomly assign results of any remaining unfinished games, performing cuts as the tournament would according to the format, and shuffling lobbies as appropriate.  Throughout this and at the end, it will save results such as whether each player made a given cut, whether a player won the tournament, etc.  These will get saved, then the simulation will reset to the current game state and repeat this until either the number of simulations is reached or the time limit from the sim_settings file is reached.  Number of occurrences of a given event will be divided by the number of total simulation loops to achieve probabilities of each event happening.  These will be stored in probabilities.json, which is an input to the UI.
+With the above inputs, it will randomly assign results of any remaining unfinished games, performing cuts as the tournament would according to the format, and shuffling lobbies as appropriate.  Throughout this and at the end, it will save results such as whether each player made a given cut, whether a player won the tournament, etc.  These will get saved, then the simulation will reset to the current game state and repeat this until either the number of simulations is reached or the time limit from the sim_settings file is reached.  Number of occurrences of a given event will be divided by the number of total simulation loops to achieve probabilities of each event happening.  These will be stored in probabilities.json, which is an input to the UI.  The simulation will be broken into the following modules:
+
+- determine_current_round: look at tour_state and decide where the simulation should start (do we need to complete a round, perform a cut/shuffle, or just start the next round sim)
+- simulate_round_results: simulate a round and perform any needed actions
+- apply_cut
+- shuffle_lobbies
+- aggregate_statistics: this will count up all relevant statistics
+- simulate_tournament: this will exercise a full tournament sim.  This will be done over and over to get our probabilities
+- obtain_probabilities: this will run simulate tournament until the stop condition is satisfied
+
 
 
 
@@ -82,4 +171,8 @@ Order is planned to be as follows:
 2. Refactor/rewrite the simulation piece, pulling from representative sim_settings.json and tour_state.json, outputting to probabilities.json.
 3. Move the working UI and simulation piece to AWS/the live site.
 4. Implement the import function.
+
+# Future Updates
+
+- Color coding for player likelihoods
 
