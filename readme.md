@@ -3,17 +3,62 @@ tft-odds.com is a webapp that takes in information on Teamfight Tactics tourname
 
 ## UI
 
+### Player Odds Tab
 Player odds is primarily a table where each player has a row.  There are columns for various tournament statistics like their current points, average placement, and top few tiebreakers.  There are also columns for their odds, such as "Make 16 cut", "Make 8 cut", and "Win Tournament" (these will change depending on the tournament format).
 
-Cut odds is comprised of a section per cut (ie from 48 to 24, 24 to 16, 16 to 8).  Each section will contain information on the likeliest cut and the cut distribution.  The likeliest cut will give the mode of all calculated cuts along with the percent odds that it is the cut.  The cut distribution will be a bar graph with each possible cut along with its likelihood as a percentage.  Note that the convention used here will be that a cut of a whole number will be used if there is at least one player at that number who misses the cut and at least one player at that number who makes the cut.  A half number will be used if every player at one number misses the cut and every player at the next highest number make the cut.
+### Cut Odds Tab
+Cut odds is comprised of a section per cut (ie from 48 to 24, 24 to 16, 16 to 8).  Each section will contain information on the likeliest cut and the cut distribution.  
 
+#### Likeliest Cut
+The likeliest cut will give the mode of all calculated cuts along with the percent odds that it is the cut.  
+
+#### Cut Distribution 
+The cut distribution will be a bar graph with each possible cut along with its likelihood as a percentage.  Note that the convention used here will be that a cut of a whole number will be used if there is at least one player at that number who misses the cut and at least one player at that number who makes the cut.  A half number will be used if every player at one number misses the cut and every player at the next highest number make the cut.
+
+### Tournament Info Tab
 Tournament info is comprised of some TBD information on the tournament.  This is unlikely to change based on the probability calculations.
 
 ## Probability Calculation
-The probabilities will be derived using a monte-carlo style simulation.  This simulation will take the current tournament results as an input (tour_state), along with the tournament format (tour_format) and settings for the running of the simulation (sim_settings).  With these inputs, it will randomly assign results of any remaining unfinished games, performing cuts as the tournament would according to the format, and shuffling lobbies as appropriate.  Throughout this and at the end, it will save results such as whether each player made a given cut, whether a player won the tournament, etc.  These will get saved, then the simulation will reset to the current game state and repeat this until either the number of simulations is reached or the time limit from the sim_settings file is reached.  Number of occurrences of a given event will be divided by the number of total simulation loops to achieve probabilities of each event happening.  These will be stored in probabilities.json, which is an input to the UI.
+The probabilities will be derived using a monte-carlo style simulation.  
+
+### Inputs
+- tour_state.json
+   - This contains the tournament results so far.  This should match exactly the current "standings".  For each player, it will have:
+       - Total points
+       - AVP (average placement)
+       - total completed rounds
+       - each round which lobby they were in
+       - each round what placement they got
+       - all tiebreaker info (# firsts, # top 4s, # 2nds, # 3rds, etc)
+- tour_format.json
+    - This contains info about the tournament.  It will have:
+        - Each round of the tournament what happens after.  Could be:
+            - nothing
+            - evaluate checkmate
+            - end tournament
+            - shuffle (snake or random)
+            - cut to X players
+            - note that rounds may be represented as day X, round Y, or overall_round Z (Day 2 round 2 may be overall_round 8)
+        - potentially in the future, player info coming INTO the tournament such as qualifier points or similar
+- sim_settings.json
+    - this shorter JSON will contain the parameters for the individual sim.  It will have:
+        - number_of_sims: how many loops of the monte carlo simulation to run through
+        - duration_of_sim: how long to loop through the monte carlo simulation before stopping
+        - first_or_last: whether to stop when the first criteria (number or duration) is completed, or the last is completed
+
+### Outputs
+- probabilities.json
+    - this file will contain all simulation outputs.  See UI sections Player Odds Tab and Cut Odds Tab for what info this will have to have
+
+
+   
+### Simulation
+With the above inputs, it will randomly assign results of any remaining unfinished games, performing cuts as the tournament would according to the format, and shuffling lobbies as appropriate.  Throughout this and at the end, it will save results such as whether each player made a given cut, whether a player won the tournament, etc.  These will get saved, then the simulation will reset to the current game state and repeat this until either the number of simulations is reached or the time limit from the sim_settings file is reached.  Number of occurrences of a given event will be divided by the number of total simulation loops to achieve probabilities of each event happening.  These will be stored in probabilities.json, which is an input to the UI.
+
+
 
 ## Data Import
-Data will be imported into the tour_state.json blob, which will be used by the simulation module.  Initially, this blob will be generated or edited semi-manually.  Eventually, there will be code to periodically pull data from a public google sheet that contains the tournament results data.
+Data will be imported into the tour_state.json blob, which will be used by the simulation module.  Initially, this blob will be generated or edited semi-manually.  Eventually, there will be code to periodically pull data from a public google sheet that contains the tournament results data.  Note that the automated import is a FUTURE item.
 
 
 # Tech Stack
