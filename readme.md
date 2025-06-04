@@ -5,6 +5,15 @@ In general, these tournaments will consist of a certain number of rounds, broken
 
 ## UI
 
+### UI Specifications
+- Simulations run for approximately 30 seconds to generate probability data
+- UI updates:
+  - Initial page load uses most recent simulation data
+  - A notification/button will appear when new simulation data is available
+  - Users can manually trigger data refresh
+- Primary design focus is for PC monitors, with mobile responsiveness as a secondary consideration
+- No specific accessibility requirements in initial version
+
 ### Player Odds Tab
 Player odds is primarily a table where each player has a row.  There are columns for various tournament statistics like their current points, average placement, and top few tiebreakers.  There are also columns for their odds, such as "Make 16 cut", "Make 8 cut", and "Win Tournament" (these will change depending on the tournament format).
 
@@ -23,15 +32,53 @@ Tournament info is comprised of some TBD information on the tournament.  This is
 ## Probability Calculation
 The probabilities will be derived using a monte-carlo style simulation.  
 
+### Tournament Mechanics
+#### Tiebreakers
+Tiebreakers are handled according to the order specified in the `tour_format.json` file. If players remain tied after all specified tiebreakers are evaluated, the final tiebreaker is always random. This means in simulations, players who are tied on all tiebreaker metrics will have an equal probability of advancing.
+
+#### Lobby Assignment
+When shuffling lobbies, two methods are available:
+
+1. **Snake Shuffle**: Players are first sorted by points (using tiebreakers for ties). Then lobbies are assigned in a snake pattern:
+   - First pass (top to bottom): Player 1 → Lobby A, Player 2 → Lobby B, Player 3 → Lobby C, etc.
+   - Return pass (bottom to top): If 5 lobbies, Player 6 → Lobby E, Player 7 → Lobby D, Player 8 → Lobby C, etc.
+   - This continues until all players are assigned
+
+2. **Random Shuffle**: Players are randomly assigned to lobbies
+
+### Simulation Assumptions
+- All future game placements are treated as equally random, regardless of player's historical performance
+- Probabilities are displayed with single-digit percentage precision (e.g., 45.6%)
+- No special handling for edge cases (disconnections, disqualifications) in the current version
+
+### Performance Specifications
+- Tournament Size:
+    - Maximum supported players: 256
+    - Optimized for typical tournament sizes (<256 players)
+- Simulation Termination:
+    - Controlled by both number of simulations and time-based criteria
+    - Parameters specified in sim_settings.json
+- Results Storage:
+    - Simulation results stored temporarily for probability calculations
+    - No long-term caching of simulation results in initial version
+    - Each new probability request triggers fresh simulations
+
 ### Inputs
 - tour_state.json
-   - This contains the tournament results so far.  This should match exactly the current "standings".  For each player, it will have:
+   - This contains the complete tournament history and current state. For each player, it will have:
        - Total points
        - AVP (average placement)
-       - total completed rounds
-       - each round which lobby they were in
-       - each round what placement they got
-       - all tiebreaker info (# firsts, # top 4s, # 2nds, # 3rds, etc)
+       - Total completed rounds
+       - Complete round history:
+           - Which lobby they were in
+           - What placement they got
+           - Round number when they were cut (if applicable)
+       - All tiebreaker info (# firsts, # top 4s, # 2nds, # 3rds, etc)
+   - All historical data must be preserved, including:
+       - Past lobby assignments
+       - Results from all rounds
+       - Cut history
+       - Tournament progression
 
 // tour_state.json
 {
@@ -150,32 +197,132 @@ With the above inputs, it will randomly assign results of any remaining unfinish
 
 
 ## Data Import
-Data will be imported into the tour_state.json blob, which will be used by the simulation module.  Initially, this blob will be generated or edited semi-manually.  Eventually, there will be code to periodically pull data from a public google sheet that contains the tournament results data.  Note that the automated import is a FUTURE item.
+Data will be imported into the tour_state.json blob, which will be used by the simulation module.  Initially, this blob will be generated or edited semi-manually. 
 
+Future automated import will pull from a Google Sheet containing raw tournament data that maps to tour_state.json fields. The sheet will contain:
+- Raw tournament results
+- Player information
+- Round-by-round data
+Some fields may require calculation or transformation during import.
+
+The current implementation focuses on the standard tournament format described above. Support for alternative tournament formats may be considered in future updates.
 
 # Tech Stack
 
 UI: Streamlit
-Hosting: AWS EC2 ubuntu instance.  Nginx running
+Hosting: AWS EC2 ubuntu instance. Nginx running
 Domain: Cloudflare
 Simulation: Python
 Data Import from Google Sheet: Python
 
-# Implementation order notes
+# Development Setup
 
-Currently, the UI, hosting, and domain side is concept proved in a running site at tft-odds.com.  It doesn't have real data, simulation, or data import, but currently runs.
+## Environment
+- Python (version requirements will be documented per feature if needed)
+- Package management: pip with requirements.txt
+- Virtual environment: venv
+- Configuration files for both local development and production environments
 
-The simulation is proved out in a python file that could use significant restructuring and addition/modification.
+## Local Development
+1. Create and activate virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # Linux/Mac
+   .\\venv\\Scripts\\activate  # Windows
+   ```
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Configure environment (local vs production settings)
+4. Run local development server
 
-The data import is not proved out in any way.
+## Testing
+### Test Data
+Sample tournament structure for development and testing:
+- 32 player field
+- 2 day tournament
+- Day 1:
+    - Cut to 24 after round 2
+    - Cut to 16 after round 4
+    - Cut to 8 after round 6
+- Day 2:
+    - Checkpoint/Checkmate format
+    - Victory threshold: 20 points
 
-Order is planned to be as follows:
-1. Get the target, semi-final streamlit UI pulling from a representative probabilities.json, running locally (not on AWS)
-2. Refactor/rewrite the simulation piece, pulling from representative sim_settings.json and tour_state.json, outputting to probabilities.json.
-3. Move the working UI and simulation piece to AWS/the live site.
-4. Implement the import function.
+### Test Suite
+- Unit tests for core functionality
+- Integration tests for system components
+- Test data generators
+- Mock tournament scenarios
+
+## Deployment
+### Local to AWS Migration
+1. Local testing and validation
+2. AWS environment setup
+3. Deployment scripts and procedures
+4. Configuration management
+5. Monitoring and logging setup
+
+# Implementation Order
+1. Review and enhance existing basic UI
+2. Implement simulation engine
+3. AWS deployment
+4. Data import automation
+
+Each phase will include:
+- Core functionality
+- Tests
+- Documentation
+- Error handling
+- Logging
+
+# Configuration
+The system supports two primary configurations:
+1. Local Development:
+   - Local file storage
+   - Debug logging
+   - Development server
+   - Mock data support
+
+2. Production (AWS):
+   - AWS infrastructure
+   - Production logging levels
+   - Nginx server
+   - Real tournament data
+
+Configuration can be switched via environment variables or config files.
 
 # Future Updates
 
 - Color coding for player likelihoods
+- Mobile-first UI optimization
+- Accessibility improvements
+- Historical data tracking and visualization
+- Comprehensive input validation for all JSON files
+- Detailed error reporting and recovery options
+- Result caching for performance optimization
+- Support for alternative tournament formats
+- Enhanced logging and monitoring capabilities
+- Extended test coverage
+- Additional tournament formats
+- Production monitoring dashboard
+
+### Error Handling
+The system will halt and display an error message in the following scenarios:
+- Invalid or inconsistent tournament data (e.g., missing rounds, conflicting results)
+- Data format violations
+- Logical tournament progression errors
+
+Error messages will include a specific error code for debugging purposes. Initial version will focus on detecting critical errors that would affect simulation accuracy, with more comprehensive validation planned for future updates.
+
+### Logging
+The system will support multiple logging levels:
+- ERROR: Critical issues that prevent system operation
+- INFO: Important system events and state changes
+- DEBUG: Detailed information for troubleshooting
+    - Simulation progress and intermediate results
+    - Data transformation steps
+    - Performance metrics
+Logging level can be configured to balance between verbose debugging output and concise production logs.
 
