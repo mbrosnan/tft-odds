@@ -1,6 +1,8 @@
 # General Description
 tft-odds.com is a webapp that takes in information on Teamfight Tactics tournaments and calculates odds for various tournament related items.  This includes player odds, cut odds, and tournament info.
 
+In general, these tournaments will consist of a certain number of rounds, broken up over a certain number of days (for example 18 rounds over 3 days).  Players get sorted into lobbies of 8 (only having a lobby or two of 7 if people disconnect or no-show).  The player who finishes first gets 8 points, down to the player who finishes last who gets 1 point.
+
 ## UI
 
 ### Player Odds Tab
