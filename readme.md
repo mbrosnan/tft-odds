@@ -136,6 +136,7 @@ The probabilities will be derived using a monte-carlo style simulation.
 With the above inputs, it will randomly assign results of any remaining unfinished games, performing cuts as the tournament would according to the format, and shuffling lobbies as appropriate.  Throughout this and at the end, it will save results such as whether each player made a given cut, whether a player won the tournament, etc.  These will get saved, then the simulation will reset to the current game state and repeat this until either the number of simulations is reached or the time limit from the sim_settings file is reached.  Number of occurrences of a given event will be divided by the number of total simulation loops to achieve probabilities of each event happening.  These will be stored in probabilities.json, which is an input to the UI.  The simulation will be broken into the following modules:
 
 - determine_current_round: look at tour_state and decide where the simulation should start (do we need to complete a round, perform a cut/shuffle, or just start the next round sim)
+    - this should throw an error if one round is incomplete but another round has results already
 - simulate_round_results: simulate a round and perform any needed actions
 - apply_cut
 - shuffle_lobbies
