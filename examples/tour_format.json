@@ -1,0 +1,65 @@
+{
+  "tournament_name": "TFT Mid-Set Finale",
+  "round_structure": [
+    {
+      "overall_round": 1,
+      "day": 1,
+      "round_in_day": 1,
+      "after_round": "nothing"
+    },
+    {
+      "overall_round": 2,
+      "day": 1,
+      "round_in_day": 2,
+      "after_round": "cut",
+      "cut_to": 24
+    },
+    {
+      "overall_round": 3,
+      "day": 1,
+      "round_in_day": 3,
+      "after_round": "shuffle",
+      "shuffle_type": "snake"
+    },
+    {
+      "overall_round": 4,
+      "day": 1,
+      "round_in_day": 4,
+      "after_round": "cut",
+      "cut_to": 16
+    },
+    {
+      "overall_round": 5,
+      "day": 1,
+      "round_in_day": 5,
+      "after_round": "shuffle",
+      "shuffle_type": "snake"
+    },
+    {
+      "overall_round": 6,
+      "day": 1,
+      "round_in_day": 6,
+      "after_round": "cut",
+      "cut_to": 8
+    },
+    {
+      "overall_round": 7,
+      "day": 2,
+      "round_in_day": 1,
+      "after_round": "checkmate"
+    },
+    {
+      "overall_round": 8,
+      "day": 2,
+      "round_in_day": 2,
+      "after_round": "checkmate"
+    }
+  ],
+  "tiebreaker_order": [
+    "points",
+    "firsts",
+    "top4s",
+    "avg_placement"
+  ],
+  "cut_stages": [24, 16, 8]
+} 

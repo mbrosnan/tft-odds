@@ -1,0 +1,15 @@
+{
+  "num_simulations": 10000,
+  "placement_model": {
+    "type": "random",
+    "params": {
+      "skill_variance": 0.2
+    }
+  },
+  "output_settings": {
+    "include_raw_simulations": false,
+    "include_player_stats": true,
+    "include_cut_probabilities": true,
+    "include_final_placement_distribution": true
+  }
+} 

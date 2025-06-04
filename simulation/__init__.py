@@ -1,0 +1,3 @@
+"""
+TFT Tournament Simulation Package
+""" 

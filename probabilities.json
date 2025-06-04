@@ -2,289 +2,356 @@
   "players": [
     {
       "name": "Player1",
-      "current_points": 36.1,
-      "average_placement": 6.98,
-      "prob_to_win": 0.018,
+      "current_points": 15,
+      "average_placement": 3.7896928571428585,
+      "prob_to_win": 0.3156,
       "cut_probabilities": {
-        "top16": 0.462,
-        "top8": 0.381
+        "top24": 0.0,
+        "top16": 1.0,
+        "top8": 0.9078
       }
     },
     {
       "name": "Player2",
-      "current_points": 26.8,
-      "average_placement": 4.29,
-      "prob_to_win": 0.112,
+      "current_points": 13,
+      "average_placement": 4.088921428571426,
+      "prob_to_win": 0.1771,
       "cut_probabilities": {
-        "top16": 0.505,
-        "top8": 0.334
+        "top24": 0.0,
+        "top16": 1.0,
+        "top8": 0.8003
       }
     },
     {
       "name": "Player3",
-      "current_points": 26.3,
-      "average_placement": 5.33,
-      "prob_to_win": 0.055,
+      "current_points": 11,
+      "average_placement": 4.409961904761911,
+      "prob_to_win": 0.0967,
       "cut_probabilities": {
-        "top16": 0.789,
-        "top8": 0.467
+        "top24": 0.0,
+        "top16": 0.959,
+        "top8": 0.6542
       }
     },
     {
       "name": "Player4",
-      "current_points": 32.6,
-      "average_placement": 5.11,
-      "prob_to_win": 0.109,
+      "current_points": 9,
+      "average_placement": 3.7737523809523723,
+      "prob_to_win": 0.0542,
       "cut_probabilities": {
-        "top16": 0.688,
-        "top8": 0.466
+        "top24": 0.0,
+        "top16": 0.8549,
+        "top8": 0.4841
       }
     },
     {
       "name": "Player5",
-      "current_points": 30.9,
-      "average_placement": 4.53,
-      "prob_to_win": 0.131,
+      "current_points": 11,
+      "average_placement": 3.33194523809526,
+      "prob_to_win": 0.1044,
       "cut_probabilities": {
-        "top16": 0.675,
-        "top8": 0.514
+        "top24": 0.0,
+        "top16": 0.9825,
+        "top8": 0.6808
       }
     },
     {
       "name": "Player6",
-      "current_points": 44.7,
-      "average_placement": 5.93,
-      "prob_to_win": 0.106,
+      "current_points": 7,
+      "average_placement": 3.7257750000000174,
+      "prob_to_win": 0.0258,
       "cut_probabilities": {
-        "top16": 0.537,
-        "top8": 0.32
+        "top24": 0.0,
+        "top16": 0.7487,
+        "top8": 0.3507
       }
     },
     {
       "name": "Player7",
-      "current_points": 49.2,
-      "average_placement": 6.14,
-      "prob_to_win": 0.125,
+      "current_points": 6,
+      "average_placement": 3.4943000000000057,
+      "prob_to_win": 0.0144,
       "cut_probabilities": {
-        "top16": 0.478,
-        "top8": 0.227
+        "top24": 0.0,
+        "top16": 0.6297,
+        "top8": 0.2568
       }
     },
     {
       "name": "Player8",
-      "current_points": 43.5,
-      "average_placement": 5.37,
-      "prob_to_win": 0.029,
+      "current_points": 5,
+      "average_placement": 3.8477285714285636,
+      "prob_to_win": 0.0111,
       "cut_probabilities": {
-        "top16": 0.911,
-        "top8": 0.556
+        "top24": 0.0,
+        "top16": 0.5638,
+        "top8": 0.2176
       }
     },
     {
       "name": "Player9",
-      "current_points": 46.7,
-      "average_placement": 7.13,
-      "prob_to_win": 0.025,
+      "current_points": 4,
+      "average_placement": 3.7685857142857095,
+      "prob_to_win": 0.0045,
       "cut_probabilities": {
-        "top16": 0.62,
-        "top8": 0.533
+        "top24": 0.0,
+        "top16": 0.3731,
+        "top8": 0.1322
       }
     },
     {
       "name": "Player10",
-      "current_points": 36.1,
-      "average_placement": 6.01,
-      "prob_to_win": 0.022,
+      "current_points": 3,
+      "average_placement": 3.9425226190476104,
+      "prob_to_win": 0.0022,
       "cut_probabilities": {
-        "top16": 0.781,
-        "top8": 0.244
+        "top24": 0.0,
+        "top16": 0.2902,
+        "top8": 0.0901
       }
     },
     {
       "name": "Player11",
-      "current_points": 46.0,
-      "average_placement": 6.24,
-      "prob_to_win": 0.094,
+      "current_points": 2,
+      "average_placement": 4.127286904761905,
+      "prob_to_win": 0.0011,
       "cut_probabilities": {
-        "top16": 0.933,
-        "top8": 0.541
+        "top24": 0.0,
+        "top16": 0.2099,
+        "top8": 0.0582
       }
     },
     {
       "name": "Player12",
-      "current_points": 39.2,
-      "average_placement": 4.49,
-      "prob_to_win": 0.106,
+      "current_points": 1,
+      "average_placement": 4.343877380952383,
+      "prob_to_win": 0.0003,
       "cut_probabilities": {
-        "top16": 0.39,
-        "top8": 0.133
+        "top24": 0.0,
+        "top16": 0.1383,
+        "top8": 0.0347
       }
     },
     {
       "name": "Player13",
-      "current_points": 30.0,
-      "average_placement": 4.13,
-      "prob_to_win": 0.063,
+      "current_points": 4,
+      "average_placement": 3.7571630952380946,
+      "prob_to_win": 0.0054,
       "cut_probabilities": {
-        "top16": 0.364,
-        "top8": 0.216
+        "top24": 0.0,
+        "top16": 0.3745,
+        "top8": 0.1302
       }
     },
     {
       "name": "Player14",
-      "current_points": 46.4,
-      "average_placement": 4.25,
-      "prob_to_win": 0.062,
+      "current_points": 3,
+      "average_placement": 3.945105952380956,
+      "prob_to_win": 0.0027,
       "cut_probabilities": {
-        "top16": 0.601,
-        "top8": 0.208
+        "top24": 0.0,
+        "top16": 0.2764,
+        "top8": 0.0816
       }
     },
     {
       "name": "Player15",
-      "current_points": 39.9,
-      "average_placement": 6.2,
-      "prob_to_win": 0.138,
+      "current_points": 2,
+      "average_placement": 4.121155952380957,
+      "prob_to_win": 0.0009,
       "cut_probabilities": {
-        "top16": 0.924,
-        "top8": 0.683
+        "top24": 0.0,
+        "top16": 0.2143,
+        "top8": 0.0592
       }
     },
     {
       "name": "Player16",
-      "current_points": 29.3,
-      "average_placement": 4.6,
-      "prob_to_win": 0.105,
+      "current_points": 1,
+      "average_placement": 4.340058333333333,
+      "prob_to_win": 0.0002,
       "cut_probabilities": {
-        "top16": 0.871,
-        "top8": 0.704
+        "top24": 0.0,
+        "top16": 0.1443,
+        "top8": 0.0354
       }
     },
     {
       "name": "Player17",
-      "current_points": 36.6,
-      "average_placement": 6.64,
-      "prob_to_win": 0.077,
+      "current_points": 8,
+      "average_placement": 3.248319047619046,
+      "prob_to_win": 0.0388,
       "cut_probabilities": {
-        "top16": 0.513,
-        "top8": 0.248
+        "top24": 0.0,
+        "top16": 0.833,
+        "top8": 0.4422
       }
     },
     {
       "name": "Player18",
-      "current_points": 41.8,
-      "average_placement": 6.15,
-      "prob_to_win": 0.095,
+      "current_points": 7,
+      "average_placement": 3.3442059523809498,
+      "prob_to_win": 0.0192,
       "cut_probabilities": {
-        "top16": 0.815,
-        "top8": 0.432
+        "top24": 0.0,
+        "top16": 0.702,
+        "top8": 0.3317
       }
     },
     {
       "name": "Player19",
-      "current_points": 49.7,
-      "average_placement": 5.15,
-      "prob_to_win": 0.074,
+      "current_points": 6,
+      "average_placement": 3.4794071428571485,
+      "prob_to_win": 0.0148,
       "cut_probabilities": {
-        "top16": 0.79,
-        "top8": 0.663
+        "top24": 0.0,
+        "top16": 0.6278,
+        "top8": 0.2615
       }
     },
     {
       "name": "Player20",
-      "current_points": 24.0,
-      "average_placement": 7.08,
-      "prob_to_win": 0.101,
+      "current_points": 5,
+      "average_placement": 3.622953571428573,
+      "prob_to_win": 0.0087,
       "cut_probabilities": {
-        "top16": 0.818,
-        "top8": 0.41
+        "top24": 0.0,
+        "top16": 0.504,
+        "top8": 0.1875
       }
     },
     {
       "name": "Player21",
-      "current_points": 39.1,
-      "average_placement": 5.49,
-      "prob_to_win": 0.058,
+      "current_points": 4,
+      "average_placement": 3.759591666666667,
+      "prob_to_win": 0.0048,
       "cut_probabilities": {
-        "top16": 0.67,
-        "top8": 0.544
+        "top24": 0.0,
+        "top16": 0.3751,
+        "top8": 0.1314
       }
     },
     {
       "name": "Player22",
-      "current_points": 36.3,
-      "average_placement": 5.27,
-      "prob_to_win": 0.064,
+      "current_points": 3,
+      "average_placement": 3.926570238095241,
+      "prob_to_win": 0.0026,
       "cut_probabilities": {
-        "top16": 0.535,
-        "top8": 0.227
+        "top24": 0.0,
+        "top16": 0.2812,
+        "top8": 0.0923
       }
     },
     {
       "name": "Player23",
-      "current_points": 28.7,
-      "average_placement": 5.11,
-      "prob_to_win": 0.075,
+      "current_points": 2,
+      "average_placement": 4.121403571428568,
+      "prob_to_win": 0.0008,
       "cut_probabilities": {
-        "top16": 0.63,
-        "top8": 0.504
+        "top24": 0.0,
+        "top16": 0.1974,
+        "top8": 0.0551
       }
     },
     {
       "name": "Player24",
-      "current_points": 39.7,
-      "average_placement": 6.54,
-      "prob_to_win": 0.103,
+      "current_points": 1,
+      "average_placement": 4.334623809523813,
+      "prob_to_win": 0.0004,
       "cut_probabilities": {
-        "top16": 0.854,
-        "top8": 0.651
+        "top24": 0.0,
+        "top16": 0.1355,
+        "top8": 0.0332
+      }
+    },
+    {
+      "name": "Player25",
+      "current_points": 8,
+      "average_placement": 3.2466416666666764,
+      "prob_to_win": 0.0397,
+      "cut_probabilities": {
+        "top24": 0.0,
+        "top16": 0.8371,
+        "top8": 0.4402
+      }
+    },
+    {
+      "name": "Player26",
+      "current_points": 7,
+      "average_placement": 3.3553166666666794,
+      "prob_to_win": 0.0221,
+      "cut_probabilities": {
+        "top24": 0.0,
+        "top16": 0.6951,
+        "top8": 0.3149
+      }
+    },
+    {
+      "name": "Player27",
+      "current_points": 6,
+      "average_placement": 3.476303571428574,
+      "prob_to_win": 0.0146,
+      "cut_probabilities": {
+        "top24": 0.0,
+        "top16": 0.6012,
+        "top8": 0.2487
+      }
+    },
+    {
+      "name": "Player28",
+      "current_points": 5,
+      "average_placement": 3.6147916666666737,
+      "prob_to_win": 0.0084,
+      "cut_probabilities": {
+        "top24": 0.0,
+        "top16": 0.4909,
+        "top8": 0.1882
+      }
+    },
+    {
+      "name": "Player29",
+      "current_points": 4,
+      "average_placement": 3.7572261904761937,
+      "prob_to_win": 0.0039,
+      "cut_probabilities": {
+        "top24": 0.0,
+        "top16": 0.357,
+        "top8": 0.1219
+      }
+    },
+    {
+      "name": "Player30",
+      "current_points": 3,
+      "average_placement": 3.9243583333333394,
+      "prob_to_win": 0.0031,
+      "cut_probabilities": {
+        "top24": 0.0,
+        "top16": 0.2764,
+        "top8": 0.0868
+      }
+    },
+    {
+      "name": "Player31",
+      "current_points": 2,
+      "average_placement": 4.116299999999996,
+      "prob_to_win": 0.0012,
+      "cut_probabilities": {
+        "top24": 0.0,
+        "top16": 0.1937,
+        "top8": 0.0559
+      }
+    },
+    {
+      "name": "Player32",
+      "current_points": 1,
+      "average_placement": 4.31403214285714,
+      "prob_to_win": 0.0003,
+      "cut_probabilities": {
+        "top24": 0.0,
+        "top16": 0.133,
+        "top8": 0.0346
       }
     }
   ],
-  "cut_distributions": {
-    "top16": [
-      {
-        "points": 40.0,
-        "probability": 0.089
-      },
-      {
-        "points": 41.0,
-        "probability": 0.084
-      },
-      {
-        "points": 42.0,
-        "probability": 0.185
-      },
-      {
-        "points": 43.0,
-        "probability": 0.186
-      },
-      {
-        "points": 44.0,
-        "probability": 0.134
-      }
-    ],
-    "top8": [
-      {
-        "points": 46.0,
-        "probability": 0.135
-      },
-      {
-        "points": 47.0,
-        "probability": 0.136
-      },
-      {
-        "points": 48.0,
-        "probability": 0.186
-      },
-      {
-        "points": 49.0,
-        "probability": 0.117
-      },
-      {
-        "points": 50.0,
-        "probability": 0.158
-      }
-    ]
-  }
+  "cut_distributions": {}
 }

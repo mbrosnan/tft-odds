@@ -1,0 +1,617 @@
+{
+  "players": [
+    {
+      "name": "Player1",
+      "points": 15,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "A",
+          "placement": 1
+        },
+        {
+          "round": 2,
+          "lobby": "A",
+          "placement": 3
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 1,
+        "top4s": 2
+      }
+    },
+    {
+      "name": "Player2",
+      "points": 13,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "A",
+          "placement": 2
+        },
+        {
+          "round": 2,
+          "lobby": "A",
+          "placement": 4
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 2
+      }
+    },
+    {
+      "name": "Player3",
+      "points": 11,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "A",
+          "placement": 3
+        },
+        {
+          "round": 2,
+          "lobby": "A",
+          "placement": 5
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 1
+      }
+    },
+    {
+      "name": "Player4",
+      "points": 9,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "A",
+          "placement": 4
+        },
+        {
+          "round": 2,
+          "lobby": "A"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 1
+      }
+    },
+    {
+      "name": "Player5",
+      "points": 11,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "B",
+          "placement": 1
+        },
+        {
+          "round": 2,
+          "lobby": "B"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 1,
+        "top4s": 1
+      }
+    },
+    {
+      "name": "Player6",
+      "points": 7,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "B",
+          "placement": 2
+        },
+        {
+          "round": 2,
+          "lobby": "B",
+          "placement": 2
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 2
+      }
+    },
+    {
+      "name": "Player7",
+      "points": 6,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "B",
+          "placement": 3
+        },
+        {
+          "round": 2,
+          "lobby": "B"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 1
+      }
+    },
+    {
+      "name": "Player8",
+      "points": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "B",
+          "placement": 4
+        },
+        {
+          "round": 2,
+          "lobby": "B",
+          "placement": 1
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 1,
+        "top4s": 2
+      }
+    },
+    {
+      "name": "Player9",
+      "points": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "A",
+          "placement": 5
+        },
+        {
+          "round": 2,
+          "lobby": "C"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 0
+      }
+    },
+    {
+      "name": "Player10",
+      "points": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "A",
+          "placement": 6
+        },
+        {
+          "round": 2,
+          "lobby": "C"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 0
+      }
+    },
+    {
+      "name": "Player11",
+      "points": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "A",
+          "placement": 7
+        },
+        {
+          "round": 2,
+          "lobby": "C"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 0
+      }
+    },
+    {
+      "name": "Player12",
+      "points": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "A",
+          "placement": 8
+        },
+        {
+          "round": 2,
+          "lobby": "C"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 0
+      }
+    },
+    {
+      "name": "Player13",
+      "points": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "B",
+          "placement": 5
+        },
+        {
+          "round": 2,
+          "lobby": "C"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 0
+      }
+    },
+    {
+      "name": "Player14",
+      "points": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "B",
+          "placement": 6
+        },
+        {
+          "round": 2,
+          "lobby": "C"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 0
+      }
+    },
+    {
+      "name": "Player15",
+      "points": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "B",
+          "placement": 7
+        },
+        {
+          "round": 2,
+          "lobby": "C"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 0
+      }
+    },
+    {
+      "name": "Player16",
+      "points": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "B",
+          "placement": 8
+        },
+        {
+          "round": 2,
+          "lobby": "C"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 0
+      }
+    },
+    {
+      "name": "Player17",
+      "points": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "C",
+          "placement": 1
+        },
+        {
+          "round": 2,
+          "lobby": "A"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 1,
+        "top4s": 1
+      }
+    },
+    {
+      "name": "Player18",
+      "points": 7,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "C",
+          "placement": 2
+        },
+        {
+          "round": 2,
+          "lobby": "A"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 1
+      }
+    },
+    {
+      "name": "Player19",
+      "points": 6,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "C",
+          "placement": 3
+        },
+        {
+          "round": 2,
+          "lobby": "A"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 1
+      }
+    },
+    {
+      "name": "Player20",
+      "points": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "C",
+          "placement": 4
+        },
+        {
+          "round": 2,
+          "lobby": "A"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 1
+      }
+    },
+    {
+      "name": "Player21",
+      "points": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "C",
+          "placement": 5
+        },
+        {
+          "round": 2,
+          "lobby": "D"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 0
+      }
+    },
+    {
+      "name": "Player22",
+      "points": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "C",
+          "placement": 6
+        },
+        {
+          "round": 2,
+          "lobby": "D"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 0
+      }
+    },
+    {
+      "name": "Player23",
+      "points": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "C",
+          "placement": 7
+        },
+        {
+          "round": 2,
+          "lobby": "D"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 0
+      }
+    },
+    {
+      "name": "Player24",
+      "points": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "C",
+          "placement": 8
+        },
+        {
+          "round": 2,
+          "lobby": "D"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 0
+      }
+    },
+    {
+      "name": "Player25",
+      "points": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "D",
+          "placement": 1
+        },
+        {
+          "round": 2,
+          "lobby": "B"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 1,
+        "top4s": 1
+      }
+    },
+    {
+      "name": "Player26",
+      "points": 7,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "D",
+          "placement": 2
+        },
+        {
+          "round": 2,
+          "lobby": "B"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 1
+      }
+    },
+    {
+      "name": "Player27",
+      "points": 6,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "D",
+          "placement": 3
+        },
+        {
+          "round": 2,
+          "lobby": "B"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 1
+      }
+    },
+    {
+      "name": "Player28",
+      "points": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "D",
+          "placement": 4
+        },
+        {
+          "round": 2,
+          "lobby": "B"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 1
+      }
+    },
+    {
+      "name": "Player29",
+      "points": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "D",
+          "placement": 5
+        },
+        {
+          "round": 2,
+          "lobby": "D"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 0
+      }
+    },
+    {
+      "name": "Player30",
+      "points": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "D",
+          "placement": 6
+        },
+        {
+          "round": 2,
+          "lobby": "D"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 0
+      }
+    },
+    {
+      "name": "Player31",
+      "points": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "D",
+          "placement": 7
+        },
+        {
+          "round": 2,
+          "lobby": "D"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 0
+      }
+    },
+    {
+      "name": "Player32",
+      "points": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "lobby": "D",
+          "placement": 8
+        },
+        {
+          "round": 2,
+          "lobby": "D"
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "top4s": 0
+      }
+    }
+  ]
+} 
