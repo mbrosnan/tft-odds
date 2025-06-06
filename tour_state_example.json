@@ -1,0 +1,1314 @@
+{
+  "current_round": {
+    "overall_round": 4,
+    "day": 1,
+    "round_in_day": 4,
+    "round_status": "in_progress"
+  },
+  "players": [
+    {
+      "name": "Milk",
+      "points": 26,
+      "avg_placement": 3.2,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "A",
+          "placement": 2,
+          "points": 7
+        },
+        {
+          "overall_round": 2,
+          "lobby": "B",
+          "placement": 1,
+          "points": 8
+        },
+        {
+          "overall_round": 3,
+          "lobby": "A",
+          "placement": 4,
+          "points": 5
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 1,
+        "seconds": 1,
+        "thirds": 0,
+        "fourths": 1,
+        "fifths": 0,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 3
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Setsuko",
+      "points": 24,
+      "avg_placement": 3.0,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "B",
+          "placement": 1,
+          "points": 8
+        },
+        {
+          "overall_round": 2,
+          "lobby": "A",
+          "placement": 3,
+          "points": 6
+        },
+        {
+          "overall_round": 3,
+          "lobby": "C",
+          "placement": 2,
+          "points": 7
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 1,
+        "seconds": 1,
+        "thirds": 1,
+        "fourths": 0,
+        "fifths": 0,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 3
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "SpicyAppies",
+      "points": 23,
+      "avg_placement": 3.7,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "A",
+          "placement": 4,
+          "points": 5
+        },
+        {
+          "overall_round": 2,
+          "lobby": "C",
+          "placement": 1,
+          "points": 8
+        },
+        {
+          "overall_round": 3,
+          "lobby": "B",
+          "placement": 2,
+          "points": 7
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 1,
+        "seconds": 1,
+        "thirds": 0,
+        "fourths": 1,
+        "fifths": 0,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 2
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Robin",
+      "points": 21,
+      "avg_placement": 3.3,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "C",
+          "placement": 3,
+          "points": 6
+        },
+        {
+          "overall_round": 2,
+          "lobby": "A",
+          "placement": 2,
+          "points": 7
+        },
+        {
+          "overall_round": 3,
+          "lobby": "B",
+          "placement": 3,
+          "points": 6
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 1,
+        "thirds": 2,
+        "fourths": 0,
+        "fifths": 0,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 3
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Prestivent",
+      "points": 20,
+      "avg_placement": 3.7,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "D",
+          "placement": 2,
+          "points": 7
+        },
+        {
+          "overall_round": 2,
+          "lobby": "B",
+          "placement": 4,
+          "points": 5
+        },
+        {
+          "overall_round": 3,
+          "lobby": "C",
+          "placement": 3,
+          "points": 6
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 1,
+        "thirds": 1,
+        "fourths": 1,
+        "fifths": 0,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 3
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "DQA",
+      "points": 19,
+      "avg_placement": 4.0,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "A",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 2,
+          "lobby": "C",
+          "placement": 2,
+          "points": 7
+        },
+        {
+          "overall_round": 3,
+          "lobby": "A",
+          "placement": 3,
+          "points": 6
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 1,
+        "thirds": 1,
+        "fourths": 0,
+        "fifths": 1,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 2
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Voltariux",
+      "points": 19,
+      "avg_placement": 4.3,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "B",
+          "placement": 3,
+          "points": 6
+        },
+        {
+          "overall_round": 2,
+          "lobby": "D",
+          "placement": 4,
+          "points": 5
+        },
+        {
+          "overall_round": 3,
+          "lobby": "C",
+          "placement": 3,
+          "points": 6
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 3,
+        "fourths": 1,
+        "fifths": 0,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 3
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Aesah",
+      "points": 18,
+      "avg_placement": 4.3,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "C",
+          "placement": 4,
+          "points": 5
+        },
+        {
+          "overall_round": 2,
+          "lobby": "A",
+          "placement": 3,
+          "points": 6
+        },
+        {
+          "overall_round": 3,
+          "lobby": "D",
+          "placement": 4,
+          "points": 5
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 1,
+        "fourths": 2,
+        "fifths": 0,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 1
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Guubums",
+      "points": 18,
+      "avg_placement": 4.7,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "D",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 2,
+          "lobby": "B",
+          "placement": 2,
+          "points": 7
+        },
+        {
+          "overall_round": 3,
+          "lobby": "A",
+          "placement": 4,
+          "points": 5
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 1,
+        "thirds": 0,
+        "fourths": 1,
+        "fifths": 1,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 2
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Kezi",
+      "points": 17,
+      "avg_placement": 4.7,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "A",
+          "placement": 3,
+          "points": 6
+        },
+        {
+          "overall_round": 2,
+          "lobby": "C",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 3,
+          "lobby": "B",
+          "placement": 4,
+          "points": 5
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 1,
+        "fourths": 1,
+        "fifths": 1,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 2
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Robivankenob",
+      "points": 17,
+      "avg_placement": 4.3,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "B",
+          "placement": 4,
+          "points": 5
+        },
+        {
+          "overall_round": 2,
+          "lobby": "D",
+          "placement": 3,
+          "points": 6
+        },
+        {
+          "overall_round": 3,
+          "lobby": "C",
+          "placement": 5,
+          "points": 4
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 1,
+        "fourths": 1,
+        "fifths": 1,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 2
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Sphinx",
+      "points": 16,
+      "avg_placement": 4.7,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "C",
+          "placement": 4,
+          "points": 5
+        },
+        {
+          "overall_round": 2,
+          "lobby": "A",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 3,
+          "lobby": "B",
+          "placement": 4,
+          "points": 5
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 2,
+        "fifths": 1,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 2
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Bertasaurus",
+      "points": 16,
+      "avg_placement": 5.0,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "D",
+          "placement": 4,
+          "points": 5
+        },
+        {
+          "overall_round": 2,
+          "lobby": "B",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 3,
+          "lobby": "A",
+          "placement": 4,
+          "points": 5
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 2,
+        "fifths": 1,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 2
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Kurumx",
+      "points": 15,
+      "avg_placement": 5.0,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "A",
+          "placement": 6,
+          "points": 3
+        },
+        {
+          "overall_round": 2,
+          "lobby": "C",
+          "placement": 3,
+          "points": 6
+        },
+        {
+          "overall_round": 3,
+          "lobby": "B",
+          "placement": 5,
+          "points": 4
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 1,
+        "fourths": 0,
+        "fifths": 1,
+        "sixths": 1,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 1
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Rainplosion",
+      "points": 15,
+      "avg_placement": 5.3,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "B",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 2,
+          "lobby": "D",
+          "placement": 4,
+          "points": 5
+        },
+        {
+          "overall_round": 3,
+          "lobby": "C",
+          "placement": 5,
+          "points": 4
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 1,
+        "fifths": 2,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 1
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Souless",
+      "points": 15,
+      "avg_placement": 5.3,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "C",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 2,
+          "lobby": "A",
+          "placement": 4,
+          "points": 5
+        },
+        {
+          "overall_round": 3,
+          "lobby": "D",
+          "placement": 5,
+          "points": 4
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 1,
+        "fifths": 2,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 1
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Kyivix",
+      "points": 14,
+      "avg_placement": 5.7,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "D",
+          "placement": 6,
+          "points": 3
+        },
+        {
+          "overall_round": 2,
+          "lobby": "B",
+          "placement": 4,
+          "points": 5
+        },
+        {
+          "overall_round": 3,
+          "lobby": "A",
+          "placement": 5,
+          "points": 4
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 1,
+        "fifths": 1,
+        "sixths": 1,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 1
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Escher",
+      "points": 14,
+      "avg_placement": 5.3,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "A",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 2,
+          "lobby": "C",
+          "placement": 4,
+          "points": 5
+        },
+        {
+          "overall_round": 3,
+          "lobby": "D",
+          "placement": 6,
+          "points": 3
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 1,
+        "fifths": 1,
+        "sixths": 1,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 1
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Darth",
+      "points": 14,
+      "avg_placement": 5.0,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "B",
+          "placement": 6,
+          "points": 3
+        },
+        {
+          "overall_round": 2,
+          "lobby": "D",
+          "placement": 3,
+          "points": 6
+        },
+        {
+          "overall_round": 3,
+          "lobby": "C",
+          "placement": 6,
+          "points": 3
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 1,
+        "fourths": 0,
+        "fifths": 0,
+        "sixths": 2,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 1
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Ace",
+      "points": 13,
+      "avg_placement": 5.7,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "C",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 2,
+          "lobby": "A",
+          "placement": 6,
+          "points": 3
+        },
+        {
+          "overall_round": 3,
+          "lobby": "B",
+          "placement": 5,
+          "points": 4
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 0,
+        "fifths": 2,
+        "sixths": 1,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 0
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Delicious",
+      "points": 13,
+      "avg_placement": 5.7,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "D",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 2,
+          "lobby": "B",
+          "placement": 6,
+          "points": 3
+        },
+        {
+          "overall_round": 3,
+          "lobby": "A",
+          "placement": 5,
+          "points": 4
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 0,
+        "fifths": 3,
+        "sixths": 1,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 0
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Otterpops",
+      "points": 12,
+      "avg_placement": 6.0,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "A",
+          "placement": 6,
+          "points": 3
+        },
+        {
+          "overall_round": 2,
+          "lobby": "C",
+          "placement": 6,
+          "points": 3
+        },
+        {
+          "overall_round": 3,
+          "lobby": "D",
+          "placement": 5,
+          "points": 4
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 0,
+        "fifths": 1,
+        "sixths": 2,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 0
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Moose",
+      "points": 12,
+      "avg_placement": 6.0,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "B",
+          "placement": 6,
+          "points": 3
+        },
+        {
+          "overall_round": 2,
+          "lobby": "D",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 3,
+          "lobby": "C",
+          "placement": 6,
+          "points": 3
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 0,
+        "fifths": 1,
+        "sixths": 2,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 0
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    },
+    {
+      "name": "Luque",
+      "points": 12,
+      "avg_placement": 6.3,
+      "completed_rounds": 3,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "C",
+          "placement": 7,
+          "points": 2
+        },
+        {
+          "overall_round": 2,
+          "lobby": "A",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 3,
+          "lobby": "B",
+          "placement": 5,
+          "points": 4
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 0,
+        "fifths": 2,
+        "sixths": 0,
+        "sevenths": 1,
+        "eighths": 0,
+        "top4s": 0
+      },
+      "cut_history": {
+        "made_24": true
+      }
+    }
+  ],
+  "eliminated_players": [
+    {
+      "name": "Ramblinnn",
+      "points": 12,
+      "avg_placement": 5.5,
+      "completed_rounds": 2,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "C",
+          "placement": 6,
+          "points": 3
+        },
+        {
+          "overall_round": 2,
+          "lobby": "D",
+          "placement": 5,
+          "points": 4
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 0,
+        "fifths": 0,
+        "sixths": 1,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 0
+      },
+      "cut_history": {
+        "made_24": false
+      },
+      "eliminated_at": {
+        "overall_round": 2,
+        "reason": "cut"
+      }
+    },
+    {
+      "name": "Dishsoap",
+      "points": 11,
+      "avg_placement": 6.0,
+      "completed_rounds": 2,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "D",
+          "placement": 7,
+          "points": 2
+        },
+        {
+          "overall_round": 2,
+          "lobby": "A",
+          "placement": 4,
+          "points": 5
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 1,
+        "fifths": 0,
+        "sixths": 0,
+        "sevenths": 1,
+        "eighths": 0,
+        "top4s": 1
+      },
+      "cut_history": {
+        "made_24": false
+      },
+      "eliminated_at": {
+        "overall_round": 2,
+        "reason": "cut"
+      }
+    },
+    {
+      "name": "Kyo",
+      "points": 11,
+      "avg_placement": 5.5,
+      "completed_rounds": 2,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "A",
+          "placement": 7,
+          "points": 2
+        },
+        {
+          "overall_round": 2,
+          "lobby": "B",
+          "placement": 3,
+          "points": 6
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 1,
+        "fourths": 0,
+        "fifths": 0,
+        "sixths": 0,
+        "sevenths": 1,
+        "eighths": 0,
+        "top4s": 1
+      },
+      "cut_history": {
+        "made_24": false
+      },
+      "eliminated_at": {
+        "overall_round": 2,
+        "reason": "cut"
+      }
+    },
+    {
+      "name": "Aesahx",
+      "points": 10,
+      "avg_placement": 5.5,
+      "completed_rounds": 2,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "B",
+          "placement": 4,
+          "points": 5
+        },
+        {
+          "overall_round": 2,
+          "lobby": "C",
+          "placement": 6,
+          "points": 3
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 1,
+        "fifths": 0,
+        "sixths": 1,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 1
+      },
+      "cut_history": {
+        "made_24": false
+      },
+      "eliminated_at": {
+        "overall_round": 2,
+        "reason": "cut"
+      }
+    },
+    {
+      "name": "Zesty",
+      "points": 10,
+      "avg_placement": 6.0,
+      "completed_rounds": 2,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "C",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 2,
+          "lobby": "D",
+          "placement": 7,
+          "points": 2
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 0,
+        "fifths": 1,
+        "sixths": 0,
+        "sevenths": 1,
+        "eighths": 0,
+        "top4s": 0
+      },
+      "cut_history": {
+        "made_24": false
+      },
+      "eliminated_at": {
+        "overall_round": 2,
+        "reason": "cut"
+      }
+    },
+    {
+      "name": "Noobowl",
+      "points": 9,
+      "avg_placement": 6.5,
+      "completed_rounds": 2,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "D",
+          "placement": 8,
+          "points": 1
+        },
+        {
+          "overall_round": 2,
+          "lobby": "A",
+          "placement": 5,
+          "points": 4
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 0,
+        "fifths": 1,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 1,
+        "top4s": 0
+      },
+      "cut_history": {
+        "made_24": false
+      },
+      "eliminated_at": {
+        "overall_round": 2,
+        "reason": "cut"
+      }
+    },
+    {
+      "name": "Cottontail",
+      "points": 8,
+      "avg_placement": 6.5,
+      "completed_rounds": 2,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "A",
+          "placement": 8,
+          "points": 1
+        },
+        {
+          "overall_round": 2,
+          "lobby": "B",
+          "placement": 5,
+          "points": 4
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 0,
+        "fifths": 1,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 1,
+        "top4s": 0
+      },
+      "cut_history": {
+        "made_24": false
+      },
+      "eliminated_at": {
+        "overall_round": 2,
+        "reason": "cut"
+      }
+    },
+    {
+      "name": "Wrainbash",
+      "points": 7,
+      "avg_placement": 7.0,
+      "completed_rounds": 2,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "B",
+          "placement": 7,
+          "points": 2
+        },
+        {
+          "overall_round": 2,
+          "lobby": "C",
+          "placement": 7,
+          "points": 2
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 0,
+        "fifths": 0,
+        "sixths": 0,
+        "sevenths": 2,
+        "eighths": 0,
+        "top4s": 0
+      },
+      "cut_history": {
+        "made_24": false
+      },
+      "eliminated_at": {
+        "overall_round": 2,
+        "reason": "cut"
+      }
+    },
+    {
+      "name": "Mortdog",
+      "points": 6,
+      "avg_placement": 7.5,
+      "completed_rounds": 2,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "C",
+          "placement": 8,
+          "points": 1
+        },
+        {
+          "overall_round": 2,
+          "lobby": "D",
+          "placement": 7,
+          "points": 2
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 0,
+        "fifths": 0,
+        "sixths": 0,
+        "sevenths": 1,
+        "eighths": 1,
+        "top4s": 0
+      },
+      "cut_history": {
+        "made_24": false
+      },
+      "eliminated_at": {
+        "overall_round": 2,
+        "reason": "cut"
+      }
+    }
+  ]
+} 

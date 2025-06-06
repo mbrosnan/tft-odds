@@ -1,0 +1,796 @@
+{
+  "current_round": {
+    "overall_round": 5,
+    "day": 1,
+    "round_in_day": 1,
+    "round_status": "in_progress"
+  },
+  "players": [
+    {
+      "id": 11,
+      "name": "Xnieamo#NA1",
+      "points": 26,
+      "avg_placement": 3.8,
+      "completed_rounds": 5,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "B",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 2,
+          "lobby": "B",
+          "placement": 2,
+          "points": 7
+        },
+        {
+          "overall_round": 3,
+          "lobby": "B",
+          "placement": 1,
+          "points": 8
+        },
+        {
+          "overall_round": 4,
+          "lobby": "B",
+          "placement": 3,
+          "points": 6
+        },
+        {
+          "overall_round": 5,
+          "lobby": "A",
+          "placement": 8,
+          "points": 1
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 1,
+        "seconds": 1,
+        "thirds": 1,
+        "fourths": 0,
+        "fifths": 1,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 1,
+        "top4s": 3
+      },
+      "is_eliminated": false,
+      "eliminated_at": null
+    },
+    {
+      "id": 7,
+      "name": "11lumin#1111",
+      "points": 27,
+      "avg_placement": 3.6,
+      "completed_rounds": 5,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "A",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 2,
+          "lobby": "A",
+          "placement": 2,
+          "points": 7
+        },
+        {
+          "overall_round": 3,
+          "lobby": "B",
+          "placement": 4,
+          "points": 5
+        },
+        {
+          "overall_round": 4,
+          "lobby": "B",
+          "placement": 1,
+          "points": 8
+        },
+        {
+          "overall_round": 5,
+          "lobby": "A",
+          "placement": 6,
+          "points": 3
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 1,
+        "seconds": 1,
+        "thirds": 0,
+        "fourths": 1,
+        "fifths": 1,
+        "sixths": 1,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 3
+      },
+      "is_eliminated": false,
+      "eliminated_at": null
+    },
+    {
+      "id": 13,
+      "name": "grea#melt",
+      "points": 23,
+      "avg_placement": 3.25,
+      "completed_rounds": 4,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "B",
+          "placement": 1,
+          "points": 8
+        },
+        {
+          "overall_round": 2,
+          "lobby": "B",
+          "placement": 7,
+          "points": 2
+        },
+        {
+          "overall_round": 3,
+          "lobby": "A",
+          "placement": 4,
+          "points": 5
+        },
+        {
+          "overall_round": 4,
+          "lobby": "A",
+          "placement": 1,
+          "points": 8
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 2,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 1,
+        "fifths": 0,
+        "sixths": 0,
+        "sevenths": 1,
+        "eighths": 0,
+        "top4s": 3
+      },
+      "is_eliminated": false,
+      "eliminated_at": null
+    },
+    {
+      "id": 9,
+      "name": "VIT k3soju#000",
+      "points": 28,
+      "avg_placement": 3.4,
+      "completed_rounds": 5,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "B",
+          "placement": 4,
+          "points": 5
+        },
+        {
+          "overall_round": 2,
+          "lobby": "B",
+          "placement": 1,
+          "points": 8
+        },
+        {
+          "overall_round": 3,
+          "lobby": "B",
+          "placement": 2,
+          "points": 7
+        },
+        {
+          "overall_round": 4,
+          "lobby": "B",
+          "placement": 6,
+          "points": 3
+        },
+        {
+          "overall_round": 5,
+          "lobby": "A",
+          "placement": 4,
+          "points": 5
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 1,
+        "seconds": 1,
+        "thirds": 0,
+        "fourths": 2,
+        "fifths": 0,
+        "sixths": 1,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 4
+      },
+      "is_eliminated": false,
+      "eliminated_at": null
+    },
+    {
+      "id": 15,
+      "name": "PockyGom#rawr",
+      "points": 22,
+      "avg_placement": 3.5,
+      "completed_rounds": 4,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "B",
+          "placement": 3,
+          "points": 6
+        },
+        {
+          "overall_round": 2,
+          "lobby": "B",
+          "placement": 3,
+          "points": 6
+        },
+        {
+          "overall_round": 3,
+          "lobby": "A",
+          "placement": 3,
+          "points": 6
+        },
+        {
+          "overall_round": 4,
+          "lobby": "A",
+          "placement": 5,
+          "points": 4
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 3,
+        "fourths": 0,
+        "fifths": 1,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 3
+      },
+      "is_eliminated": false,
+      "eliminated_at": null
+    },
+    {
+      "id": 6,
+      "name": "Kaiweng#NA1",
+      "points": 24,
+      "avg_placement": 4.2,
+      "completed_rounds": 5,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "A",
+          "placement": 2,
+          "points": 7
+        },
+        {
+          "overall_round": 2,
+          "lobby": "A",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 3,
+          "lobby": "A",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 4,
+          "lobby": "A",
+          "placement": 4,
+          "points": 5
+        },
+        {
+          "overall_round": 5,
+          "lobby": "A",
+          "placement": 5,
+          "points": 4
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 1,
+        "thirds": 0,
+        "fourths": 1,
+        "fifths": 3,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 2
+      },
+      "is_eliminated": false,
+      "eliminated_at": null
+    },
+    {
+      "id": 1,
+      "name": "Marcel P#2982",
+      "points": 19,
+      "avg_placement": 4.25,
+      "completed_rounds": 4,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "A",
+          "placement": 4,
+          "points": 5
+        },
+        {
+          "overall_round": 2,
+          "lobby": "A",
+          "placement": 8,
+          "points": 1
+        },
+        {
+          "overall_round": 3,
+          "lobby": "A",
+          "placement": 2,
+          "points": 7
+        },
+        {
+          "overall_round": 4,
+          "lobby": "A",
+          "placement": 3,
+          "points": 6
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 1,
+        "thirds": 1,
+        "fourths": 1,
+        "fifths": 0,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 1,
+        "top4s": 3
+      },
+      "is_eliminated": false,
+      "eliminated_at": null
+    },
+    {
+      "id": 10,
+      "name": "VIT setsuko#NA2",
+      "points": 19,
+      "avg_placement": 4.25,
+      "completed_rounds": 4,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "B",
+          "placement": 6,
+          "points": 3
+        },
+        {
+          "overall_round": 2,
+          "lobby": "B",
+          "placement": 8,
+          "points": 1
+        },
+        {
+          "overall_round": 3,
+          "lobby": "A",
+          "placement": 1,
+          "points": 8
+        },
+        {
+          "overall_round": 4,
+          "lobby": "A",
+          "placement": 2,
+          "points": 7
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 1,
+        "seconds": 1,
+        "thirds": 0,
+        "fourths": 0,
+        "fifths": 0,
+        "sixths": 1,
+        "sevenths": 0,
+        "eighths": 1,
+        "top4s": 2
+      },
+      "is_eliminated": false,
+      "eliminated_at": null
+    }
+  ],
+  "eliminated_players": [
+    {
+      "id": 2,
+      "name": "wasianiverson#NA2",
+      "points": 19,
+      "avg_placement": 4.25,
+      "completed_rounds": 4,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "A",
+          "placement": 3,
+          "points": 6
+        },
+        {
+          "overall_round": 2,
+          "lobby": "A",
+          "placement": 1,
+          "points": 8
+        },
+        {
+          "overall_round": 3,
+          "lobby": "A",
+          "placement": 7,
+          "points": 2
+        },
+        {
+          "overall_round": 4,
+          "lobby": "A",
+          "placement": 6,
+          "points": 3
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 1,
+        "seconds": 0,
+        "thirds": 1,
+        "fourths": 0,
+        "fifths": 0,
+        "sixths": 1,
+        "sevenths": 1,
+        "eighths": 0,
+        "top4s": 2
+      },
+      "is_eliminated": true,
+      "eliminated_at": {
+        "overall_round": 4,
+        "reason": "cut"
+      }
+    },
+    {
+      "id": 12,
+      "name": "Z10 Filup#TFT",
+      "points": 18,
+      "avg_placement": 4.5,
+      "completed_rounds": 4,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "B",
+          "placement": 2,
+          "points": 7
+        },
+        {
+          "overall_round": 2,
+          "lobby": "B",
+          "placement": 4,
+          "points": 5
+        },
+        {
+          "overall_round": 3,
+          "lobby": "B",
+          "placement": 8,
+          "points": 1
+        },
+        {
+          "overall_round": 4,
+          "lobby": "B",
+          "placement": 4,
+          "points": 5
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 1,
+        "thirds": 0,
+        "fourths": 2,
+        "fifths": 0,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 1,
+        "top4s": 3
+      },
+      "is_eliminated": true,
+      "eliminated_at": {
+        "overall_round": 4,
+        "reason": "cut"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Z10 Darth Nub#NA2",
+      "points": 18,
+      "avg_placement": 4.5,
+      "completed_rounds": 4,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "A",
+          "placement": 8,
+          "points": 1
+        },
+        {
+          "overall_round": 2,
+          "lobby": "A",
+          "placement": 3,
+          "points": 6
+        },
+        {
+          "overall_round": 3,
+          "lobby": "B",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 4,
+          "lobby": "B",
+          "placement": 2,
+          "points": 7
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 1,
+        "thirds": 1,
+        "fourths": 0,
+        "fifths": 1,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 1,
+        "top4s": 2
+      },
+      "is_eliminated": true,
+      "eliminated_at": {
+        "overall_round": 4,
+        "reason": "cut"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Dishsoap#NA2",
+      "points": 18,
+      "avg_placement": 4.5,
+      "completed_rounds": 4,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "A",
+          "placement": 6,
+          "points": 3
+        },
+        {
+          "overall_round": 2,
+          "lobby": "A",
+          "placement": 4,
+          "points": 5
+        },
+        {
+          "overall_round": 3,
+          "lobby": "B",
+          "placement": 3,
+          "points": 6
+        },
+        {
+          "overall_round": 4,
+          "lobby": "B",
+          "placement": 5,
+          "points": 4
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 1,
+        "fourths": 1,
+        "fifths": 1,
+        "sixths": 1,
+        "sevenths": 0,
+        "eighths": 0,
+        "top4s": 2
+      },
+      "is_eliminated": true,
+      "eliminated_at": {
+        "overall_round": 4,
+        "reason": "cut"
+      }
+    },
+    {
+      "id": 3,
+      "name": "100T Spencer#TFT",
+      "points": 15,
+      "avg_placement": 5.25,
+      "completed_rounds": 4,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "A",
+          "placement": 1,
+          "points": 8
+        },
+        {
+          "overall_round": 2,
+          "lobby": "A",
+          "placement": 7,
+          "points": 2
+        },
+        {
+          "overall_round": 3,
+          "lobby": "A",
+          "placement": 6,
+          "points": 3
+        },
+        {
+          "overall_round": 4,
+          "lobby": "A",
+          "placement": 7,
+          "points": 2
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 1,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 0,
+        "fifths": 0,
+        "sixths": 1,
+        "sevenths": 2,
+        "eighths": 0,
+        "top4s": 1
+      },
+      "is_eliminated": true,
+      "eliminated_at": {
+        "overall_round": 4,
+        "reason": "cut"
+      }
+    },
+    {
+      "id": 16,
+      "name": "dpei#NA1",
+      "points": 9,
+      "avg_placement": 6.75,
+      "completed_rounds": 4,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "B",
+          "placement": 7,
+          "points": 2
+        },
+        {
+          "overall_round": 2,
+          "lobby": "B",
+          "placement": 6,
+          "points": 3
+        },
+        {
+          "overall_round": 3,
+          "lobby": "B",
+          "placement": 6,
+          "points": 3
+        },
+        {
+          "overall_round": 4,
+          "lobby": "B",
+          "placement": 8,
+          "points": 1
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 0,
+        "fifths": 0,
+        "sixths": 2,
+        "sevenths": 1,
+        "eighths": 1,
+        "top4s": 0
+      },
+      "is_eliminated": true,
+      "eliminated_at": {
+        "overall_round": 4,
+        "reason": "cut"
+      }
+    },
+    {
+      "id": 8,
+      "name": "robinsongz#888",
+      "points": 9,
+      "avg_placement": 6.75,
+      "completed_rounds": 4,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "A",
+          "placement": 7,
+          "points": 2
+        },
+        {
+          "overall_round": 2,
+          "lobby": "A",
+          "placement": 6,
+          "points": 3
+        },
+        {
+          "overall_round": 3,
+          "lobby": "B",
+          "placement": 7,
+          "points": 2
+        },
+        {
+          "overall_round": 4,
+          "lobby": "B",
+          "placement": 7,
+          "points": 2
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 0,
+        "fifths": 0,
+        "sixths": 1,
+        "sevenths": 3,
+        "eighths": 0,
+        "top4s": 0
+      },
+      "is_eliminated": true,
+      "eliminated_at": {
+        "overall_round": 4,
+        "reason": "cut"
+      }
+    },
+    {
+      "id": 14,
+      "name": "imriveting#NA1",
+      "points": 7,
+      "avg_placement": 7.25,
+      "completed_rounds": 4,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "B",
+          "placement": 8,
+          "points": 1
+        },
+        {
+          "overall_round": 2,
+          "lobby": "B",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 3,
+          "lobby": "A",
+          "placement": 8,
+          "points": 1
+        },
+        {
+          "overall_round": 4,
+          "lobby": "A",
+          "placement": 8,
+          "points": 1
+        }
+      ],
+      "tiebreakers": {
+        "firsts": 0,
+        "seconds": 0,
+        "thirds": 0,
+        "fourths": 0,
+        "fifths": 1,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 3,
+        "top4s": 0
+      },
+      "is_eliminated": true,
+      "eliminated_at": {
+        "overall_round": 4,
+        "reason": "cut"
+      }
+    }
+  ]
+}
