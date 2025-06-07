@@ -82,23 +82,67 @@ When shuffling lobbies, two methods are available:
 
 // tour_state.json
 {
+  "current_round": {
+    "overall_round": 5,
+    "day": 1,
+    "round_in_day": 1,
+    "round_status": "in_progress"
+  },
   "players": [
     {
-      "name": "Player A",
+      "id": 11,
+      "name": "Xnieamo#NA1",
       "points": 26,
-      "avg_placement": 3.7,
-      "rounds": [
-        {"round": 1, "lobby": "A", "placement": 2},
-        ...
+      "avg_placement": 3.8,
+      "completed_rounds": 5,
+      "round_history": [
+        {
+          "overall_round": 1,
+          "lobby": "B",
+          "placement": 5,
+          "points": 4
+        },
+        {
+          "overall_round": 2,
+          "lobby": "B",
+          "placement": 2,
+          "points": 7
+        },
+        {
+          "overall_round": 3,
+          "lobby": "B",
+          "placement": 1,
+          "points": 8
+        },
+        {
+          "overall_round": 4,
+          "lobby": "B",
+          "placement": 3,
+          "points": 6
+        },
+        {
+          "overall_round": 5,
+          "lobby": "A",
+          "placement": 8,
+          "points": 1
+        }
       ],
       "tiebreakers": {
-        "firsts": 2,
-        "top4s": 5,
-        ...
-      }
-    }
-  ]
-}
+        "firsts": 1,
+        "seconds": 1,
+        "thirds": 1,
+        "fourths": 0,
+        "fifths": 1,
+        "sixths": 0,
+        "sevenths": 0,
+        "eighths": 1,
+        "top4s": 3
+      },
+      "is_eliminated": false,
+      "eliminated_at": null
+    },
+    ... for all players
+
 
 
 
@@ -116,49 +160,139 @@ When shuffling lobbies, two methods are available:
 
 
 {
-  "tournament_name": "Mid-Set Finale NA",
+  "tournament_name": "Set 99 Tacticians Cup Finale NA",
+  "starting_players": 16,
   "round_structure": [
     {
       "overall_round": 1,
       "day": 1,
       "round_in_day": 1,
-      "after_round": "shuffle",
-      "shuffle_type": "snake"
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
     },
     {
       "overall_round": 2,
       "day": 1,
       "round_in_day": 2,
-      "after_round": "nothing"
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "snake_shuffle": true,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
     },
     {
       "overall_round": 3,
       "day": 1,
       "round_in_day": 3,
-      "after_round": "cut",
-      "cut_to": 32
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
     },
     {
       "overall_round": 4,
-      "day": 2,
-      "round_in_day": 1,
-      "after_round": "shuffle",
-      "shuffle_type": "random"
+      "day": 1,
+      "round_in_day": 4,
+      "post_round_actions": {
+        "cut": true,
+        "cut_to": 8,
+        "snake_shuffle": true,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
     },
     {
       "overall_round": 5,
+      "day": 1,
+      "round_in_day": 5,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 6,
+      "day": 1,
+      "round_in_day": 6,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 7,
+      "day": 2,
+      "round_in_day": 1,
+      "post_round_actions": {
+        "cut": true,
+        "cut_to": 8,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 8,
       "day": 2,
       "round_in_day": 2,
-      "after_round": "end"
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": true,
+        "point_reset": false
+      }
     }
   ],
   "tiebreaker_order": [
     "points",
     "firsts",
     "top4s",
-    "avg_placement"
+    "seconds",
+    "thirds",
+    "fourths",
+    "fifths",
+    "sixths",
+    "sevenths",
+    "eighths",
+    "random"
   ],
-  "cut_stages": [32, 16, 8]
+  "checkmate_conditions": {
+    "points_threshold": null
+  }
+} 
 
 - sim_settings.json
     - this shorter JSON will contain the parameters for the individual sim.  It will have:

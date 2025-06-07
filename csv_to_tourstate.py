@@ -60,16 +60,24 @@ def parse_csv_to_tourstate(input_file: str, output_file: str):
     current_round = int(lines[0][1])
     round_status = lines[1][1].lower().replace(" ", "_")
     
-    # Parse round structure
-    header_start = 3
+    # Parse round structure from header rows
+    day_row = lines[3]  # Day header row
+    round_row = lines[4]  # Round header row
+    overall_round_row = lines[5]  # Overall Round header row
+    
+    # Get current round day and round_in_day from the current round column
+    current_round_col = (current_round * 3) - 1  # Column where current round data should be
+    current_day = int(day_row[current_round_col]) if current_round_col < len(day_row) and day_row[current_round_col] else -99
+    current_round_in_day = int(round_row[current_round_col]) if current_round_col < len(round_row) and round_row[current_round_col] else -99
+    
     player_start = 7
     
     # Initialize data structure
     tour_state = {
         "current_round": {
             "overall_round": current_round,
-            "day": int(lines[header_start][2]),  # Get from the current round column
-            "round_in_day": int(lines[header_start + 1][2]),  # Get from the current round column
+            "day": current_day,
+            "round_in_day": current_round_in_day,
             "round_status": round_status
         },
         "players": [],
@@ -98,7 +106,7 @@ def parse_csv_to_tourstate(input_file: str, output_file: str):
         total_placement = 0
         completed_rounds = 0
         
-        # Each round has 2 columns (Lobby, Placement)
+        # Each round has 3 columns (Lobby, Placement, spacer)
         for round_num in range(1, current_round + 1):
             col_offset = (round_num * 3) - 1  # Starting column for round data
             
@@ -114,8 +122,25 @@ def parse_csv_to_tourstate(input_file: str, output_file: str):
                 }
                 continue
 
-            # Skip if no data for this round
-            if not lobby or not placement_str:
+            # Skip if no lobby data for this round
+            if not lobby:
+                continue
+                
+            # Get day and round_in_day from header rows
+            day = int(day_row[col_offset]) if col_offset < len(day_row) and day_row[col_offset] else 1
+            round_in_day = int(round_row[col_offset]) if col_offset < len(round_row) and round_row[col_offset] else 1
+            
+            # Handle in-progress rounds (lobby exists but no placement)
+            if not placement_str:
+                round_data = {
+                    "overall_round": round_num,
+                    "day": day,
+                    "round_in_day": round_in_day,
+                    "lobby": lobby,
+                    "placement": None,
+                    "points": None
+                }
+                player_data["round_history"].append(round_data)
                 continue
                 
             try:
@@ -127,6 +152,8 @@ def parse_csv_to_tourstate(input_file: str, output_file: str):
                 
                 round_data = {
                     "overall_round": round_num,
+                    "day": day,
+                    "round_in_day": round_in_day,
                     "lobby": lobby,
                     "placement": placement,
                     "points": points
