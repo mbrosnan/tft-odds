@@ -484,8 +484,8 @@
           "day": 1,
           "round_in_day": 5,
           "lobby": "A",
-          "placement": null,
-          "points": null
+          "placement": 7,
+          "points": 2
         }
       ],
       "tiebreakers": {

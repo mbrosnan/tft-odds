@@ -2,7 +2,13 @@ import json
 import csv
 import argparse
 from pathlib import Path
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Union
+
+# Import the TourState model
+try:
+    from models import TourState
+except ImportError:
+    TourState = None
 
 def get_max_rounds(tour_state: Dict[str, Any]) -> int:
     """Determine the maximum number of rounds from all players' history."""
@@ -39,17 +45,13 @@ def get_round_info_from_json(tour_state: Dict[str, Any], round_num: int) -> tupl
     # If not found, return empty strings
     return "", ""
 
-def tourstate_to_csv(input_file: str, output_file: str):
-    """Convert tour_state.json to CSV format."""
-    # Read JSON input
-    with open(input_file, 'r', encoding='utf-8') as f:
-        tour_state = json.load(f)
-    
+def tourstate_to_csv_data(tour_state_dict: Dict[str, Any]) -> List[List[str]]:
+    """Convert tour_state dictionary to CSV row data."""
     # Initialize CSV rows
     rows = []
     
     # Add metadata rows
-    current_round = tour_state["current_round"]
+    current_round = tour_state_dict["current_round"]
     rows.extend([
         ["Current Round", str(current_round["overall_round"])],
         ["Current Round Progress", current_round["round_status"].replace("_", " ").title()],
@@ -57,7 +59,7 @@ def tourstate_to_csv(input_file: str, output_file: str):
     ])
     
     # Create column headers based on max rounds
-    max_rounds = get_max_rounds(tour_state)
+    max_rounds = get_max_rounds(tour_state_dict)
     
     # Create the three header rows for day, round, and overall round
     day_header = ["Day", ""]  # Start with row label
@@ -70,7 +72,7 @@ def tourstate_to_csv(input_file: str, output_file: str):
     # Add headers for each round
     for round_num in range(1, max_rounds + 1):
         # Get day and round_in_day from JSON data
-        day, round_in_day = get_round_info_from_json(tour_state, round_num)
+        day, round_in_day = get_round_info_from_json(tour_state_dict, round_num)
         
         # Add three columns for each round (Lobby, Placement, Spacer)
         # Day, round, and overall round should appear above both lobby and placement
@@ -89,7 +91,7 @@ def tourstate_to_csv(input_file: str, output_file: str):
     
     # Combine and sort all players by ID
     all_players = sorted(
-        tour_state["players"] + tour_state["eliminated_players"],
+        tour_state_dict["players"] + tour_state_dict["eliminated_players"],
         key=lambda x: x["id"]
     )
     
@@ -103,6 +105,33 @@ def tourstate_to_csv(input_file: str, output_file: str):
             player_row.extend([lobby, placement, ""])  # Add lobby, placement, and spacer
             
         rows.append(player_row)
+    
+    return rows
+
+def tourstate_to_csv(input_file: str, output_file: str):
+    """Convert tour_state.json file to CSV format."""
+    # Read JSON input
+    with open(input_file, 'r', encoding='utf-8') as f:
+        tour_state = json.load(f)
+    
+    # Convert to CSV data
+    rows = tourstate_to_csv_data(tour_state)
+    
+    # Write to CSV
+    with open(output_file, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        writer.writerows(rows)
+
+def pydantic_tourstate_to_csv(tour_state: 'TourState', output_file: str):
+    """Convert Pydantic TourState object directly to CSV format."""
+    if TourState is None:
+        raise ImportError("Cannot import TourState model. Make sure models.py is available.")
+    
+    # Convert Pydantic model to dictionary
+    tour_state_dict = tour_state.model_dump()
+    
+    # Convert to CSV data
+    rows = tourstate_to_csv_data(tour_state_dict)
     
     # Write to CSV
     with open(output_file, 'w', newline='', encoding='utf-8') as f:
