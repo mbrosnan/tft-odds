@@ -166,15 +166,29 @@ if data is not None:
                     # Display detailed table
                     st.subheader("Detailed Breakdown")
                     display_data = chart_data.copy()
-                    display_data["Probability"] = display_data["Probability"].apply(lambda x: f"{x:.1f}%")
+                    # Keep Probability as numeric for proper sorting
+                    # display_data["Probability"] = display_data["Probability"].apply(lambda x: f"{x:.1f}%")
                     display_data["Success Rate"] = display_data.apply(
                         lambda row: f"{row['Count']}/{row['Total']}", axis=1
                     )
                     
+                    # Create column configuration for percentage display
+                    detail_column_config = {
+                        "Player": st.column_config.TextColumn("Player", width="medium"),
+                        "Probability": st.column_config.NumberColumn(
+                            "Probability",
+                            format="%.1f%%",
+                            min_value=0,
+                            max_value=100
+                        ),
+                        "Success Rate": st.column_config.TextColumn("Success Rate", width="small")
+                    }
+                    
                     st.dataframe(
                         display_data[["Player", "Probability", "Success Rate"]],
                         use_container_width=True,
-                        hide_index=True
+                        hide_index=True,
+                        column_config=detail_column_config
                     )
                     
                     # Insights
@@ -238,7 +252,8 @@ if data is not None:
                     # Detailed table
                     st.subheader("Detailed Breakdown")
                     display_df = chart_df.copy()
-                    display_df["Probability"] = display_df["Probability"].apply(lambda x: f"{x:.1f}%")
+                    # Keep Probability as numeric for proper sorting
+                    # display_df["Probability"] = display_df["Probability"].apply(lambda x: f"{x:.1f}%")
                     display_df["Type"] = display_df["Threshold"].apply(
                         lambda x: "Clean Cut" if "." in str(x) and float(x) % 1 == 0.5 else "Tiebreakers"
                     )
@@ -246,10 +261,28 @@ if data is not None:
                         lambda i: int(chart_df.iloc[i]["Probability"] * stats["count"] / 100)
                     )
                     
+                    # Create column configuration for cut threshold table
+                    cut_column_config = {
+                        "Threshold": st.column_config.NumberColumn(
+                            "Threshold",
+                            format="%.1f",
+                            min_value=0
+                        ),
+                        "Probability": st.column_config.NumberColumn(
+                            "Probability",
+                            format="%.1f%%",
+                            min_value=0,
+                            max_value=100
+                        ),
+                        "Type": st.column_config.TextColumn("Type", width="medium"),
+                        "Count": st.column_config.NumberColumn("Count", format="%d")
+                    }
+                    
                     st.dataframe(
                         display_df[["Threshold", "Probability", "Type", "Count"]],
                         use_container_width=True,
-                        hide_index=True
+                        hide_index=True,
+                        column_config=cut_column_config
                     )
                     
                     # Analysis insights
