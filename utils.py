@@ -1,12 +1,18 @@
 import json
 from typing import Dict
-from models import TourState
+from models import TourState, TourFormat
 
 def load_tour_state_from_json(file_path: str) -> TourState:
     """Load tournament state from JSON file."""
     with open(file_path, 'r') as f:
         data = json.load(f)
     return TourState(**data)
+
+def load_tour_format_from_json(file_path: str) -> TourFormat:
+    """Load tournament format from JSON file."""
+    with open(file_path, 'r') as f:
+        data = json.load(f)
+    return TourFormat(**data)
 
 def save_results_to_json(results: Dict, file_path: str):
     """Save simulation results to probabilities.json file."""
