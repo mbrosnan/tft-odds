@@ -32,6 +32,7 @@ class Tiebreakers(BaseModel):
     sevenths: int = 0
     eighths: int = 0
     top4s: int = 0
+    firsts_plus_top4s: int = 0
 
 class EliminatedAt(BaseModel):
     overall_round: int

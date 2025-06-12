@@ -68,6 +68,9 @@ def calculate_tiebreakers(round_history: List[RoundHistory]) -> Dict[str, int]:
         
         if placement <= 4:
             tiebreakers["top4s"] += 1
+    
+    # Calculate firsts_plus_top4s (firsts + all top4s)
+    tiebreakers["firsts_plus_top4s"] = tiebreakers["firsts"] + tiebreakers["top4s"]
             
     return tiebreakers
 
@@ -353,12 +356,14 @@ def sort_players_by_standing(players: List) -> List:
             seconds = tb.get('seconds', 0) 
             thirds = tb.get('thirds', 0)
             top4s = tb.get('top4s', 0)
+            firsts_plus_top4s = tb.get('firsts_plus_top4s', 0)
         else:
             # Handle Pydantic object
             firsts = tb.firsts
             seconds = tb.seconds
             thirds = tb.thirds
             top4s = tb.top4s
+            firsts_plus_top4s = tb.firsts_plus_top4s
         
         return (
             -player.points,              # Higher points = better (negative for desc)
@@ -366,7 +371,8 @@ def sort_players_by_standing(players: List) -> List:
             -firsts,                     # More firsts = better (negative for desc)
             -seconds,                    # More seconds = better
             -thirds,                     # More thirds = better
-            -top4s                       # More top4s = better
+            -top4s,                      # More top4s = better
+            -firsts_plus_top4s          # More firsts_plus_top4s = better
         )
     
     return sorted(players, key=standing_key)
