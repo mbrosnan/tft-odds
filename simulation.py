@@ -616,15 +616,36 @@ def calculate_cut_threshold_statistics(results: Dict) -> Dict:
             "count": len(thresholds)
         }
         
+        # Count cut types: clean cuts (half-point) vs tiebreaker cuts (whole-point)
+        clean_cuts = 0
+        tiebreaker_cuts = 0
+        
+        for threshold in thresholds:
+            if threshold % 1 == 0.5:  # Half-point threshold = clean cut
+                clean_cuts += 1
+            else:  # Whole-point threshold = tiebreaker cut
+                tiebreaker_cuts += 1
+        
+        total_cuts = len(thresholds)
+        stats["cut_types"] = {
+            "clean_cuts": {
+                "count": clean_cuts,
+                "percentage": (clean_cuts / total_cuts) * 100 if total_cuts > 0 else 0
+            },
+            "tiebreaker_cuts": {
+                "count": tiebreaker_cuts,
+                "percentage": (tiebreaker_cuts / total_cuts) * 100 if total_cuts > 0 else 0
+            }
+        }
+        
         # Count distribution of thresholds
         threshold_counts = {}
         for threshold in thresholds:
             threshold_counts[threshold] = threshold_counts.get(threshold, 0) + 1
         
         # Convert to probability distribution
-        total_count = len(thresholds)
         threshold_distribution = {
-            threshold: count / total_count 
+            threshold: count / total_cuts 
             for threshold, count in threshold_counts.items()
         }
         
@@ -632,7 +653,7 @@ def calculate_cut_threshold_statistics(results: Dict) -> Dict:
         most_common_threshold = max(threshold_counts.items(), key=lambda x: x[1])
         stats["most_common"] = {
             "threshold": most_common_threshold[0],
-            "probability": most_common_threshold[1] / total_count,
+            "probability": most_common_threshold[1] / total_cuts,
             "count": most_common_threshold[1]
         }
         
@@ -882,7 +903,14 @@ def simulate_tournament(tour_format: TourFormat, tour_state: TourState, sim_sett
             "simulation_metadata": {
                 "total_simulations": sim_count,
                 "simulation_time_seconds": total_time,
-                "probability_targets": [target.model_dump() for target in sim_settings.probability_targets]
+                "probability_targets": [target.model_dump() for target in sim_settings.probability_targets],
+                "tournament_title": getattr(tour_format, 'tournament_title', 'TFT Tournament'),
+                "current_round": {
+                    "overall_round": tour_state.current_round.overall_round,
+                    "day": tour_state.current_round.day,
+                    "round_in_day": tour_state.current_round.round_in_day,
+                    "round_status": tour_state.current_round.round_status
+                }
             }
         }
     

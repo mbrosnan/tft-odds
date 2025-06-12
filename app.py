@@ -81,19 +81,50 @@ def get_probability_charts_data(player_probabilities: Dict[str, Dict[str, Dict[s
     return pd.DataFrame(chart_data)
 
 # Streamlit App
-st.set_page_config(page_title="TFT Tournament Probabilities", page_icon="🎯", layout="wide")
+st.set_page_config(page_title="TFT Tournament Probabilities", page_icon="��", layout="wide")
 
-st.title("🎯 TFT Tournament Probability Analysis")
-st.markdown(f"**Data Source:** `{PROBABILITIES_FILE}`")
-st.markdown("---")
-
-# Load data
+# Load data first to get tournament info
 data = load_probability_data(PROBABILITIES_FILE)
 
 if data is not None:
+    metadata = data.get("simulation_metadata", {})
+    
+    # Display tournament title and round info
+    tournament_title = metadata.get("tournament_title", "TFT Tournament")
+    current_round_info = metadata.get("current_round", {})
+    
+    st.title(f"🎯 {tournament_title}")
+    
+    if current_round_info:
+        round_num = current_round_info.get("overall_round", "?")
+        round_status = current_round_info.get("round_status", "unknown")
+        day = current_round_info.get("day", "?")
+        round_in_day = current_round_info.get("round_in_day", "?")
+        
+        # Format round status for display
+        status_display = round_status.replace("_", " ").title()
+        
+        st.subheader(f"📍 Round {round_num} (Day {day}, Round {round_in_day}) - {status_display}")
+    
+    # Add explanation about cut types
+    st.info("""
+    **📚 Understanding Cut Thresholds:**
+    
+    • **Half-Point Cut (e.g., 12.5 points):** A "clean cut" where all players above the threshold advance and all below are eliminated. No tiebreakers needed.
+    
+    • **Whole-Point Cut (e.g., 12 points):** A "tiebreaker cut" where multiple players have exactly the threshold score. Tiebreakers (placement history) determine who advances.
+    """)
+    
+    st.markdown("---")
+
+else:
+    st.title("🎯 TFT Tournament Probability Analysis")
+    st.markdown("---")
+
+# Load data (keeping original structure for rest of code)
+if data is not None:
     player_probabilities = data.get("player_probabilities", {})
     cut_threshold_stats = data.get("cut_threshold_statistics", {})
-    metadata = data.get("simulation_metadata", {})
     
     # Sidebar with simulation info
     st.sidebar.header("📊 Simulation Info")
@@ -120,8 +151,8 @@ if data is not None:
         first_player = next(iter(player_probabilities.values()))
         probability_types = list(first_player.keys())
         
-        # Main tabs
-        tab_names = ["📋 Player Overview"] + [f"📈 {prob_type.replace('_', ' ').title()}" for prob_type in probability_types]
+        # Only keep Player Overview and Cut Thresholds tabs
+        tab_names = ["📋 Player Overview"]
         
         # Add cut threshold tab if we have cut data
         if cut_threshold_stats:
@@ -174,61 +205,9 @@ if data is not None:
                             help=f"Range: {min_prob:.1f}% - {max_prob:.1f}%"
                         )
         
-        # Individual probability type tabs
-        for i, prob_type in enumerate(probability_types):
-            with tabs[i + 1]:
-                st.subheader(f"{prob_type.replace('_', ' ').title()} Analysis")
-                
-                chart_data = get_probability_charts_data(player_probabilities, prob_type)
-                
-                if not chart_data.empty:
-                    # Display chart
-                    st.bar_chart(chart_data.set_index("Player")["Probability"])
-                    
-                    # Display detailed table
-                    st.subheader("Detailed Breakdown")
-                    display_data = chart_data.copy()
-                    # Keep Probability as numeric for proper sorting
-                    # display_data["Probability"] = display_data["Probability"].apply(lambda x: f"{x:.1f}%")
-                    display_data["Success Rate"] = display_data.apply(
-                        lambda row: f"{row['Count']}/{row['Total']}", axis=1
-                    )
-                    
-                    # Create column configuration for percentage display
-                    detail_column_config = {
-                        "Player": st.column_config.TextColumn("Player", width="medium"),
-                        "Probability": st.column_config.NumberColumn(
-                            "Probability",
-                            format="%.1f%%",
-                            min_value=0,
-                            max_value=100
-                        ),
-                        "Success Rate": st.column_config.TextColumn("Success Rate", width="small")
-                    }
-                    
-                    st.dataframe(
-                        display_data[["Player", "Probability", "Success Rate"]],
-                        use_container_width=True,
-                        hide_index=True,
-                        column_config=detail_column_config
-                    )
-                    
-                    # Insights
-                    st.subheader("💡 Key Insights")
-                    best_player = chart_data.iloc[0]
-                    worst_player = chart_data.iloc[-1]
-                    
-                    col1, col2 = st.columns(2)
-                    with col1:
-                        st.success(f"🏆 **Best odds:** {best_player['Player']} ({best_player['Probability']:.1f}%)")
-                    with col2:
-                        st.info(f"📉 **Lowest odds:** {worst_player['Player']} ({worst_player['Probability']:.1f}%)")
-                else:
-                    st.warning("No data available for this probability type.")
-        
         # Cut Threshold Analysis Tab
         if cut_threshold_stats:
-            with tabs[-1]:  # Last tab
+            with tabs[-1]:  # Last tab (Cut Thresholds)
                 st.subheader("🔪 Cut Threshold Analysis")
                 st.markdown("Analysis of point thresholds needed to survive cuts across all simulations.")
                 
@@ -253,6 +232,19 @@ if data is not None:
                         most_common_pct = stats['most_common']['probability'] * 100
                         st.metric("Most Common %", f"{most_common_pct:.1f}%")
                     
+                    # Cut type analysis using the new data structure
+                    if "cut_types" in stats:
+                        cut_types = stats["cut_types"]
+                        clean_pct = cut_types["clean_cuts"]["percentage"]
+                        tiebreaker_pct = cut_types["tiebreaker_cuts"]["percentage"]
+                        
+                        st.subheader("💡 Cut Type Analysis")
+                        col1, col2 = st.columns(2)
+                        with col1:
+                            st.info(f"🎯 **Clean cuts:** {clean_pct:.1f}% of simulations ({cut_types['clean_cuts']['count']} times)")
+                        with col2:
+                            st.warning(f"⚔️ **Tiebreaker cuts:** {tiebreaker_pct:.1f}% of simulations ({cut_types['tiebreaker_cuts']['count']} times)")
+                    
                     # Distribution analysis
                     distribution = stats["distribution"]
                     threshold_values = list(distribution.keys())
@@ -274,10 +266,8 @@ if data is not None:
                     # Detailed table
                     st.subheader("Detailed Breakdown")
                     display_df = chart_df.copy()
-                    # Keep Probability as numeric for proper sorting
-                    # display_df["Probability"] = display_df["Probability"].apply(lambda x: f"{x:.1f}%")
                     display_df["Type"] = display_df["Threshold"].apply(
-                        lambda x: "Clean Cut" if "." in str(x) and float(x) % 1 == 0.5 else "Tiebreakers"
+                        lambda x: "Clean Cut" if float(x) % 1 == 0.5 else "Tiebreakers"
                     )
                     display_df["Count"] = display_df.index.map(
                         lambda i: int(chart_df.iloc[i]["Probability"] * stats["count"] / 100)
@@ -306,18 +296,6 @@ if data is not None:
                         hide_index=True,
                         column_config=cut_column_config
                     )
-                    
-                    # Analysis insights
-                    clean_cuts = sum(1 for thresh in threshold_values if "." in str(thresh) and float(thresh) % 1 == 0.5)
-                    tiebreaker_cuts = len(threshold_values) - clean_cuts
-                    clean_cut_pct = (clean_cuts / len(threshold_values)) * 100 if threshold_values else 0
-                    
-                    st.subheader("💡 Cut Analysis")
-                    col1, col2 = st.columns(2)
-                    with col1:
-                        st.info(f"🎯 **Clean cuts:** {clean_cut_pct:.1f}% of scenarios")
-                    with col2:
-                        st.warning(f"⚔️ **Tiebreaker cuts:** {100-clean_cut_pct:.1f}% of scenarios")
                     
                     st.markdown("---")
     
