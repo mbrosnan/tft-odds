@@ -133,8 +133,8 @@
       "day": 2,
       "round_in_day": 4,
       "post_round_actions": {
-        "cut": false,
-        "cut_to": null,
+        "cut": true,
+        "cut_to": 104,
         "snake_shuffle": true,
         "random_shuffle": false,
         "check_victory": false,

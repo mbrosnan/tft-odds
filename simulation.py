@@ -1,9 +1,14 @@
 import time
 import random
+import os
+import tempfile
+import json
+import argparse
 from typing import Dict, List, Set
 from models import TourFormat, TourState, SimSettings, SimulationMode, CutRule, RoundHistory, RoundStatus, EliminatedAt, Player, Tiebreakers, CurrentRound, PostRoundActions, RoundStructure, ProbabilityTarget
 from utils import load_tour_state_from_json, save_results_to_json, save_json, load_tour_format_from_json
 from tourstate_to_csv import tourstate_to_csv, pydantic_tourstate_to_csv
+from csv_to_tourstate import parse_csv_to_tourstate
 
 # Simulation Functions
 
@@ -428,6 +433,29 @@ def assign_next_round_lobbies(current_state: TourState, tour_format: TourFormat,
     
     return current_state
 
+def generate_lobby_name(index: int) -> str:
+    """Generate lobby name for given index. Handles more than 26 lobbies gracefully.
+    
+    Examples:
+    0 -> "A", 1 -> "B", ..., 25 -> "Z"
+    26 -> "AA", 27 -> "AB", ..., 51 -> "AZ"
+    52 -> "BA", 53 -> "BB", etc.
+    """
+    if index < 26:
+        # Single letter: A-Z
+        return chr(ord('A') + index)
+    else:
+        # Multiple letters: AA, AB, AC, etc.
+        # This creates Excel-style column naming
+        result = ""
+        temp_index = index
+        while temp_index >= 0:
+            result = chr(ord('A') + (temp_index % 26)) + result
+            temp_index = temp_index // 26 - 1
+            if temp_index < 0:
+                break
+        return result
+
 def assign_lobbies_snake_shuffle(players: List, players_per_lobby: int = 8) -> Dict[str, List]:
     """Assign players to lobbies using snake shuffle (balanced by standings)."""
     # Sort players by current standings
@@ -439,8 +467,8 @@ def assign_lobbies_snake_shuffle(players: List, players_per_lobby: int = 8) -> D
     # Initialize lobbies
     lobbies = {}
     for i in range(num_lobbies):
-        lobby_letter = chr(ord('A') + i)
-        lobbies[lobby_letter] = []
+        lobby_name = generate_lobby_name(i)
+        lobbies[lobby_name] = []
     
     # Snake distribution
     lobby_names = list(lobbies.keys())
@@ -478,9 +506,9 @@ def assign_lobbies_random_shuffle(players: List, players_per_lobby: int = 8) -> 
     lobby_count = 0
     
     for i in range(0, len(shuffled_players), players_per_lobby):
-        lobby_letter = chr(ord('A') + lobby_count)
+        lobby_name = generate_lobby_name(lobby_count)
         lobby_players = shuffled_players[i:i + players_per_lobby]
-        lobbies[lobby_letter] = lobby_players
+        lobbies[lobby_name] = lobby_players
         lobby_count += 1
     
     return lobbies
@@ -497,18 +525,23 @@ def evaluate_probability_targets(final_standings: List[Player], eliminated_playe
     # Create mapping of player to their final rank
     player_rankings = {player.id: i + 1 for i, player in enumerate(final_standings)}
     
+    # Get all players (active + eliminated) for complete evaluation
+    all_players = final_standings + eliminated_players
+    
     for target in sim_settings.probability_targets:
         target_results = {}
         
-        for player in final_standings:
+        # Evaluate ALL players, not just final_standings
+        for player in all_players:
             player_result = False
             
             if target.type == "tournament_winner":
                 # Winner is 1st place
-                player_result = player_rankings[player.id] == 1
+                player_result = player_rankings.get(player.id, len(final_standings) + 1) == 1
                 
             elif target.type == "overall_standing":
-                player_rank = player_rankings[player.id]
+                # Get player rank, defaulting to worse than last place if eliminated
+                player_rank = player_rankings.get(player.id, len(final_standings) + 1)
                 
                 if target.comparison == "at":
                     player_result = player_rank == target.threshold
@@ -528,7 +561,8 @@ def evaluate_probability_targets(final_standings: List[Player], eliminated_playe
                     player_result = player in cut_history[target.players_remaining]
                 else:
                     # Fallback: if they finished in top N positions, they made the cut
-                    player_result = player_rankings[player.id] <= target.players_remaining
+                    player_rank = player_rankings.get(player.id, len(final_standings) + 1)
+                    player_result = player_rank <= target.players_remaining
             
             target_results[player.name] = player_result
         
@@ -851,13 +885,6 @@ def simulate_tournament(tour_format: TourFormat, tour_state: TourState, sim_sett
                 "probability_targets": [target.model_dump() for target in sim_settings.probability_targets]
             }
         }
-    
-    # Save Pydantic object to JSON
-    tour_state_dict = tour_state.model_dump()
-    save_json(tour_state_dict, "temp_tour_state.json")
-
-    # Convert JSON to CSV
-    tourstate_to_csv("temp_tour_state.json", "output.csv")
     
     return results, sim_count
 
@@ -1207,57 +1234,246 @@ def test_probability_tracking():
     print("Probability tracking test completed!")
     print("=" * 50)
 
-if __name__ == "__main__":
-    # Toggle between different test modes
-    SINGLE_ROUND_TEST = False      # Change this to True for single round test
-    NO_SHOW_TEST = False           # Change this to True to test no-show functionality  
-    POST_ROUND_TEST = False        # Change this to True to test post-round actions (cuts)
-    MULTI_ROUND_TEST = False       # Change this to True to test multiple rounds
-    SNAKE_SHUFFLE_DEMO = False     # Change this to True to demo snake shuffle
-    VICTORY_CONDITIONS_TEST = False # Change this to True to test victory conditions
-    PROBABILITY_TRACKING_TEST = True # Change this to True to test probability tracking
+def load_tour_state_from_csv(csv_file: str) -> TourState:
+    """Load tournament state from CSV file by converting it to JSON format first."""
+    # Create a temporary JSON file
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as temp_file:
+        temp_json_path = temp_file.name
     
-    # Multi-round test configuration
-    ROUNDS_TO_TEST = 7             # Number of rounds to simulate in multi-round test
+    try:
+        # Convert CSV to JSON
+        parse_csv_to_tourstate(csv_file, temp_json_path)
+        
+        # Load the JSON as TourState
+        tour_state = load_tour_state_from_json(temp_json_path)
+        
+        return tour_state
+    finally:
+        # Clean up temporary file
+        if os.path.exists(temp_json_path):
+            os.unlink(temp_json_path)
+
+def test_single_round_simulation_csv(csv_file: str):
+    """Test function to simulate a single round from CSV input."""
+    print("=" * 50)
+    print("SINGLE ROUND TEST MODE (CSV INPUT)")
+    print("=" * 50)
     
-    if VICTORY_CONDITIONS_TEST:
-        # Test victory conditions
-        test_victory_conditions()
-    elif SNAKE_SHUFFLE_DEMO:
-        # Demo snake shuffle vs random shuffle
-        test_snake_shuffle_demo()
-    elif PROBABILITY_TRACKING_TEST:
-        # Test probability tracking
-        test_probability_tracking()
-    elif MULTI_ROUND_TEST:
-        # Test multiple rounds
-        test_multi_round_simulation(
-            "Example_Data/16_Player_Examples/Mid_Second_Round/tftodds_sample_data_16_halfwaythrusecondround.json", 
-            ROUNDS_TO_TEST,
-            "Example_Data/16_Player_Examples/tour_format_16players_8rounds_cutafter4.json"
-        )
-    elif POST_ROUND_TEST:
-        # Test post-round actions
-        test_post_round_actions("Example_Data/16_Player_Examples/Mid_Second_Round/tftodds_sample_data_16_halfwaythrusecondround.json")
-    elif NO_SHOW_TEST:
-        # Test no-show functionality
-        test_no_show_simulation("Example_Data/16_Player_Examples/Mid_Second_Round/tftodds_sample_data_16_halfwaythrusecondround.json")
-    elif SINGLE_ROUND_TEST:
-        # Test single round
-        test_single_round_simulation("Example_Data/16_Player_Examples/Mid_Second_Round/tftodds_sample_data_16_halfwaythrusecondround.json")
+    # Load tour state from CSV
+    tour_state = load_tour_state_from_csv(csv_file)
+    
+    # Create minimal tour format
+    tour_format = TourFormat(total_rounds=8)
+    
+    # Create minimal sim settings
+    sim_settings = SimSettings(max_iterations=1, mode=SimulationMode.ITERATIONS_ONLY)
+    
+    # Run single round test
+    results, sim_count = simulate_tournament(tour_format, tour_state, sim_settings, test_single_round=True)
+    
+    print("=" * 50)
+    print("Single round test (CSV) completed!")
+    print("=" * 50)
+
+def test_post_round_actions_csv(csv_file: str):
+    """Test function to demonstrate post-round actions including cuts from CSV input."""
+    print("=" * 50)
+    print("POST-ROUND ACTIONS TEST MODE (CSV INPUT)")
+    print("=" * 50)
+    
+    # Load tour state from CSV
+    tour_state = load_tour_state_from_csv(csv_file)
+    
+    print(f"Starting with {len(tour_state.players)} active players")
+    
+    # Create tour format with a cut after the current round
+    current_round = tour_state.current_round.overall_round
+    tour_format = TourFormat(
+        total_rounds=8,
+        cut_rules=[CutRule(after_round=current_round, players_remaining=4)]  # Cut to top 4 after current round
+    )
+    
+    print(f"Tournament format: Cut to {tour_format.cut_rules[0].players_remaining} players after round {current_round}")
+    
+    # Create minimal sim settings for just one iteration
+    sim_settings = SimSettings(max_iterations=1, mode=SimulationMode.ITERATIONS_ONLY)
+    
+    # Run simulation that will trigger post-round actions
+    results, sim_count = simulate_tournament(tour_format, tour_state, sim_settings, test_single_round=False)
+    
+    print("=" * 50)
+    print("Post-round actions test (CSV) completed!")
+    print("=" * 50)
+
+def test_multi_round_simulation_csv(csv_file: str, num_rounds: int, tour_format_file: str = None):
+    """Test function to simulate multiple rounds from CSV input."""
+    print("=" * 50)
+    print(f"MULTI-ROUND TEST MODE (CSV INPUT) - {num_rounds} rounds")
+    print("=" * 50)
+    
+    # Load tour state from CSV
+    tour_state = load_tour_state_from_csv(csv_file)
+    
+    # Load tour format
+    if tour_format_file:
+        tour_format = load_tour_format_from_json(tour_format_file)
     else:
-        # Full simulation
+        # Create default tour format
         tour_format = TourFormat(
             total_rounds=8,
             cut_rules=[CutRule(after_round=4, players_remaining=8)]
         )
-        
-        tour_state = load_tour_state_from_json("tour_state.json")
+    
+    # Create sim settings
+    sim_settings = SimSettings(max_iterations=1000, mode=SimulationMode.ITERATIONS_ONLY)
+    
+    print(f"Starting tournament simulation from CSV...")
+    print(f"Current round: {tour_state.current_round.overall_round}")
+    print(f"Active players: {len(tour_state.players)}")
+    
+    # Run simulation
+    results, sim_count = simulate_tournament(tour_format, tour_state, sim_settings)
+    
+    # Save results
+    save_results_to_json(results, f"multi_round_csv_results_{num_rounds}rounds.json")
+    print(f"Results saved to: multi_round_csv_results_{num_rounds}rounds.json")
+    
+    print("=" * 50)
+    print("Multi-round test (CSV) completed!")
+    print("=" * 50)
+
+def load_sim_settings_from_json(json_file: str) -> SimSettings:
+    """Load simulation settings from JSON file."""
+    with open(json_file, 'r') as f:
+        data = json.load(f)
+    return SimSettings(**data)
+
+def test_probability_tracking_csv(csv_file: str, tour_format_file: str = None, sim_settings_file: str = None, output_file: str = "test_probabilities_csv.json"):
+    """Test function to demonstrate probability tracking functionality from CSV input."""
+    print("=" * 50)
+    print("PROBABILITY TRACKING TEST MODE (CSV INPUT)")
+    print("=" * 50)
+    
+    # Load tour state from CSV
+    tour_state = load_tour_state_from_csv(csv_file)
+    
+    # Load tour format
+    if tour_format_file:
+        tour_format = load_tour_format_from_json(tour_format_file)
+    else:
+        # Create default tour format based on current state
+        tour_format = TourFormat(
+            total_rounds=8,
+            cut_rules=[CutRule(after_round=4, players_remaining=8)]
+        )
+    
+    # Load sim settings
+    if sim_settings_file:
+        sim_settings = load_sim_settings_from_json(sim_settings_file)
+    else:
+        # Create default simulation settings with probability targets
+        probability_targets = [
+            ProbabilityTarget(
+                probability_name="made_top_8_cut",
+                type="made_cut",
+                players_remaining=8
+            ),
+            ProbabilityTarget(
+                probability_name="finished_top_3",
+                type="overall_standing",
+                comparison="at_or_above",
+                threshold=3
+            ),
+            ProbabilityTarget(
+                probability_name="won_tournament",
+                type="tournament_winner"
+            ),
+            ProbabilityTarget(
+                probability_name="finished_bottom_half",
+                type="overall_standing",
+                comparison="below",
+                threshold=len(tour_state.players) // 2
+            )
+        ]
         
         sim_settings = SimSettings(
-            max_iterations=10000,
-            mode=SimulationMode.ITERATIONS_ONLY
+            max_iterations=10000,  # Run 10000 simulations for comprehensive analysis
+            mode=SimulationMode.ITERATIONS_ONLY,
+            probability_targets=probability_targets
         )
+    
+    print(f"Running {sim_settings.max_iterations} simulations with {len(sim_settings.probability_targets)} probability targets...")
+    print(f"Current round: {tour_state.current_round.overall_round}")
+    print(f"Active players: {len(tour_state.players)}")
+    
+    # Run simulation
+    results, sim_count = simulate_tournament(tour_format, tour_state, sim_settings)
+    
+    # Save results to JSON file
+    save_results_to_json(results, output_file)
+    print(f"Probability results saved to: {output_file}")
+    
+    print("=" * 50)
+    print("Probability tracking test (CSV) completed!")
+    print("=" * 50)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Run TFT tournament simulation from CSV input')
+    
+    # Add arguments for CSV mode
+    parser.add_argument('--csv', type=str, help='Path to input CSV file')
+    parser.add_argument('--tour-format', type=str, help='Path to tour format JSON file')
+    parser.add_argument('--sim-settings', type=str, help='Path to simulation settings JSON file')
+    parser.add_argument('--output', type=str, default='probabilities.json', help='Output filename for results (default: probabilities.json)')
+    
+    # Add test mode arguments (for backward compatibility)
+    parser.add_argument('--single-round', action='store_true', help='Run single round test')
+    parser.add_argument('--post-round', action='store_true', help='Run post-round actions test')
+    parser.add_argument('--multi-round', action='store_true', help='Run multi-round test')
+    parser.add_argument('--probability', action='store_true', help='Run probability tracking test')
+    parser.add_argument('--victory', action='store_true', help='Run victory conditions test')
+    parser.add_argument('--snake-shuffle', action='store_true', help='Run snake shuffle demo')
+    parser.add_argument('--no-show', action='store_true', help='Run no-show test')
+    
+    # Parse arguments
+    args = parser.parse_args()
+    
+    # If CSV file is provided, run CSV mode
+    if args.csv:
+        print("=" * 60)
+        print("RUNNING SIMULATION WITH CSV INPUT")
+        print("=" * 60)
+        print(f"CSV Input: {args.csv}")
+        print(f"Tour Format: {args.tour_format}")
+        print(f"Sim Settings: {args.sim_settings}")
+        print(f"Output: {args.output}")
+        print("=" * 60)
         
-        results, sim_count = simulate_tournament(tour_format, tour_state, sim_settings)
-        save_results_to_json(results, "probabilities.json") 
+        # Run probability tracking with CSV input
+        test_probability_tracking_csv(args.csv, args.tour_format, args.sim_settings, args.output)
+        
+    # Otherwise, run legacy test modes based on flags
+    elif args.victory:
+        test_victory_conditions()
+    elif args.snake_shuffle:
+        test_snake_shuffle_demo()
+    elif args.probability:
+        test_probability_tracking()
+    elif args.multi_round:
+        test_multi_round_simulation(
+            "Example_Data/16_Player_Examples/Mid_Second_Round/tftodds_sample_data_16_halfwaythrusecondround.json", 
+            7,  # ROUNDS_TO_TEST
+            "Example_Data/16_Player_Examples/tour_format_16players_8rounds_cutafter4.json"
+        )
+    elif args.post_round:
+        test_post_round_actions("Example_Data/16_Player_Examples/Mid_Second_Round/tftodds_sample_data_16_halfwaythrusecondround.json")
+    elif args.no_show:
+        test_no_show_simulation("Example_Data/16_Player_Examples/Mid_Second_Round/tftodds_sample_data_16_halfwaythrusecondround.json")
+    elif args.single_round:
+        test_single_round_simulation("Example_Data/16_Player_Examples/Mid_Second_Round/tftodds_sample_data_16_halfwaythrusecondround.json")
+    else:
+        # Default behavior - show help
+        print("No operation specified. Use --help to see available options.")
+        print("\nExample CSV usage:")
+        print("python simulation.py --csv tour_state.csv --tour-format format.json --sim-settings settings.json --output results.json")
+        parser.print_help() 

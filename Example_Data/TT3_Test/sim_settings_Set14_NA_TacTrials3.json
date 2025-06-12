@@ -1,0 +1,37 @@
+{
+  "max_iterations": 1000,
+  "mode": "iterations_only",
+  "probability_targets": [
+    {
+      "probability_name": "made_top_224_cut",
+      "type": "made_cut",
+      "players_remaining": 224
+    },
+    {
+      "probability_name": "made_top_120_cut",
+      "type": "made_cut",
+      "players_remaining": 120
+    },
+    {
+      "probability_name": "made_top_104_cut",
+      "type": "made_cut",
+      "players_remaining": 104
+    },
+    {
+      "probability_name": "finished_top_54",
+      "type": "overall_standing",
+      "comparison": "at_or_above",
+      "threshold": 54
+    },
+    {
+      "probability_name": "finished_top_4",
+      "type": "overall_standing",
+      "comparison": "at_or_above",
+      "threshold": 4
+    },
+    {
+      "probability_name": "won_tournament",
+      "type": "tournament_winner"
+    }
+  ]
+} 

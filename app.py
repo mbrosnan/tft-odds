@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import json
+import argparse
+import sys
 from typing import Dict, Any
 
 def load_probability_data(filename: str = "test_probabilities.json") -> Dict[str, Any]:
@@ -15,6 +17,25 @@ def load_probability_data(filename: str = "test_probabilities.json") -> Dict[str
     except json.JSONDecodeError:
         st.error(f"Invalid JSON format in {filename}")
         return None
+
+# Parse command line arguments
+def parse_args():
+    """Parse command line arguments for the Streamlit app."""
+    parser = argparse.ArgumentParser(description='TFT Tournament Probability Analysis Dashboard')
+    parser.add_argument('--probabilities', type=str, default="test_probabilities.json", 
+                       help='Path to probabilities JSON file (default: test_probabilities.json)')
+    
+    # Parse known args to avoid conflicts with Streamlit's own arguments
+    args, unknown = parser.parse_known_args()
+    
+    # Remove our arguments from sys.argv so Streamlit doesn't see them
+    sys.argv = [sys.argv[0]] + unknown
+    
+    return args
+
+# Get command line arguments
+args = parse_args()
+PROBABILITIES_FILE = args.probabilities
 
 def create_player_dataframe(player_probabilities: Dict[str, Dict[str, Dict[str, float]]]) -> pd.DataFrame:
     """Convert player probabilities to a pandas DataFrame for display."""
@@ -63,10 +84,11 @@ def get_probability_charts_data(player_probabilities: Dict[str, Dict[str, Dict[s
 st.set_page_config(page_title="TFT Tournament Probabilities", page_icon="🎯", layout="wide")
 
 st.title("🎯 TFT Tournament Probability Analysis")
+st.markdown(f"**Data Source:** `{PROBABILITIES_FILE}`")
 st.markdown("---")
 
 # Load data
-data = load_probability_data()
+data = load_probability_data(PROBABILITIES_FILE)
 
 if data is not None:
     player_probabilities = data.get("player_probabilities", {})
