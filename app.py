@@ -5,7 +5,7 @@ import argparse
 import sys
 from typing import Dict, Any
 
-def load_probability_data(filename: str = "test_probabilities.json") -> Dict[str, Any]:
+def load_probability_data(filename: str = "probabilities.json") -> Dict[str, Any]:
     """Load probability data from the new JSON format."""
     try:
         with open(filename) as f:
@@ -22,8 +22,8 @@ def load_probability_data(filename: str = "test_probabilities.json") -> Dict[str
 def parse_args():
     """Parse command line arguments for the Streamlit app."""
     parser = argparse.ArgumentParser(description='TFT Tournament Probability Analysis Dashboard')
-    parser.add_argument('--probabilities', type=str, default="test_probabilities.json", 
-                       help='Path to probabilities JSON file (default: test_probabilities.json)')
+    parser.add_argument('--probabilities', type=str, default="probabilities.json", 
+                       help='Path to probabilities JSON file (default: probabilities.json)')
     
     # Parse known args to avoid conflicts with Streamlit's own arguments
     args, unknown = parser.parse_known_args()

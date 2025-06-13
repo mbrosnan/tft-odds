@@ -1,5 +1,5 @@
 {
-  "max_iterations": 1000,
+  "max_iterations": 20000,
   "mode": "iterations_only",
   "probability_targets": [
     {
