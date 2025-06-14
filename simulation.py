@@ -39,15 +39,17 @@ def get_lobby_stats(lobby_players: List) -> Dict[str, int]:
     }
 
 def get_points_for_placement(placement: int, lobby_size: int = 8) -> int:
-    """Convert placement to points using standard TFT scoring, adjusted for lobby size."""
-    if lobby_size == 8:
-        # Standard 8-player scoring
-        points_map = {1: 8, 2: 7, 3: 6, 4: 5, 5: 4, 6: 3, 7: 2, 8: 1}
-        return points_map.get(placement, 0)
-    else:
-        # For smaller lobbies, scale points proportionally
-        # 1st place always gets lobby_size points, last place gets 1 point
-        return max(1, lobby_size + 1 - placement)
+    """Convert placement to points using standard TFT scoring.
+    For no-show scenarios:
+    - No-show players get 0 points
+    - Active players get points 8-2 (1st gets 8, 2nd gets 7, etc.)
+    """
+    if placement is None:  # No-show case
+        return 0
+    
+    # Standard 8-player scoring, regardless of actual lobby size
+    points_map = {1: 8, 2: 7, 3: 6, 4: 5, 5: 4, 6: 3, 7: 2, 8: 1}
+    return points_map.get(placement, 0)
 
 def calculate_tiebreakers(round_history: List[RoundHistory]) -> Dict[str, int]:
     """Calculate tiebreaker statistics from round history."""
@@ -74,7 +76,7 @@ def calculate_tiebreakers(round_history: List[RoundHistory]) -> Dict[str, int]:
         if placement <= 4:
             tiebreakers["top4s"] += 1
     
-    # Calculate firsts_plus_top4s (firsts + all top4s)
+    # Calculate firsts_plus_top4s (firsts count twice: once as firsts, once as top4s)
     tiebreakers["firsts_plus_top4s"] = tiebreakers["firsts"] + tiebreakers["top4s"]
             
     return tiebreakers
@@ -117,7 +119,6 @@ def validate_and_load_state(tour_state: TourState) -> TourState:
     return tour_state.model_copy(deep=True)
 
 def simulate_next_round(current_state: TourState, tour_format: TourFormat) -> TourState:
-    # print(f"Simulating round {current_state.current_round.overall_round}") made it here
     """Step 2: Simulate the next round or finish an in-progress round."""
     current_round_num = current_state.current_round.overall_round
     
@@ -131,7 +132,6 @@ def simulate_next_round(current_state: TourState, tour_format: TourFormat) -> To
         for round_data in player.round_history:
             if round_data.overall_round == current_round_num:
                 current_round_entry = round_data
-                # print(f"Found current round entry for {player.name} and it is {current_round_entry.placement}")
                 break
         
         if current_round_entry and current_round_entry.lobby:
@@ -144,7 +144,6 @@ def simulate_next_round(current_state: TourState, tour_format: TourFormat) -> To
     for lobby_name, lobby_players in lobbies.items():
         # Get lobby statistics
         lobby_stats = get_lobby_stats(lobby_players)
-        # print(f"Lobby {lobby_name}: {lobby_stats['active']} active players, {lobby_stats['no_shows']} no-shows")
         
         # Find which placements are already assigned and separate no-shows
         taken_placements: Set[int] = set()
@@ -162,8 +161,7 @@ def simulate_next_round(current_state: TourState, tour_format: TourFormat) -> To
             else:
                 unplaced_players.append((player, round_entry))
         
-        # Calculate available placements based on lobby size
-        # If there are no-shows, the lobby plays with fewer players
+        # Calculate available placements based on active players
         active_players_count = len(lobby_players) - len(no_show_players)
         
         if active_players_count > 0:
@@ -178,17 +176,13 @@ def simulate_next_round(current_state: TourState, tour_format: TourFormat) -> To
                 for i, (player, round_entry) in enumerate(unplaced_players):
                     if i < len(available_placements):
                         placement = available_placements[i]
-                        points = get_points_for_placement(placement, active_players_count)
-                        # print(f"Player {player.name} placed {placement} and earned {points} points")
+                        # Calculate points using standard 8-player scoring
+                        points = get_points_for_placement(placement)
                         
                         # Update the round entry
                         round_entry.placement = placement
                         round_entry.points = points
         
-        # Log no-shows
-        # for player, round_entry in no_show_players:
-        #     print(f"Player {player.name} was a no-show and earned 0 points")
-    
     # Update all player stats after round completion
     for player in current_state.players:
         update_player_stats(player, player.round_history)
@@ -202,8 +196,6 @@ def simulate_next_round(current_state: TourState, tour_format: TourFormat) -> To
 def process_post_round_actions(current_state: TourState, tour_format: TourFormat, results: Dict = None) -> TourState:
     """Step 3: Handle cuts, shuffles, and other post-round actions."""
     completed_round = current_state.current_round.overall_round  # The round we just finished
-    
-    # print(f"Processing post-round actions for round {completed_round}")
     
     # Step 3a: Check for victory conditions first
     if check_victory_conditions(current_state, tour_format, completed_round):
@@ -662,13 +654,42 @@ def calculate_cut_threshold_statistics(results: Dict) -> Dict:
     
     return cut_stats
 
-def organize_probabilities_by_player(results: Dict) -> Dict:
+def organize_probabilities_by_player(results: Dict, tour_state: TourState = None, tour_format: TourFormat = None) -> Dict:
     """Reorganize probability results to be structured by player first, then by probability type."""
     if "probability_results" not in results:
         return {}
     
     # Calculate probabilities for all results
     final_probabilities = calculate_final_probabilities(results)
+    
+    # Get all tiebreakers from tour format
+    tiebreaker_order = []
+    if tour_format and hasattr(tour_format, 'tiebreaker_order') and tour_format.tiebreaker_order:
+        # Skip "points" as it's handled separately, get all other tiebreakers
+        tiebreaker_order = [tb for tb in tour_format.tiebreaker_order if tb != "points"]
+    
+    # Create a mapping of player names to their current stats
+    player_stats = {}
+    if tour_state:
+        all_players = tour_state.players + tour_state.eliminated_players
+        for player in all_players:
+            # Get tiebreakers
+            tb = player.tiebreakers
+            player_tiebreakers = {}
+            
+            # Extract all tiebreakers based on the tour format order
+            for tiebreaker_name in tiebreaker_order:
+                if isinstance(tb, dict):
+                    tiebreaker_value = tb.get(tiebreaker_name, 0)
+                else:
+                    tiebreaker_value = getattr(tb, tiebreaker_name, 0) if hasattr(tb, tiebreaker_name) else 0
+                player_tiebreakers[tiebreaker_name] = tiebreaker_value
+            
+            player_stats[player.name] = {
+                "current_points": player.points,
+                "tiebreakers": player_tiebreakers,
+                "tiebreaker_order": tiebreaker_order
+            }
     
     # Reorganize by player
     player_probabilities = {}
@@ -677,6 +698,12 @@ def organize_probabilities_by_player(results: Dict) -> Dict:
         for player_name, player_data in target_data.items():
             if player_name not in player_probabilities:
                 player_probabilities[player_name] = {}
+                
+                # Add current stats if available
+                if player_name in player_stats:
+                    player_probabilities[player_name]["current_points"] = player_stats[player_name]["current_points"]
+                    player_probabilities[player_name]["tiebreakers"] = player_stats[player_name]["tiebreakers"]
+                    player_probabilities[player_name]["tiebreaker_order"] = player_stats[player_name]["tiebreaker_order"]
             
             player_probabilities[player_name][target_name] = {
                 "probability": player_data["probability"],
@@ -891,7 +918,7 @@ def simulate_tournament(tour_format: TourFormat, tour_state: TourState, sim_sett
         print_probability_results(final_probabilities)
         
         # Organize probabilities by player and replace the old structure
-        player_probabilities = organize_probabilities_by_player(results)
+        player_probabilities = organize_probabilities_by_player(results, tour_state, tour_format)
         
         # Calculate cut threshold statistics
         cut_stats = calculate_cut_threshold_statistics(results)
@@ -904,7 +931,7 @@ def simulate_tournament(tour_format: TourFormat, tour_state: TourState, sim_sett
                 "total_simulations": sim_count,
                 "simulation_time_seconds": total_time,
                 "probability_targets": [target.model_dump() for target in sim_settings.probability_targets],
-                "tournament_title": getattr(tour_format, 'tournament_title', 'TFT Tournament'),
+                "tournament_title": getattr(tour_format, 'tournament_name', 'TFT Tournament'),
                 "current_round": {
                     "overall_round": tour_state.current_round.overall_round,
                     "day": tour_state.current_round.day,

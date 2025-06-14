@@ -1,5 +1,5 @@
 {
-  "tournament_name": "Tacticians Trials 3 Test",
+  "tournament_name": "Set 14 NA Tacticians Trials 3",
   "starting_players": 256,
   "round_structure": [
     {
@@ -161,8 +161,8 @@
       "day": 2,
       "round_in_day": 6,
       "post_round_actions": {
-        "cut": false,
-        "cut_to": null,
+        "cut": true,
+        "cut_to": 54,
         "snake_shuffle": false,
         "random_shuffle": false,
         "check_victory": false,

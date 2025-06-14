@@ -33,6 +33,9 @@ def calculate_tiebreakers(round_history: List[Dict]) -> Dict:
         
         if placement <= 4:
             tiebreakers["top4s"] += 1
+    
+    # Calculate firsts_plus_top4s (firsts count twice: once as firsts, once as top4s)
+    tiebreakers["firsts_plus_top4s"] = tiebreakers["firsts"] + tiebreakers["top4s"]
             
     return tiebreakers
 
@@ -41,15 +44,28 @@ def validate_lobby_data(players_by_lobby: Dict[str, List], round_num: int):
     for lobby, players in players_by_lobby.items():
         if not players:
             continue
-            
-        # Check for exactly 8 players per lobby
-        if len(players) != 8:
-            raise ValueError(f"Round {round_num}, Lobby {lobby} has {len(players)} players, expected 8")
-            
-        # Check for duplicate placements
-        placements = [p["placement"] for p in players]
+        
+        # Count no-shows and active players
+        no_shows = sum(1 for p in players if p.get("no_show", False))
+        active_players = len(players) - no_shows
+        
+        # Check that we have between 1-8 total players (allowing for no-shows)
+        if len(players) > 8:
+            raise ValueError(f"Round {round_num}, Lobby {lobby} has {len(players)} players, maximum is 8")
+        
+        # For completed rounds, check placement consistency
+        placements = [p["placement"] for p in players if p["placement"] is not None]
+        
+        # Check for duplicate placements among active players
         if len(placements) != len(set(placements)):
             raise ValueError(f"Round {round_num}, Lobby {lobby} has duplicate placements")
+        
+        # Check that placements are sequential from 1 to number of active players
+        if placements and active_players > 0:
+            expected_placements = set(range(1, active_players + 1))
+            actual_placements = set(placements)
+            if actual_placements != expected_placements:
+                raise ValueError(f"Round {round_num}, Lobby {lobby} has invalid placements. Expected 1-{active_players}, got {sorted(actual_placements)}")
 
 def parse_csv_to_tourstate(input_file: str, output_file: str):
     """Convert CSV tournament data to tour_state.json format."""
@@ -138,7 +154,22 @@ def parse_csv_to_tourstate(input_file: str, output_file: str):
                     "round_in_day": round_in_day,
                     "lobby": lobby,
                     "placement": None,
-                    "points": None
+                    "points": None,
+                    "no_show": False
+                }
+                player_data["round_history"].append(round_data)
+                continue
+            
+            # Handle no-show entries
+            if placement_str.lower() == "no-show":
+                round_data = {
+                    "overall_round": round_num,
+                    "day": day,
+                    "round_in_day": round_in_day,
+                    "lobby": lobby,
+                    "placement": None,
+                    "points": 0,
+                    "no_show": True
                 }
                 player_data["round_history"].append(round_data)
                 continue
@@ -156,16 +187,17 @@ def parse_csv_to_tourstate(input_file: str, output_file: str):
                     "round_in_day": round_in_day,
                     "lobby": lobby,
                     "placement": placement,
-                    "points": points
+                    "points": points,
+                    "no_show": False
                 }
                 player_data["round_history"].append(round_data)
                 
             except ValueError:
                 continue
         
-        if completed_rounds > 0:
+        if completed_rounds > 0 or any(rd.get("no_show", False) for rd in player_data["round_history"]):
             player_data["points"] = total_points
-            player_data["avg_placement"] = round(total_placement / completed_rounds, 2)
+            player_data["avg_placement"] = round(total_placement / completed_rounds, 2) if completed_rounds > 0 else 0.0
             player_data["completed_rounds"] = completed_rounds
             player_data["tiebreakers"] = calculate_tiebreakers(player_data["round_history"])
             
