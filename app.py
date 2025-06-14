@@ -5,6 +5,7 @@ import argparse
 import sys
 from typing import Dict, Any, List
 import csv
+import os
 
 def load_probability_data(filename: str = "probabilities.json") -> Dict[str, Any]:
     """Load probability data from the new JSON format."""
@@ -182,9 +183,9 @@ def enhance_results_with_probabilities(results_df: pd.DataFrame, player_probabil
 def parse_args():
     """Parse command line arguments."""
     parser = argparse.ArgumentParser(description='TFT Tournament Probability Viewer')
-    parser.add_argument('--probabilities', type=str, default='probabilities.json', 
-                       help='Path to probabilities JSON file (default: probabilities.json)')
-    parser.add_argument('--csv', type=str, help='Path to tournament CSV file for current results')
+    parser.add_argument('--probabilities', type=str, default='live/probabilities.json', 
+                       help='Path to probabilities JSON file (default: live/probabilities.json)')
+    parser.add_argument('--csv', type=str, default='live/tour_state.csv', help='Path to tournament CSV file for current results (default: live/tour_state.csv)')
     return parser.parse_known_args()[0]  # Use parse_known_args to ignore streamlit args
 
 # Parse arguments
@@ -202,7 +203,7 @@ if args.probabilities:
 
 # Load CSV results if provided
 csv_results_df = pd.DataFrame()
-if args.csv:
+if args.csv and os.path.exists(args.csv):
     csv_results_df = load_csv_results(args.csv)
 
 def create_player_dataframe(player_probabilities: Dict[str, Dict[str, Dict[str, float]]], max_tiebreakers: int = 3) -> pd.DataFrame:
@@ -304,6 +305,17 @@ if data is not None:
         status_display = round_status.replace("_", " ").title()
         
         st.subheader(f"Round {round_num} (Day {day}, Round {round_in_day}) - {status_display}")
+    
+    # Tournament Notes (without header)
+    try:
+        with open('live/tournament_notes.md', 'r', encoding='utf-8') as f:
+            notes = f.read()
+        if notes.strip():
+            st.markdown(notes)
+    except FileNotFoundError:
+        pass  # Silently ignore if file doesn't exist
+    except Exception:
+        pass  # Silently ignore any errors
     
     st.markdown("---")
 

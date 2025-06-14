@@ -1,0 +1,190 @@
+{
+  "tournament_name": "Set 14 NA Tacticians Trials 3",
+  "starting_players": 256,
+  "round_structure": [
+    {
+      "overall_round": 1,
+      "day": 1,
+      "round_in_day": 1,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 2,
+      "day": 1,
+      "round_in_day": 2,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "snake_shuffle": true,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 3,
+      "day": 1,
+      "round_in_day": 3,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 4,
+      "day": 1,
+      "round_in_day": 4,
+      "post_round_actions": {
+        "cut": true,
+        "cut_to": 224,
+        "snake_shuffle": true,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 5,
+      "day": 1,
+      "round_in_day": 5,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 6,
+      "day": 1,
+      "round_in_day": 6,
+      "post_round_actions": {
+        "cut": true,
+        "cut_to": 120,
+        "snake_shuffle": true,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 7,
+      "day": 2,
+      "round_in_day": 1,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 8,
+      "day": 2,
+      "round_in_day": 2,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "snake_shuffle": true,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 9,
+      "day": 2,
+      "round_in_day": 3,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 10,
+      "day": 2,
+      "round_in_day": 4,
+      "post_round_actions": {
+        "cut": true,
+        "cut_to": 104,
+        "snake_shuffle": true,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 11,
+      "day": 2,
+      "round_in_day": 5,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "snake_shuffle": true,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 12,
+      "day": 2,
+      "round_in_day": 6,
+      "post_round_actions": {
+        "cut": true,
+        "cut_to": 54,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": true,
+        "point_reset": false
+      }
+    }
+  ],
+  "tiebreaker_order": [
+    "points",
+    "firsts_plus_top4s",
+    "firsts",
+    "seconds",
+    "thirds",
+    "fourths",
+    "fifths",
+    "sixths",
+    "sevenths",
+    "eighths",
+    "random"
+  ],
+  "checkmate_conditions": {
+    "points_threshold": null
+  }
+} 

@@ -205,7 +205,7 @@ def process_post_round_actions(current_state: TourState, tour_format: TourFormat
         current_state.current_round.round_status = RoundStatus.COMPLETED
         return current_state
     
-    # Step 3b: Apply cuts if there are any for this round
+    # Step 3b: Apply cuts if there are any for this round (BEFORE checking end_tournament)
     current_state, cut_threshold = apply_cuts(current_state, tour_format, completed_round)
     
     # Step 3c: Store cut threshold data if we have one and results dict
@@ -219,13 +219,24 @@ def process_post_round_actions(current_state: TourState, tour_format: TourFormat
         
         results["cut_thresholds"][cut_name].append(cut_threshold)
     
-    # Step 3d: Advance to next round
+    # Step 3d: Check if tournament should end after this round (AFTER processing cuts)
+    if tour_format.round_structure:
+        for round_info in tour_format.round_structure:
+            if round_info.overall_round == completed_round:
+                if round_info.post_round_actions.end_tournament:
+                    # Tournament ends after this round - mark as complete
+                    current_state.current_round.overall_round = tour_format.total_rounds + 1
+                    current_state.current_round.round_status = RoundStatus.COMPLETED
+                    return current_state
+                break
+    
+    # Step 3e: Advance to next round (only if tournament is continuing)
     current_state = advance_to_next_round(current_state, tour_format)
     
-    # Step 3e: Determine shuffle type for next round
+    # Step 3f: Determine shuffle type for next round
     shuffle_type = get_shuffle_type_for_round(tour_format, completed_round)
     
-    # Step 3f: Assign lobbies for the next round (if not tournament complete)
+    # Step 3g: Assign lobbies for the next round (if not tournament complete)
     if not is_tournament_complete(current_state, tour_format):
         current_state = assign_next_round_lobbies(current_state, tour_format, shuffle_type=shuffle_type)
     
@@ -784,16 +795,8 @@ def is_tournament_complete(current_state: TourState, tour_format: TourFormat) ->
                 # determine_final_standings(current_state)
                 return True
     
-    # Check if tour format explicitly says to end tournament
-    if tour_format.round_structure:
-        for round_info in tour_format.round_structure:
-            if round_info.overall_round == current_round:
-                if round_info.post_round_actions.end_tournament:
-                    # print(f"Tournament complete: Explicit end_tournament flag set for round {current_round}")
-                    # Determine final standings when tournament ends via explicit flag
-                    # determine_final_standings(current_state)
-                    return True
-                break
+    # Note: end_tournament flag is now handled in process_post_round_actions()
+    # to ensure cuts are processed before tournament ends
     
     return False
 
