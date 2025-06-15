@@ -83,7 +83,7 @@
         "random_shuffle": false,
         "check_victory": false,
         "end_tournament": false,
-        "point_reset": false
+        "point_reset": true
       }
     },
     {
@@ -173,6 +173,7 @@
   ],
   "tiebreaker_order": [
     "points",
+    "total_points",
     "firsts_plus_top4s",
     "firsts",
     "seconds",

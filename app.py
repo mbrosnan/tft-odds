@@ -146,6 +146,15 @@ def enhance_results_with_probabilities(results_df: pd.DataFrame, player_probabil
     
     enhanced_df = results_df.copy()
     
+    # Add total_points if available in player probabilities
+    enhanced_df["Total Points"] = 0
+    for idx, row in enhanced_df.iterrows():
+        player_name = row["Player"]
+        if player_name in player_probabilities:
+            player_data = player_probabilities[player_name]
+            if "total_points" in player_data:
+                enhanced_df.at[idx, "Total Points"] = player_data["total_points"]
+    
     # Add tiebreaker columns
     first_player_probs = next(iter(player_probabilities.values()), {})
     if "tiebreakers" in first_player_probs:
@@ -252,7 +261,7 @@ def create_player_dataframe(player_probabilities: Dict[str, Dict[str, Dict[str, 
         df = df.sort_values(by="Current Points", ascending=False).reset_index(drop=True)
     elif len(df.columns) > 1:
         # Find first probability column (skip Player, Current Points, and tiebreaker columns)
-        prob_columns = [col for col in df.columns if col not in ["Player", "Current Points"] and not any(keyword in col.lower() for keyword in ["firsts", "top4s", "seconds", "thirds", "fourths", "fifths", "sixths", "sevenths", "eighths"])]
+        prob_columns = [col for col in df.columns if col not in ["Player", "Current Points"] and not any(keyword in col.lower() for keyword in ["firsts", "top4s", "seconds", "thirds", "fourths", "fifths", "sixths", "sevenths", "eighths", "total_points"])]
         if prob_columns:
             first_prob_col = prob_columns[0]
             df = df.sort_values(by=first_prob_col, ascending=False).reset_index(drop=True)
@@ -398,7 +407,7 @@ if data is not None:
                 )
             
             # Configure tiebreaker columns (look for columns that might be tiebreakers)
-            tiebreaker_columns = [col for col in df.columns if any(keyword in col.lower() for keyword in ["firsts", "top4s", "seconds", "thirds", "fourths", "fifths", "sixths", "sevenths", "eighths"])]
+            tiebreaker_columns = [col for col in df.columns if any(keyword in col.lower() for keyword in ["firsts", "top4s", "seconds", "thirds", "fourths", "fifths", "sixths", "sevenths", "eighths", "total points"])]
             for col in tiebreaker_columns:
                 column_config[col] = st.column_config.NumberColumn(
                     col,
@@ -470,18 +479,18 @@ if data is not None:
                     if player_name in player_probabilities and "tiebreakers" in player_probabilities[player_name]:
                         player_tiebreakers = player_probabilities[player_name]["tiebreakers"]
                     
-                    # Create base row with player info
+                    # Create base row with player info (no Total Points here - it will come from tiebreakers)
                     detail_row = {
                         "Player": player_name,
-                        "Total Points": player_row["Current Points"],
                         "Avg Placement": player_row["Average Placement"],
                         "Completed Rounds": player_row["Completed Rounds"],
                         "Status": "Eliminated" if player_row["Is Eliminated"] else "Active"
                     }
                     
-                    # Add current tiebreaker values
+                    # Add all tiebreaker values (including total_points)
                     for tiebreaker_name, tiebreaker_value in player_tiebreakers.items():
-                        detail_row[f"{tiebreaker_name.replace('_', ' ').title()}"] = tiebreaker_value
+                        tiebreaker_display_name = tiebreaker_name.replace('_', ' ').title()
+                        detail_row[tiebreaker_display_name] = tiebreaker_value
                     
                     # Create a lookup for round data
                     round_lookup = {}
@@ -531,11 +540,23 @@ if data is not None:
                 round_details_df = pd.DataFrame(round_details)
                 
                 if not round_details_df.empty:
-                    # Sort by total points (descending), then by average placement (ascending)
-                    round_details_df = round_details_df.sort_values(
-                        ["Total Points", "Avg Placement"], 
-                        ascending=[False, True]
-                    )
+                    # Sort by total points (if available), then by average placement
+                    sort_columns = []
+                    sort_ascending = []
+                    
+                    if "Total Points" in round_details_df.columns:
+                        sort_columns.append("Total Points")
+                        sort_ascending.append(False)
+                    
+                    if "Avg Placement" in round_details_df.columns:
+                        sort_columns.append("Avg Placement")
+                        sort_ascending.append(True)
+                    
+                    if sort_columns:
+                        round_details_df = round_details_df.sort_values(
+                            sort_columns, 
+                            ascending=sort_ascending
+                        )
                     
                     # Create column configuration for round details
                     round_details_config = {
@@ -547,7 +568,7 @@ if data is not None:
                     }
                     
                     # Configure tiebreaker columns
-                    tiebreaker_columns = [col for col in round_details_df.columns if any(keyword in col.lower() for keyword in ["firsts", "top4s", "seconds", "thirds", "fourths", "fifths", "sixths", "sevenths", "eighths"]) and not col.startswith("R")]
+                    tiebreaker_columns = [col for col in round_details_df.columns if any(keyword in col.lower() for keyword in ["firsts", "top4s", "seconds", "thirds", "fourths", "fifths", "sixths", "sevenths", "eighths", "total points"]) and not col.startswith("R")]
                     for col in tiebreaker_columns:
                         round_details_config[col] = st.column_config.NumberColumn(
                             col,
@@ -597,9 +618,9 @@ if data is not None:
                         )
                     
                     # Build display columns based on user selection
-                    display_columns = ["Player", "Total Points", "Avg Placement", "Completed Rounds", "Status"]
+                    display_columns = ["Player", "Avg Placement", "Completed Rounds", "Status"]
                     
-                    # Add tiebreakers if requested
+                    # Add tiebreakers if requested (this will include Total Points)
                     if show_tiebreakers:
                         display_columns.extend(tiebreaker_columns)
                     

@@ -33,6 +33,7 @@ class Tiebreakers(BaseModel):
     eighths: int = 0
     top4s: int = 0
     firsts_plus_top4s: int = 0
+    total_points: int = 0  # Points that survive point resets
 
 class EliminatedAt(BaseModel):
     overall_round: int
@@ -42,6 +43,7 @@ class Player(BaseModel):
     id: int
     name: str
     points: int = 0
+    total_points: int = 0  # Cumulative points that survive resets
     avg_placement: float = 0.0
     completed_rounds: int = 0
     round_history: List[RoundHistory] = []
