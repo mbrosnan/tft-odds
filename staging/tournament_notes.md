@@ -1,4 +1,4 @@
-This is the alpha test of probtft.com.  The goal is to track the probabilities of players and cuts throughout a TFT tournament.
+This is the alpha test of probtft.com.  The goal is to track the probabilities of players and cuts throughout a TFT tournament.  All probabilities assume random results for uncompleted rounds.
 
 If you have any bugs/feedback, please use https://forms.gle/PopPnukeFrdygvdo9
 
