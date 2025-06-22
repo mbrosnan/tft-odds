@@ -47,8 +47,17 @@ def load_csv_results(csv_file: str) -> pd.DataFrame:
             if not row[1]:  # Skip empty rows
                 continue
             
+            # Check if prior_day_points column exists (column 2)
+            prior_day_points = 0
+            if len(row) > 2 and row[2]:
+                try:
+                    prior_day_points = int(row[2])
+                except ValueError:
+                    pass
+            
             player_data = {
                 "Player": row[1],
+                "Prior Day Points": prior_day_points,
                 "Current Points": 0,
                 "Completed Rounds": 0,
                 "Average Placement": 0.0,
@@ -62,8 +71,10 @@ def load_csv_results(csv_file: str) -> pd.DataFrame:
             completed_rounds = 0
             
             # Each round has 3 columns (Lobby, Placement, spacer)
+            # If prior_day_points column exists, we need to shift by 1
+            base_offset = 3 if len(row) > 2 and row[2] else 2  # Account for prior_day_points column
             for round_num in range(1, current_round + 1):
-                col_offset = (round_num * 3) - 1  # Starting column for round data
+                col_offset = base_offset + ((round_num - 1) * 3)  # Starting column for round data
                 
                 if col_offset >= len(row):
                     break
@@ -121,15 +132,16 @@ def load_csv_results(csv_file: str) -> pd.DataFrame:
                     continue
             
             player_data["Current Points"] = total_points
+            player_data["Total Points (incl. Prior Days)"] = total_points + prior_day_points
             player_data["Completed Rounds"] = completed_rounds
             player_data["Average Placement"] = round(total_placement / completed_rounds, 2) if completed_rounds > 0 else 0.0
             
             results_data.append(player_data)
         
-        # Convert to DataFrame and sort by points (descending), then by average placement (ascending)
+        # Convert to DataFrame and sort by total points (descending), then by average placement (ascending)
         df = pd.DataFrame(results_data)
         if not df.empty:
-            df = df.sort_values(["Current Points", "Average Placement"], ascending=[False, True])
+            df = df.sort_values(["Total Points (incl. Prior Days)", "Average Placement"], ascending=[False, True])
             df.reset_index(drop=True, inplace=True)
             df.index += 1  # Start ranking from 1
         
@@ -232,10 +244,21 @@ def create_player_dataframe(player_probabilities: Dict[str, Dict[str, Dict[str, 
         if "current_points" in probabilities:
             row["Current Points"] = probabilities["current_points"]
         
+        # Calculate total points including prior days
+        total_points_with_prior = 0
+        if "current_points" in probabilities:
+            total_points_with_prior = probabilities["current_points"]
+        if "tiebreakers" in probabilities and "prior_day_points" in probabilities["tiebreakers"]:
+            total_points_with_prior += probabilities["tiebreakers"]["prior_day_points"]
+        row["Total Points (incl. Prior Days)"] = total_points_with_prior
+        
         # Add tiebreakers if available
         if "tiebreakers" in probabilities and tiebreaker_order:
             player_tiebreakers = probabilities["tiebreakers"]
             for tiebreaker_name in tiebreaker_order:
+                # Skip total_points since we're showing our calculated version
+                if tiebreaker_name == "total_points":
+                    continue
                 # Create a readable column name for the tiebreaker
                 tiebreaker_display_name = tiebreaker_name.replace("_", " ").title()
                 tiebreaker_value = player_tiebreakers.get(tiebreaker_name, 0)
@@ -256,8 +279,10 @@ def create_player_dataframe(player_probabilities: Dict[str, Dict[str, Dict[str, 
     
     df = pd.DataFrame(table_data)
     
-    # Sort by current points first (if available), then by the first probability column
-    if "Current Points" in df.columns:
+    # Sort by total points first (if available), then by current points, then by the first probability column
+    if "Total Points (incl. Prior Days)" in df.columns:
+        df = df.sort_values(by="Total Points (incl. Prior Days)", ascending=False).reset_index(drop=True)
+    elif "Current Points" in df.columns:
         df = df.sort_values(by="Current Points", ascending=False).reset_index(drop=True)
     elif len(df.columns) > 1:
         # Find first probability column (skip Player, Current Points, and tiebreaker columns)
@@ -406,8 +431,17 @@ if data is not None:
                     width="small"
                 )
             
+            # Configure Total Points column if it exists
+            if "Total Points (incl. Prior Days)" in df.columns:
+                column_config["Total Points (incl. Prior Days)"] = st.column_config.NumberColumn(
+                    "Total Points (incl. Prior Days)",
+                    format="%d",
+                    min_value=0,
+                    width="small"
+                )
+            
             # Configure tiebreaker columns (look for columns that might be tiebreakers)
-            tiebreaker_columns = [col for col in df.columns if any(keyword in col.lower() for keyword in ["firsts", "top4s", "seconds", "thirds", "fourths", "fifths", "sixths", "sevenths", "eighths", "total points"])]
+            tiebreaker_columns = [col for col in df.columns if any(keyword in col.lower() for keyword in ["firsts", "top4s", "seconds", "thirds", "fourths", "fifths", "sixths", "sevenths", "eighths", "prior day points"]) and col != "Total Points (incl. Prior Days)"]
             for col in tiebreaker_columns:
                 column_config[col] = st.column_config.NumberColumn(
                     col,
@@ -418,7 +452,7 @@ if data is not None:
             
             # Configure all probability columns as percentages
             for col in df.columns:
-                if col not in ["Player", "Current Points"] and col not in tiebreaker_columns:
+                if col not in ["Player", "Current Points", "Total Points (incl. Prior Days)"] and col not in tiebreaker_columns:
                     column_config[col] = st.column_config.NumberColumn(
                         col,
                         format="%.1f%%",
@@ -456,6 +490,35 @@ if data is not None:
             with tabs[current_tab_index]:
                 st.subheader("Current Tournament Results")
                 st.markdown("Detailed round-by-round results with current standings.")
+                
+                # Current Standings
+                st.subheader("Current Standings")
+                
+                # Create a standings dataframe with essential columns
+                standings_columns = ["Player", "Prior Day Points", "Current Points", "Total Points (incl. Prior Days)", "Completed Rounds", "Average Placement"]
+                if "Is Eliminated" in csv_results_df.columns:
+                    standings_columns.append("Is Eliminated")
+                
+                standings_df = csv_results_df[standings_columns].copy()
+                
+                # Create column configuration for standings
+                standings_config = {
+                    "Player": st.column_config.TextColumn("Player", width="medium"),
+                    "Prior Day Points": st.column_config.NumberColumn("Prior Day Pts", format="%d", width="small"),
+                    "Current Points": st.column_config.NumberColumn("Current Pts", format="%d", width="small"),
+                    "Total Points (incl. Prior Days)": st.column_config.NumberColumn("Total Pts", format="%d", width="small"),
+                    "Completed Rounds": st.column_config.NumberColumn("Rounds", format="%d", width="small"),
+                    "Average Placement": st.column_config.NumberColumn("Avg Place", format="%.2f", width="small"),
+                    "Is Eliminated": st.column_config.CheckboxColumn("Eliminated", width="small")
+                }
+                
+                # Display the standings table
+                st.dataframe(
+                    standings_df,
+                    use_container_width=True,
+                    hide_index=False,  # Show index as ranking
+                    column_config=standings_config
+                )
                 
                 # Round-by-Round Details (no sub-tabs needed)
                 st.subheader("Round-by-Round Details")

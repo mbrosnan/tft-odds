@@ -51,8 +51,14 @@ def get_points_for_placement(placement: int, lobby_size: int = 8) -> int:
     points_map = {1: 8, 2: 7, 3: 6, 4: 5, 5: 4, 6: 3, 7: 2, 8: 1}
     return points_map.get(placement, 0)
 
-def calculate_tiebreakers(round_history: List[RoundHistory]) -> Dict[str, int]:
-    """Calculate tiebreaker statistics from round history."""
+def calculate_tiebreakers(round_history: List[RoundHistory], last_reset_round: int = 0) -> Dict[str, int]:
+    """Calculate tiebreaker statistics from round history.
+    
+    Args:
+        round_history: Full round history for the player
+        last_reset_round: The round number after which the most recent point reset occurred
+                         (0 means no reset has occurred)
+    """
     tiebreakers = {
         "firsts": 0, "seconds": 0, "thirds": 0, "fourths": 0,
         "fifths": 0, "sixths": 0, "sevenths": 0, "eighths": 0,
@@ -61,12 +67,16 @@ def calculate_tiebreakers(round_history: List[RoundHistory]) -> Dict[str, int]:
     
     total_points = 0
     for round_data in round_history:
-        # Add points to total_points
+        # Add points to total_points (this always counts ALL rounds)
         if round_data.points:
             total_points += round_data.points
             
         # Skip if no placement (in-progress or no-show)
         if round_data.placement is None:
+            continue
+            
+        # Only count placements after the last reset for tiebreakers
+        if round_data.overall_round <= last_reset_round:
             continue
             
         placement = round_data.placement
@@ -90,43 +100,48 @@ def calculate_tiebreakers(round_history: List[RoundHistory]) -> Dict[str, int]:
     
     return tiebreakers
 
-def update_player_stats(player, round_history: List[RoundHistory]):
+def get_last_reset_round(tour_format: TourFormat, current_round: int) -> int:
+    """Get the round number of the most recent point reset that has occurred.
+    
+    Args:
+        tour_format: Tournament format with round structure
+        current_round: Current tournament round
+        
+    Returns:
+        Round number after which the most recent reset occurred, or 0 if no reset
+    """
+    if not tour_format.round_structure:
+        return 0
+        
+    reset_rounds = []
+    for round_info in tour_format.round_structure:
+        if (round_info.post_round_actions.point_reset and 
+            round_info.overall_round < current_round):
+            reset_rounds.append(round_info.overall_round)
+    
+    return max(reset_rounds) if reset_rounds else 0
+
+def update_player_stats(player, round_history: List[RoundHistory], tour_format: TourFormat = None):
     """Update player statistics based on round history."""
     # Calculate total_points (all points from all rounds - survives resets)
     total_points = sum(rd.points for rd in round_history if rd.points is not None)
     
-    # Handle current_points and total_points logic
-    # If player already has points/total_points from CSV parsing, preserve them and only add new simulation points
-    if hasattr(player, 'points') and hasattr(player, 'total_points'):
-        # Player has existing values from CSV parsing - preserve them
-        existing_current_points = player.points
-        existing_total_points = player.total_points
+    # For point resets, we need to calculate current_points differently
+    # current_points = points since last reset (or all points if no reset)
+    current_points = total_points
+    
+    # Check if there have been any point resets
+    if tour_format and tour_format.round_structure:
+        # Get the current round from the round history
+        current_round = max((rd.overall_round for rd in round_history if rd.points is not None), default=0)
+        last_reset_round = get_last_reset_round(tour_format, current_round + 1)
         
-        # Calculate points from simulation rounds only
-        # Find the highest round number that existed before simulation
-        max_existing_round = 0
-        if hasattr(player, '_max_csv_round'):
-            max_existing_round = player._max_csv_round
-        else:
-            # Fallback: assume current round - 1 was the last CSV round
-            # This works for single-round simulations
-            current_round = max((rd.overall_round for rd in round_history), default=0)
-            max_existing_round = current_round - 1
-        
-        # Calculate points from new simulation rounds only
-        new_simulation_points = sum(
-            rd.points for rd in round_history 
-            if rd.points is not None and rd.overall_round > max_existing_round
-        )
-        
-        # Add simulation points to both current and total
-        current_points = existing_current_points + new_simulation_points
-        total_points = existing_total_points + new_simulation_points
-        
-
-    else:
-        # No existing values - calculate from scratch (no reset scenario)
-        current_points = total_points
+        if last_reset_round > 0:
+            # Calculate points only from rounds after the reset
+            current_points = sum(
+                rd.points for rd in round_history 
+                if rd.points is not None and rd.overall_round > last_reset_round
+            )
     
     # Calculate placement stats
     total_placement = 0
@@ -142,7 +157,14 @@ def update_player_stats(player, round_history: List[RoundHistory]):
     player.completed_rounds = completed_rounds
     
     # Calculate tiebreakers
-    tiebreakers = calculate_tiebreakers(round_history)
+    # Determine the last reset round if tour_format is provided
+    last_reset_round = 0
+    if tour_format:
+        # Get the current round from the round history
+        current_round = max((rd.overall_round for rd in round_history if rd.points is not None), default=0)
+        last_reset_round = get_last_reset_round(tour_format, current_round + 1)  # +1 because we want resets that have occurred
+    
+    tiebreakers = calculate_tiebreakers(round_history, last_reset_round)
     
     # Update tiebreakers - handle both dict and object formats
     if hasattr(player.tiebreakers, 'firsts'):
@@ -183,14 +205,41 @@ def validate_and_load_state(tour_state: TourState) -> TourState:
     # Create a deep copy for this simulation run
     return tour_state.model_copy(deep=True)
 
-def simulate_next_round(current_state: TourState, tour_format: TourFormat) -> TourState:
+def simulate_next_round(current_state: TourState, tour_format: TourFormat, debug_file=None) -> TourState:
     """Step 2: Simulate the next round or finish an in-progress round."""
     current_round_num = current_state.current_round.overall_round
+    
+    if debug_file:
+        debug_file.write(f"\n{'='*60}\n")
+        debug_file.write(f"SIMULATING ROUND {current_round_num}\n")
+        debug_file.write(f"{'='*60}\n")
     
     # Group players by lobby for the current round
     lobbies = {}
     
-    # Check all active players for current round assignments
+    if debug_file:
+        debug_file.write(f"\nLooking for round {current_round_num} entries...\n")
+    
+    # First check if any players have entries for this round
+    players_with_entries = 0
+    for player in current_state.players:
+        for round_data in player.round_history:
+            if round_data.overall_round == current_round_num:
+                players_with_entries += 1
+                break
+    
+    # If no players have entries for this round, we need to assign lobbies
+    if players_with_entries == 0:
+        if debug_file:
+            debug_file.write(f"No players have round {current_round_num} entries. Assigning lobbies...\n")
+        
+        # Determine shuffle type based on previous round
+        shuffle_type = get_shuffle_type_for_round(tour_format, current_round_num - 1)
+        
+        # Assign lobbies for this round
+        current_state = assign_next_round_lobbies(current_state, tour_format, shuffle_type=shuffle_type, debug_file=debug_file, for_current_round=True)
+    
+    # Now check all active players for current round assignments
     for player in current_state.players:
         # Find this player's entry for the current round
         current_round_entry = None
@@ -198,6 +247,12 @@ def simulate_next_round(current_state: TourState, tour_format: TourFormat) -> To
             if round_data.overall_round == current_round_num:
                 current_round_entry = round_data
                 break
+        
+        if debug_file:
+            if current_round_entry:
+                debug_file.write(f"  {player.name}: Found round {current_round_num} entry with lobby '{current_round_entry.lobby}'\n")
+            else:
+                debug_file.write(f"  {player.name}: NO round {current_round_num} entry found!\n")
         
         if current_round_entry and current_round_entry.lobby:
             lobby = current_round_entry.lobby
@@ -250,7 +305,22 @@ def simulate_next_round(current_state: TourState, tour_format: TourFormat) -> To
         
     # Update all player stats after round completion
     for player in current_state.players:
-        update_player_stats(player, player.round_history)
+        update_player_stats(player, player.round_history, tour_format)
+    
+    if debug_file:
+        debug_file.write(f"\n--- ROUND {current_round_num} RESULTS ---\n")
+        debug_file.write(f"Players after round completion:\n")
+        sorted_players = sort_players_by_standing(current_state.players)
+        for i, player in enumerate(sorted_players):
+            # Find their placement this round
+            placement = None
+            points_earned = None
+            for round_data in player.round_history:
+                if round_data.overall_round == current_round_num:
+                    placement = round_data.placement
+                    points_earned = round_data.points
+                    break
+            debug_file.write(f"  {i+1}. {player.name}: Placement={placement}, Points Earned={points_earned}, Total Points={player.total_points}\n")
     
     # Mark current round as completed.  DO NOT advance to the next round.  that will be a separate item.
     current_state.current_round.round_status = RoundStatus.COMPLETED
@@ -258,7 +328,7 @@ def simulate_next_round(current_state: TourState, tour_format: TourFormat) -> To
     
     return current_state
 
-def process_post_round_actions(current_state: TourState, tour_format: TourFormat, results: Dict = None) -> tuple[TourState, Dict[int, List]]:
+def process_post_round_actions(current_state: TourState, tour_format: TourFormat, results: Dict = None, debug_file=None) -> tuple[TourState, Dict[int, List]]:
     """Step 3: Handle cuts, shuffles, and other post-round actions."""
     completed_round = current_state.current_round.overall_round  # The round we just finished
     cut_history = {}  # Track cuts that happen in this function
@@ -273,7 +343,7 @@ def process_post_round_actions(current_state: TourState, tour_format: TourFormat
     
     # Step 3b: Apply cuts if there are any for this round (BEFORE checking end_tournament)
     players_before_cut = current_state.players.copy()  # Save players before cut
-    current_state, cut_threshold = apply_cuts(current_state, tour_format, completed_round)
+    current_state, cut_threshold = apply_cuts(current_state, tour_format, completed_round, debug_file)
     
     # Track cut history if a cut was applied
     if len(current_state.players) < len(players_before_cut):
@@ -310,7 +380,7 @@ def process_post_round_actions(current_state: TourState, tour_format: TourFormat
     
     # Step 3g: Assign lobbies for the next round (if not tournament complete)
     if not is_tournament_complete(current_state, tour_format):
-        current_state = assign_next_round_lobbies(current_state, tour_format, shuffle_type=shuffle_type)
+        current_state = assign_next_round_lobbies(current_state, tour_format, shuffle_type=shuffle_type, debug_file=debug_file)
     
     # Step 3h: Handle point reset if specified (LAST action after cuts, shuffles, etc.)
     if tour_format.round_structure:
@@ -400,7 +470,7 @@ def calculate_cut_threshold(sorted_players: List, players_remaining: int) -> flo
         # Clean cut - use half number between the two point values
         return (last_advancing_points + first_eliminated_points) / 2.0
 
-def apply_cuts(current_state: TourState, tour_format: TourFormat, completed_round: int) -> tuple[TourState, float]:
+def apply_cuts(current_state: TourState, tour_format: TourFormat, completed_round: int, debug_file=None) -> tuple[TourState, float]:
     """Apply elimination cuts based on tour format rules. Returns updated state and cut threshold."""
     # Find if there's a cut rule for this round
     cut_rule = None
@@ -457,6 +527,18 @@ def apply_cuts(current_state: TourState, tour_format: TourFormat, completed_roun
     current_state.players = players_to_keep
     current_state.eliminated_players.extend(players_to_eliminate)
     
+    if debug_file:
+        debug_file.write(f"\n--- CUT AFTER ROUND {completed_round} ---\n")
+        debug_file.write(f"Cut rule: {len(sorted_players)} -> {cut_rule.players_remaining} players\n")
+        debug_file.write(f"Cut threshold: {cut_threshold} points\n")
+        debug_file.write(f"\nPlayers advancing:\n")
+        for i, player in enumerate(players_to_keep):
+            debug_file.write(f"  {i+1}. {player.name} ({player.points} points)\n")
+        debug_file.write(f"\nPlayers eliminated:\n")
+        for player in players_to_eliminate:
+            debug_file.write(f"  ✗ {player.name} ({player.points} points)\n")
+        debug_file.write(f"Cut complete: {len(current_state.players)} players remaining\n")
+    
     # print(f"\nCut complete: {len(current_state.players)} players remaining")
     return current_state, cut_threshold
 
@@ -496,19 +578,21 @@ def sort_players_by_standing(players: List) -> List:
         # Follow the correct tiebreaker order:
         # 1. points (current points)
         # 2. total_points (survives resets)
-        # 3. firsts_plus_top4s
-        # 4. firsts
-        # 5. seconds
-        # 6. thirds
-        # 7. fourths
-        # 8. fifths
-        # 9. sixths
-        # 10. sevenths
-        # 11. eighths
-        # 12. average placement (lower is better)
+        # 3. prior_day_points (for day 3 as new tournament)
+        # 4. firsts_plus_top4s
+        # 5. firsts
+        # 6. seconds
+        # 7. thirds
+        # 8. fourths
+        # 9. fifths
+        # 10. sixths
+        # 11. sevenths
+        # 12. eighths
+        # 13. average placement (lower is better)
         return (
             -player.points,              # Higher current points = better (negative for desc)
             -total_points,               # Higher total_points = better (survives resets)
+            -player.prior_day_points,    # Higher prior_day_points = better (for tiebreaker)
             -firsts_plus_top4s,          # More firsts_plus_top4s = better
             -firsts,                     # More firsts = better
             -seconds,                    # More seconds = better
@@ -539,12 +623,17 @@ def advance_to_next_round(current_state: TourState, tour_format: TourFormat) -> 
     # print(f"Advanced to round {current_state.current_round.overall_round}")
     return current_state
 
-def assign_next_round_lobbies(current_state: TourState, tour_format: TourFormat, players_per_lobby: int = 8, shuffle_type: str = "random") -> TourState:
-    """Assign players to lobbies for the next round."""
-    next_round = current_state.current_round.overall_round
+def assign_next_round_lobbies(current_state: TourState, tour_format: TourFormat, players_per_lobby: int = 8, shuffle_type: str = "random", debug_file=None, for_current_round: bool = False) -> TourState:
+    """Assign players to lobbies for the next round (or current round if for_current_round=True)."""
+    # Determine which round we're assigning lobbies for
+    target_round = current_state.current_round.overall_round
     remaining_players = current_state.players.copy()
     
-    # print(f"Assigning lobbies for round {next_round} with {len(remaining_players)} players using {shuffle_type} shuffle")
+    if debug_file:
+        debug_file.write(f"\n--- LOBBY ASSIGNMENT FOR ROUND {target_round} ---\n")
+        debug_file.write(f"Players: {len(remaining_players)}, Shuffle type: {shuffle_type}\n")
+    
+    # print(f"Assigning lobbies for round {target_round} with {len(remaining_players)} players using {shuffle_type} shuffle")
     
     # Choose assignment strategy based on shuffle type
     if shuffle_type == "snake":
@@ -558,11 +647,13 @@ def assign_next_round_lobbies(current_state: TourState, tour_format: TourFormat,
     # Add round history entries for each player
     for lobby_name, lobby_players in lobby_assignments.items():
         # print(f"  Lobby {lobby_name}: {[p.name for p in lobby_players]}")
+        if debug_file:
+            debug_file.write(f"  Lobby {lobby_name}: {[p.name for p in lobby_players]}\n")
         
         for player in lobby_players:
             # Add new round entry
             new_round = RoundHistory(
-                overall_round=next_round,
+                overall_round=target_round,
                 day=current_state.current_round.day,
                 round_in_day=current_state.current_round.round_in_day,
                 lobby=lobby_name,
@@ -961,7 +1052,10 @@ def organize_probabilities_by_player(results: Dict, tour_state: TourState = None
             
             # Extract all tiebreakers based on the tour format order
             for tiebreaker_name in tiebreaker_order:
-                if isinstance(tb, dict):
+                if tiebreaker_name == "prior_day_points":
+                    # prior_day_points is stored on the player object, not in tiebreakers
+                    tiebreaker_value = player.prior_day_points
+                elif isinstance(tb, dict):
                     tiebreaker_value = tb.get(tiebreaker_name, 0)
                 else:
                     tiebreaker_value = getattr(tb, tiebreaker_name, 0) if hasattr(tb, tiebreaker_name) else 0
@@ -1137,10 +1231,19 @@ def simulate_tournament(tour_format: TourFormat, tour_state: TourState, sim_sett
     """Main simulation function."""
     results = initialize_results(tour_format)  # Step 0
     
-    # DEBUG: Check initial player points
-    print("DEBUG: Initial player points at start of simulation:")
-    for i, player in enumerate(tour_state.players[:5]):  # Show first 5 players
-        print(f"  {player.name}: points={player.points}, total_points={player.total_points}")
+    # Open debug file for writing if debug is enabled
+    debug_file = None
+    if sim_settings.debug_enabled:
+        debug_file = open('simulation_debug.txt', 'w')
+        
+        # DEBUG: Check initial player points
+        print("DEBUG: Initial player points at start of simulation:")
+        debug_file.write("=== SIMULATION DEBUG LOG ===\n")
+        debug_file.write(f"Starting simulation at round {tour_state.current_round.overall_round}\n")
+        debug_file.write("\nInitial player points:\n")
+        for i, player in enumerate(tour_state.players[:5]):  # Show first 5 players
+            print(f"  {player.name}: points={player.points}, total_points={player.total_points}")
+            debug_file.write(f"  {player.name}: points={player.points}, total_points={player.total_points}\n")
     
     # Filter probability targets to only include future events
     original_targets = sim_settings.probability_targets.copy() if sim_settings.probability_targets else []
@@ -1169,18 +1272,21 @@ def simulate_tournament(tour_format: TourFormat, tour_state: TourState, sim_sett
             # Capture the round number before it gets incremented
             round_being_simulated = current_state.current_round.overall_round
             
-            current_state = simulate_next_round(current_state, tour_format)  # Step 2
+            current_state = simulate_next_round(current_state, tour_format, debug_file)  # Step 2
             
             # Export to CSV after simulating the round
             print(f"Exporting CSV after round {round_being_simulated} simulation...")
-            pydantic_tourstate_to_csv(current_state, f"test_single_round_{round_being_simulated}_result.csv")
+            pydantic_tourstate_to_csv(current_state, f"/tmp/test_single_round_{round_being_simulated}_result.csv")
             
             print(f"Single round test complete. Check test_single_round_{round_being_simulated}_result.csv")
+            if debug_file:
+                debug_file.close()
+                print("Debug information written to simulation_debug.txt")
             return results, 1  # Return early after one round
         
         # Normal tournament mode
         while not is_tournament_complete(current_state, tour_format):  # Step 5/6
-            current_state = simulate_next_round(current_state, tour_format)  # Step 2
+            current_state = simulate_next_round(current_state, tour_format, debug_file)  # Step 2
             
             # Export to CSV after simulating the round (for testing)
             # round_num = current_state.current_round.overall_round - 1  # -1 because we just completed this round
@@ -1188,7 +1294,7 @@ def simulate_tournament(tour_format: TourFormat, tour_state: TourState, sim_sett
             #     print(f"Exporting CSV after round {round_num} simulation...")
             #     pydantic_tourstate_to_csv(current_state, f"test_after_round_{round_num}.csv")
             
-            current_state, round_cut_history = process_post_round_actions(current_state, tour_format, results)  # Step 3
+            current_state, round_cut_history = process_post_round_actions(current_state, tour_format, results, debug_file)  # Step 3
             # Merge any cuts from this round into the overall cut history
             cut_history.update(round_cut_history)
             record_simulation_data(current_state, results, tour_format)  # Step 4
@@ -1256,6 +1362,11 @@ def simulate_tournament(tour_format: TourFormat, tour_state: TourState, sim_sett
                 }
             }
         }
+    
+    # Close debug file if it was opened
+    if debug_file:
+        debug_file.close()
+        print("Debug information written to simulation_debug.txt")
     
     return results, sim_count
 

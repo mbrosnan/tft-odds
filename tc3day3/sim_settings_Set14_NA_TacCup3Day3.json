@@ -1,0 +1,27 @@
+{
+  "max_iterations": 10000,
+  "max_time_seconds": 30,
+  "mode": "iterations_only",
+  "probability_targets": [
+    {
+      "probability_name": "Made Top 16",
+      "type": "made_cut",
+      "players_remaining": 16
+    },
+    {
+      "probability_name": "Made Top 8",
+      "type": "made_cut",
+      "players_remaining": 8
+    },
+    {
+      "probability_name": "Top 4 Finish",
+      "type": "overall_standing",
+      "comparison": "at_or_above",
+      "threshold": 4
+    },
+    {
+      "probability_name": "Tournament Winner",
+      "type": "tournament_winner"
+    }
+  ]
+}

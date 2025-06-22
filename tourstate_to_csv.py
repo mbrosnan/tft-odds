@@ -62,12 +62,12 @@ def tourstate_to_csv_data(tour_state_dict: Dict[str, Any]) -> List[List[str]]:
     max_rounds = get_max_rounds(tour_state_dict)
     
     # Create the three header rows for day, round, and overall round
-    day_header = ["Day", ""]  # Start with row label
-    round_header = ["Round", ""]  # Start with row label
-    overall_round_header = ["Overall Round", ""]  # Start with row label
+    day_header = ["Day", "", ""]  # Start with row label and prior_day_points column
+    round_header = ["Round", "", ""]  # Start with row label and prior_day_points column
+    overall_round_header = ["Overall Round", "", ""]  # Start with row label and prior_day_points column
     
     # Create the column labels row
-    column_labels = ["Player ID", "Player Name"]
+    column_labels = ["Player ID", "Player Name", "Prior Day Points"]
     
     # Add headers for each round
     for round_num in range(1, max_rounds + 1):
@@ -97,7 +97,8 @@ def tourstate_to_csv_data(tour_state_dict: Dict[str, Any]) -> List[List[str]]:
     
     # Add player data rows
     for player in all_players:
-        player_row = [str(player["id"]), player["name"]]
+        prior_day_points = player.get("prior_day_points", 0)
+        player_row = [str(player["id"]), player["name"], str(prior_day_points)]
         
         # Add data for each round
         for round_num in range(1, max_rounds + 1):

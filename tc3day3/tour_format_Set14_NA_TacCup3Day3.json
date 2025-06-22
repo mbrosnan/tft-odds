@@ -1,0 +1,141 @@
+{
+  "tournament_name": "TC3 Day 3",
+  "starting_players": 32,
+  "total_rounds": 7,
+  "round_structure": [
+    {
+      "overall_round": 1,
+      "day": 3,
+      "round_in_day": 1,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 2,
+      "day": 3,
+      "round_in_day": 2,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "snake_shuffle": true,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 3,
+      "day": 3,
+      "round_in_day": 3,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 4,
+      "day": 3,
+      "round_in_day": 4,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "snake_shuffle": true,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 5,
+      "day": 3,
+      "round_in_day": 5,
+      "post_round_actions": {
+        "cut": true,
+        "cut_to": 16,
+        "snake_shuffle": true,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 6,
+      "day": 3,
+      "round_in_day": 6,
+      "post_round_actions": {
+        "cut": true,
+        "cut_to": 8,
+        "snake_shuffle": true,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 7,
+      "day": 3,
+      "round_in_day": 7,
+      "post_round_actions": {
+        "cut": true,
+        "cut_to": 4,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": true,
+        "point_reset": false
+      }
+    }
+  ],
+  "cut_rules": [
+    {
+      "after_round": 5,
+      "players_remaining": 16
+    },
+    {
+      "after_round": 6,
+      "players_remaining": 8
+    },
+    {
+      "after_round": 7,
+      "players_remaining": 4
+    }
+  ],
+  "tiebreaker_order": [
+    "points",
+    "total_points",
+    "prior_day_points",
+    "firsts_plus_top4s",
+    "firsts",
+    "seconds",
+    "thirds",
+    "fourths",
+    "fifths",
+    "sixths",
+    "sevenths",
+    "eighths",
+    "avg_placement"
+  ],
+  "checkmate_conditions": {
+    "enabled": true,
+    "threshold_percentage": 0.5
+  },
+  "track_placement_probabilities": true,
+  "track_points_distribution": true,
+  "track_elimination_probabilities": true
+}

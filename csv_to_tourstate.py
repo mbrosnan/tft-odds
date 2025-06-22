@@ -209,7 +209,14 @@ def parse_csv_to_tourstate(input_file: str, output_file: str, tour_format_file: 
     overall_round_row = lines[5]  # Overall Round header row
     
     # Get current round day and round_in_day from the current round column
-    current_round_col = (current_round * 3) - 1  # Column where current round data should be
+    # Check if prior_day_points column exists by looking at header row (line 7, index 6)
+    header_row = lines[6]  # This is the row with "Player ID", "Player Name", etc.
+    has_prior_points_col = (len(header_row) > 2 and 
+                           header_row[2] and 
+                           header_row[2].lower() not in ['lobby', ''] and
+                           'prior' in header_row[2].lower())
+    base_offset = 3 if has_prior_points_col else 2
+    current_round_col = base_offset + ((current_round - 1) * 3)  # Column where current round data should be
     current_day = int(day_row[current_round_col]) if current_round_col < len(day_row) and day_row[current_round_col] else -99
     current_round_in_day = int(round_row[current_round_col]) if current_round_col < len(round_row) and round_row[current_round_col] else -99
     
@@ -232,17 +239,27 @@ def parse_csv_to_tourstate(input_file: str, output_file: str, tour_format_file: 
         if not row[1]:  # Skip empty rows
             continue
             
+        # Check if prior_day_points column exists (column 2)
+        prior_day_points = 0
+        if len(row) > 2 and row[2]:
+            try:
+                prior_day_points = int(row[2])
+            except ValueError:
+                # If it's not a number, assume no prior_day_points column
+                pass
+        
         player_data = {
             "id": int(row[0]),  # Add player ID
             "name": row[1],
             "points": 0,
             "total_points": 0,  # Initialize total_points
+            "prior_day_points": prior_day_points,  # Points from previous tournament days
             "avg_placement": 0,
             "completed_rounds": 0,
             "round_history": [],
             "tiebreakers": {},
             "is_eliminated": False, # Initialize elimination data
-            "eliminated_at": None  
+            "eliminated_at": None
         }
         
         # Process each round to build round history first
@@ -250,8 +267,10 @@ def parse_csv_to_tourstate(input_file: str, output_file: str, tour_format_file: 
         completed_rounds = 0
         
         # Each round has 3 columns (Lobby, Placement, spacer)
+        # Use the same base_offset as calculated from the header check
+        # (has_prior_points_col is already set correctly above)
         for round_num in range(1, current_round + 1):
-            col_offset = (round_num * 3) - 1  # Starting column for round data
+            col_offset = base_offset + ((round_num - 1) * 3)  # Starting column for round data
             
             lobby = row[col_offset]
             placement_str = row[col_offset + 1]
@@ -270,8 +289,9 @@ def parse_csv_to_tourstate(input_file: str, output_file: str, tour_format_file: 
                 continue
                 
             # Get day and round_in_day from header rows
-            day = int(day_row[col_offset]) if col_offset < len(day_row) and day_row[col_offset] else 1
-            round_in_day = int(round_row[col_offset]) if col_offset < len(round_row) and round_row[col_offset] else 1
+            header_col_offset = base_offset + ((round_num - 1) * 3)
+            day = int(day_row[header_col_offset]) if header_col_offset < len(day_row) and day_row[header_col_offset] else 1
+            round_in_day = int(round_row[header_col_offset]) if header_col_offset < len(round_row) and round_row[header_col_offset] else 1
             
             # Handle in-progress rounds (lobby exists but no placement)
             if not placement_str:

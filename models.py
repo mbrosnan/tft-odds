@@ -44,6 +44,7 @@ class Player(BaseModel):
     name: str
     points: int = 0
     total_points: int = 0  # Cumulative points that survive resets
+    prior_day_points: int = 0  # Points from previous tournament days for tiebreaker
     avg_placement: float = 0.0
     completed_rounds: int = 0
     round_history: List[RoundHistory] = []
@@ -126,6 +127,9 @@ class SimSettings(BaseModel):
     max_iterations: Optional[int] = 1000
     max_time_seconds: Optional[float] = None
     mode: SimulationMode = SimulationMode.ITERATIONS_ONLY
+    
+    # Debug configuration
+    debug_enabled: bool = False
     
     # Probability tracking configuration
     probability_targets: List[ProbabilityTarget] = [] 
