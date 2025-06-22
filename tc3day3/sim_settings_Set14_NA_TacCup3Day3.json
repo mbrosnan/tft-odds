@@ -1,7 +1,8 @@
 {
-  "max_iterations": 10000,
-  "max_time_seconds": 30,
-  "mode": "iterations_only",
+  "max_iterations": 100000,
+  "max_time_seconds": 1800,
+  "mode": "time_only",
+  "debug_enabled": false,
   "probability_targets": [
     {
       "probability_name": "Made Top 16",

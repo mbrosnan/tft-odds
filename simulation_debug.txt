@@ -1,0 +1,560 @@
+=== SIMULATION DEBUG LOG ===
+Starting simulation at round 1
+
+Initial player points:
+  Player 1: points=0, total_points=0
+  Player 2: points=0, total_points=0
+  Player 3: points=0, total_points=0
+  Player 4: points=0, total_points=0
+  Player 5: points=0, total_points=0
+
+============================================================
+SIMULATING ROUND 1
+============================================================
+
+Looking for round 1 entries...
+  Player 1: Found round 1 entry with lobby 'A'
+  Player 2: Found round 1 entry with lobby 'A'
+  Player 3: Found round 1 entry with lobby 'A'
+  Player 4: Found round 1 entry with lobby 'A'
+  Player 5: Found round 1 entry with lobby 'A'
+  Player 6: Found round 1 entry with lobby 'A'
+  Player 7: Found round 1 entry with lobby 'A'
+  Player 8: Found round 1 entry with lobby 'A'
+  Player 9: Found round 1 entry with lobby 'B'
+  Player 10: Found round 1 entry with lobby 'B'
+  Player 11: Found round 1 entry with lobby 'B'
+  Player 12: Found round 1 entry with lobby 'B'
+  Player 13: Found round 1 entry with lobby 'B'
+  Player 14: Found round 1 entry with lobby 'B'
+  Player 15: Found round 1 entry with lobby 'B'
+  Player 16: Found round 1 entry with lobby 'B'
+  Player 17: Found round 1 entry with lobby 'C'
+  Player 18: Found round 1 entry with lobby 'C'
+  Player 19: Found round 1 entry with lobby 'C'
+  Player 20: Found round 1 entry with lobby 'C'
+  Player 21: Found round 1 entry with lobby 'C'
+  Player 22: Found round 1 entry with lobby 'C'
+  Player 23: Found round 1 entry with lobby 'C'
+  Player 24: Found round 1 entry with lobby 'C'
+  Player 25: Found round 1 entry with lobby 'D'
+  Player 26: Found round 1 entry with lobby 'D'
+  Player 27: Found round 1 entry with lobby 'D'
+  Player 28: Found round 1 entry with lobby 'D'
+  Player 29: Found round 1 entry with lobby 'D'
+  Player 30: Found round 1 entry with lobby 'D'
+  Player 31: Found round 1 entry with lobby 'D'
+  Player 32: Found round 1 entry with lobby 'D'
+
+--- ROUND 1 RESULTS ---
+Players after round completion:
+  1. Player 1: Placement=1, Points Earned=8, Total Points=8
+  2. Player 16: Placement=1, Points Earned=8, Total Points=8
+  3. Player 19: Placement=1, Points Earned=8, Total Points=8
+  4. Player 29: Placement=1, Points Earned=8, Total Points=8
+  5. Player 3: Placement=2, Points Earned=7, Total Points=7
+  6. Player 9: Placement=2, Points Earned=7, Total Points=7
+  7. Player 21: Placement=2, Points Earned=7, Total Points=7
+  8. Player 31: Placement=2, Points Earned=7, Total Points=7
+  9. Player 7: Placement=3, Points Earned=6, Total Points=6
+  10. Player 10: Placement=3, Points Earned=6, Total Points=6
+  11. Player 18: Placement=3, Points Earned=6, Total Points=6
+  12. Player 28: Placement=3, Points Earned=6, Total Points=6
+  13. Player 2: Placement=4, Points Earned=5, Total Points=5
+  14. Player 13: Placement=4, Points Earned=5, Total Points=5
+  15. Player 20: Placement=4, Points Earned=5, Total Points=5
+  16. Player 32: Placement=4, Points Earned=5, Total Points=5
+  17. Player 8: Placement=5, Points Earned=4, Total Points=4
+  18. Player 14: Placement=5, Points Earned=4, Total Points=4
+  19. Player 22: Placement=5, Points Earned=4, Total Points=4
+  20. Player 30: Placement=5, Points Earned=4, Total Points=4
+  21. Player 6: Placement=6, Points Earned=3, Total Points=3
+  22. Player 11: Placement=6, Points Earned=3, Total Points=3
+  23. Player 24: Placement=6, Points Earned=3, Total Points=3
+  24. Player 26: Placement=6, Points Earned=3, Total Points=3
+  25. Player 5: Placement=7, Points Earned=2, Total Points=2
+  26. Player 12: Placement=7, Points Earned=2, Total Points=2
+  27. Player 17: Placement=7, Points Earned=2, Total Points=2
+  28. Player 25: Placement=7, Points Earned=2, Total Points=2
+  29. Player 4: Placement=8, Points Earned=1, Total Points=1
+  30. Player 15: Placement=8, Points Earned=1, Total Points=1
+  31. Player 23: Placement=8, Points Earned=1, Total Points=1
+  32. Player 27: Placement=8, Points Earned=1, Total Points=1
+
+--- LOBBY ASSIGNMENT FOR ROUND 2 ---
+Players: 32, Shuffle type: random
+  Lobby A: ['Player 23', 'Player 7', 'Player 21', 'Player 18', 'Player 27', 'Player 20', 'Player 17', 'Player 15']
+  Lobby B: ['Player 11', 'Player 16', 'Player 24', 'Player 25', 'Player 29', 'Player 26', 'Player 10', 'Player 9']
+  Lobby C: ['Player 4', 'Player 2', 'Player 6', 'Player 14', 'Player 3', 'Player 28', 'Player 30', 'Player 12']
+  Lobby D: ['Player 8', 'Player 22', 'Player 19', 'Player 5', 'Player 1', 'Player 32', 'Player 31', 'Player 13']
+
+============================================================
+SIMULATING ROUND 2
+============================================================
+
+Looking for round 2 entries...
+  Player 1: Found round 2 entry with lobby 'D'
+  Player 2: Found round 2 entry with lobby 'C'
+  Player 3: Found round 2 entry with lobby 'C'
+  Player 4: Found round 2 entry with lobby 'C'
+  Player 5: Found round 2 entry with lobby 'D'
+  Player 6: Found round 2 entry with lobby 'C'
+  Player 7: Found round 2 entry with lobby 'A'
+  Player 8: Found round 2 entry with lobby 'D'
+  Player 9: Found round 2 entry with lobby 'B'
+  Player 10: Found round 2 entry with lobby 'B'
+  Player 11: Found round 2 entry with lobby 'B'
+  Player 12: Found round 2 entry with lobby 'C'
+  Player 13: Found round 2 entry with lobby 'D'
+  Player 14: Found round 2 entry with lobby 'C'
+  Player 15: Found round 2 entry with lobby 'A'
+  Player 16: Found round 2 entry with lobby 'B'
+  Player 17: Found round 2 entry with lobby 'A'
+  Player 18: Found round 2 entry with lobby 'A'
+  Player 19: Found round 2 entry with lobby 'D'
+  Player 20: Found round 2 entry with lobby 'A'
+  Player 21: Found round 2 entry with lobby 'A'
+  Player 22: Found round 2 entry with lobby 'D'
+  Player 23: Found round 2 entry with lobby 'A'
+  Player 24: Found round 2 entry with lobby 'B'
+  Player 25: Found round 2 entry with lobby 'B'
+  Player 26: Found round 2 entry with lobby 'B'
+  Player 27: Found round 2 entry with lobby 'A'
+  Player 28: Found round 2 entry with lobby 'C'
+  Player 29: Found round 2 entry with lobby 'B'
+  Player 30: Found round 2 entry with lobby 'C'
+  Player 31: Found round 2 entry with lobby 'D'
+  Player 32: Found round 2 entry with lobby 'D'
+
+--- ROUND 2 RESULTS ---
+Players after round completion:
+  1. Player 1: Placement=2, Points Earned=7, Total Points=15
+  2. Player 7: Placement=1, Points Earned=8, Total Points=14
+  3. Player 9: Placement=2, Points Earned=7, Total Points=14
+  4. Player 16: Placement=3, Points Earned=6, Total Points=14
+  5. Player 2: Placement=1, Points Earned=8, Total Points=13
+  6. Player 29: Placement=4, Points Earned=5, Total Points=13
+  7. Player 32: Placement=1, Points Earned=8, Total Points=13
+  8. Player 20: Placement=2, Points Earned=7, Total Points=12
+  9. Player 21: Placement=4, Points Earned=5, Total Points=12
+  10. Player 31: Placement=4, Points Earned=5, Total Points=12
+  11. Player 19: Placement=6, Points Earned=3, Total Points=11
+  12. Player 18: Placement=5, Points Earned=4, Total Points=10
+  13. Player 22: Placement=3, Points Earned=6, Total Points=10
+  14. Player 25: Placement=1, Points Earned=8, Total Points=10
+  15. Player 30: Placement=3, Points Earned=6, Total Points=10
+  16. Player 10: Placement=6, Points Earned=3, Total Points=9
+  17. Player 28: Placement=6, Points Earned=3, Total Points=9
+  18. Player 3: Placement=8, Points Earned=1, Total Points=8
+  19. Player 4: Placement=2, Points Earned=7, Total Points=8
+  20. Player 8: Placement=5, Points Earned=4, Total Points=8
+  21. Player 6: Placement=5, Points Earned=4, Total Points=7
+  22. Player 12: Placement=4, Points Earned=5, Total Points=7
+  23. Player 26: Placement=5, Points Earned=4, Total Points=7
+  24. Player 27: Placement=3, Points Earned=6, Total Points=7
+  25. Player 13: Placement=8, Points Earned=1, Total Points=6
+  26. Player 14: Placement=7, Points Earned=2, Total Points=6
+  27. Player 11: Placement=7, Points Earned=2, Total Points=5
+  28. Player 5: Placement=7, Points Earned=2, Total Points=4
+  29. Player 15: Placement=6, Points Earned=3, Total Points=4
+  30. Player 24: Placement=8, Points Earned=1, Total Points=4
+  31. Player 17: Placement=8, Points Earned=1, Total Points=3
+  32. Player 23: Placement=7, Points Earned=2, Total Points=3
+
+--- LOBBY ASSIGNMENT FOR ROUND 3 ---
+Players: 32, Shuffle type: snake
+  Lobby A: ['Player 1', 'Player 20', 'Player 21', 'Player 10', 'Player 28', 'Player 27', 'Player 13', 'Player 23']
+  Lobby B: ['Player 7', 'Player 32', 'Player 31', 'Player 30', 'Player 3', 'Player 26', 'Player 14', 'Player 17']
+  Lobby C: ['Player 9', 'Player 29', 'Player 19', 'Player 25', 'Player 4', 'Player 12', 'Player 11', 'Player 24']
+  Lobby D: ['Player 16', 'Player 2', 'Player 18', 'Player 22', 'Player 8', 'Player 6', 'Player 5', 'Player 15']
+
+============================================================
+SIMULATING ROUND 3
+============================================================
+
+Looking for round 3 entries...
+  Player 1: Found round 3 entry with lobby 'A'
+  Player 2: Found round 3 entry with lobby 'D'
+  Player 3: Found round 3 entry with lobby 'B'
+  Player 4: Found round 3 entry with lobby 'C'
+  Player 5: Found round 3 entry with lobby 'D'
+  Player 6: Found round 3 entry with lobby 'D'
+  Player 7: Found round 3 entry with lobby 'B'
+  Player 8: Found round 3 entry with lobby 'D'
+  Player 9: Found round 3 entry with lobby 'C'
+  Player 10: Found round 3 entry with lobby 'A'
+  Player 11: Found round 3 entry with lobby 'C'
+  Player 12: Found round 3 entry with lobby 'C'
+  Player 13: Found round 3 entry with lobby 'A'
+  Player 14: Found round 3 entry with lobby 'B'
+  Player 15: Found round 3 entry with lobby 'D'
+  Player 16: Found round 3 entry with lobby 'D'
+  Player 17: Found round 3 entry with lobby 'B'
+  Player 18: Found round 3 entry with lobby 'D'
+  Player 19: Found round 3 entry with lobby 'C'
+  Player 20: Found round 3 entry with lobby 'A'
+  Player 21: Found round 3 entry with lobby 'A'
+  Player 22: Found round 3 entry with lobby 'D'
+  Player 23: Found round 3 entry with lobby 'A'
+  Player 24: Found round 3 entry with lobby 'C'
+  Player 25: Found round 3 entry with lobby 'C'
+  Player 26: Found round 3 entry with lobby 'B'
+  Player 27: Found round 3 entry with lobby 'A'
+  Player 28: Found round 3 entry with lobby 'A'
+  Player 29: Found round 3 entry with lobby 'C'
+  Player 30: Found round 3 entry with lobby 'B'
+  Player 31: Found round 3 entry with lobby 'B'
+  Player 32: Found round 3 entry with lobby 'B'
+
+--- ROUND 3 RESULTS ---
+Players after round completion:
+  1. Player 7: Placement=2, Points Earned=7, Total Points=21
+  2. Player 16: Placement=3, Points Earned=6, Total Points=20
+  3. Player 21: Placement=1, Points Earned=8, Total Points=20
+  4. Player 1: Placement=5, Points Earned=4, Total Points=19
+  5. Player 19: Placement=1, Points Earned=8, Total Points=19
+  6. Player 29: Placement=3, Points Earned=6, Total Points=19
+  7. Player 9: Placement=5, Points Earned=4, Total Points=18
+  8. Player 18: Placement=1, Points Earned=8, Total Points=18
+  9. Player 32: Placement=4, Points Earned=5, Total Points=18
+  10. Player 20: Placement=4, Points Earned=5, Total Points=17
+  11. Player 10: Placement=2, Points Earned=7, Total Points=16
+  12. Player 2: Placement=7, Points Earned=2, Total Points=15
+  13. Player 22: Placement=4, Points Earned=5, Total Points=15
+  14. Player 31: Placement=6, Points Earned=3, Total Points=15
+  15. Player 3: Placement=3, Points Earned=6, Total Points=14
+  16. Player 12: Placement=2, Points Earned=7, Total Points=14
+  17. Player 27: Placement=3, Points Earned=6, Total Points=13
+  18. Player 5: Placement=2, Points Earned=7, Total Points=11
+  19. Player 17: Placement=1, Points Earned=8, Total Points=11
+  20. Player 25: Placement=8, Points Earned=1, Total Points=11
+  21. Player 30: Placement=8, Points Earned=1, Total Points=11
+  22. Player 4: Placement=7, Points Earned=2, Total Points=10
+  23. Player 6: Placement=6, Points Earned=3, Total Points=10
+  24. Player 14: Placement=5, Points Earned=4, Total Points=10
+  25. Player 28: Placement=8, Points Earned=1, Total Points=10
+  26. Player 8: Placement=8, Points Earned=1, Total Points=9
+  27. Player 13: Placement=6, Points Earned=3, Total Points=9
+  28. Player 24: Placement=4, Points Earned=5, Total Points=9
+  29. Player 26: Placement=7, Points Earned=2, Total Points=9
+  30. Player 11: Placement=6, Points Earned=3, Total Points=8
+  31. Player 15: Placement=5, Points Earned=4, Total Points=8
+  32. Player 23: Placement=7, Points Earned=2, Total Points=5
+
+--- LOBBY ASSIGNMENT FOR ROUND 4 ---
+Players: 32, Shuffle type: random
+  Lobby A: ['Player 30', 'Player 17', 'Player 8', 'Player 31', 'Player 7', 'Player 12', 'Player 28', 'Player 18']
+  Lobby B: ['Player 22', 'Player 21', 'Player 11', 'Player 32', 'Player 23', 'Player 24', 'Player 13', 'Player 14']
+  Lobby C: ['Player 29', 'Player 20', 'Player 16', 'Player 26', 'Player 1', 'Player 6', 'Player 27', 'Player 3']
+  Lobby D: ['Player 19', 'Player 15', 'Player 4', 'Player 5', 'Player 25', 'Player 2', 'Player 10', 'Player 9']
+
+============================================================
+SIMULATING ROUND 4
+============================================================
+
+Looking for round 4 entries...
+  Player 1: Found round 4 entry with lobby 'C'
+  Player 2: Found round 4 entry with lobby 'D'
+  Player 3: Found round 4 entry with lobby 'C'
+  Player 4: Found round 4 entry with lobby 'D'
+  Player 5: Found round 4 entry with lobby 'D'
+  Player 6: Found round 4 entry with lobby 'C'
+  Player 7: Found round 4 entry with lobby 'A'
+  Player 8: Found round 4 entry with lobby 'A'
+  Player 9: Found round 4 entry with lobby 'D'
+  Player 10: Found round 4 entry with lobby 'D'
+  Player 11: Found round 4 entry with lobby 'B'
+  Player 12: Found round 4 entry with lobby 'A'
+  Player 13: Found round 4 entry with lobby 'B'
+  Player 14: Found round 4 entry with lobby 'B'
+  Player 15: Found round 4 entry with lobby 'D'
+  Player 16: Found round 4 entry with lobby 'C'
+  Player 17: Found round 4 entry with lobby 'A'
+  Player 18: Found round 4 entry with lobby 'A'
+  Player 19: Found round 4 entry with lobby 'D'
+  Player 20: Found round 4 entry with lobby 'C'
+  Player 21: Found round 4 entry with lobby 'B'
+  Player 22: Found round 4 entry with lobby 'B'
+  Player 23: Found round 4 entry with lobby 'B'
+  Player 24: Found round 4 entry with lobby 'B'
+  Player 25: Found round 4 entry with lobby 'D'
+  Player 26: Found round 4 entry with lobby 'C'
+  Player 27: Found round 4 entry with lobby 'C'
+  Player 28: Found round 4 entry with lobby 'A'
+  Player 29: Found round 4 entry with lobby 'C'
+  Player 30: Found round 4 entry with lobby 'A'
+  Player 31: Found round 4 entry with lobby 'A'
+  Player 32: Found round 4 entry with lobby 'B'
+
+--- ROUND 4 RESULTS ---
+Players after round completion:
+  1. Player 16: Placement=1, Points Earned=8, Total Points=28
+  2. Player 21: Placement=3, Points Earned=6, Total Points=26
+  3. Player 29: Placement=2, Points Earned=7, Total Points=26
+  4. Player 18: Placement=2, Points Earned=7, Total Points=25
+  5. Player 2: Placement=1, Points Earned=8, Total Points=23
+  6. Player 9: Placement=4, Points Earned=5, Total Points=23
+  7. Player 1: Placement=6, Points Earned=3, Total Points=22
+  8. Player 7: Placement=8, Points Earned=1, Total Points=22
+  9. Player 32: Placement=6, Points Earned=3, Total Points=21
+  10. Player 3: Placement=3, Points Earned=6, Total Points=20
+  11. Player 12: Placement=3, Points Earned=6, Total Points=20
+  12. Player 19: Placement=8, Points Earned=1, Total Points=20
+  13. Player 20: Placement=7, Points Earned=2, Total Points=19
+  14. Player 22: Placement=5, Points Earned=4, Total Points=19
+  15. Player 10: Placement=7, Points Earned=2, Total Points=18
+  16. Player 28: Placement=1, Points Earned=8, Total Points=18
+  17. Player 31: Placement=6, Points Earned=3, Total Points=18
+  18. Player 25: Placement=3, Points Earned=6, Total Points=17
+  19. Player 27: Placement=5, Points Earned=4, Total Points=17
+  20. Player 11: Placement=1, Points Earned=8, Total Points=16
+  21. Player 13: Placement=2, Points Earned=7, Total Points=16
+  22. Player 30: Placement=4, Points Earned=5, Total Points=16
+  23. Player 5: Placement=5, Points Earned=4, Total Points=15
+  24. Player 6: Placement=4, Points Earned=5, Total Points=15
+  25. Player 15: Placement=2, Points Earned=7, Total Points=15
+  26. Player 24: Placement=4, Points Earned=5, Total Points=14
+  27. Player 4: Placement=6, Points Earned=3, Total Points=13
+  28. Player 8: Placement=5, Points Earned=4, Total Points=13
+  29. Player 17: Placement=7, Points Earned=2, Total Points=13
+  30. Player 14: Placement=7, Points Earned=2, Total Points=12
+  31. Player 26: Placement=8, Points Earned=1, Total Points=10
+  32. Player 23: Placement=8, Points Earned=1, Total Points=6
+
+--- LOBBY ASSIGNMENT FOR ROUND 5 ---
+Players: 32, Shuffle type: snake
+  Lobby A: ['Player 16', 'Player 7', 'Player 32', 'Player 28', 'Player 31', 'Player 6', 'Player 15', 'Player 23']
+  Lobby B: ['Player 21', 'Player 1', 'Player 3', 'Player 10', 'Player 25', 'Player 5', 'Player 24', 'Player 26']
+  Lobby C: ['Player 29', 'Player 9', 'Player 12', 'Player 22', 'Player 27', 'Player 30', 'Player 4', 'Player 14']
+  Lobby D: ['Player 18', 'Player 2', 'Player 19', 'Player 20', 'Player 11', 'Player 13', 'Player 8', 'Player 17']
+
+============================================================
+SIMULATING ROUND 5
+============================================================
+
+Looking for round 5 entries...
+  Player 1: Found round 5 entry with lobby 'B'
+  Player 2: Found round 5 entry with lobby 'D'
+  Player 3: Found round 5 entry with lobby 'B'
+  Player 4: Found round 5 entry with lobby 'C'
+  Player 5: Found round 5 entry with lobby 'B'
+  Player 6: Found round 5 entry with lobby 'A'
+  Player 7: Found round 5 entry with lobby 'A'
+  Player 8: Found round 5 entry with lobby 'D'
+  Player 9: Found round 5 entry with lobby 'C'
+  Player 10: Found round 5 entry with lobby 'B'
+  Player 11: Found round 5 entry with lobby 'D'
+  Player 12: Found round 5 entry with lobby 'C'
+  Player 13: Found round 5 entry with lobby 'D'
+  Player 14: Found round 5 entry with lobby 'C'
+  Player 15: Found round 5 entry with lobby 'A'
+  Player 16: Found round 5 entry with lobby 'A'
+  Player 17: Found round 5 entry with lobby 'D'
+  Player 18: Found round 5 entry with lobby 'D'
+  Player 19: Found round 5 entry with lobby 'D'
+  Player 20: Found round 5 entry with lobby 'D'
+  Player 21: Found round 5 entry with lobby 'B'
+  Player 22: Found round 5 entry with lobby 'C'
+  Player 23: Found round 5 entry with lobby 'A'
+  Player 24: Found round 5 entry with lobby 'B'
+  Player 25: Found round 5 entry with lobby 'B'
+  Player 26: Found round 5 entry with lobby 'B'
+  Player 27: Found round 5 entry with lobby 'C'
+  Player 28: Found round 5 entry with lobby 'A'
+  Player 29: Found round 5 entry with lobby 'C'
+  Player 30: Found round 5 entry with lobby 'C'
+  Player 31: Found round 5 entry with lobby 'A'
+  Player 32: Found round 5 entry with lobby 'A'
+
+--- ROUND 5 RESULTS ---
+Players after round completion:
+  1. Player 21: Placement=3, Points Earned=6, Total Points=32
+  2. Player 9: Placement=1, Points Earned=8, Total Points=31
+  3. Player 16: Placement=6, Points Earned=3, Total Points=31
+  4. Player 18: Placement=3, Points Earned=6, Total Points=31
+  5. Player 1: Placement=2, Points Earned=7, Total Points=29
+  6. Player 32: Placement=2, Points Earned=7, Total Points=28
+  7. Player 20: Placement=1, Points Earned=8, Total Points=27
+  8. Player 29: Placement=8, Points Earned=1, Total Points=27
+  9. Player 10: Placement=1, Points Earned=8, Total Points=26
+  10. Player 22: Placement=3, Points Earned=6, Total Points=25
+  11. Player 2: Placement=8, Points Earned=1, Total Points=24
+  12. Player 6: Placement=1, Points Earned=8, Total Points=23
+  13. Player 7: Placement=8, Points Earned=1, Total Points=23
+  14. Player 19: Placement=6, Points Earned=3, Total Points=23
+  15. Player 28: Placement=4, Points Earned=5, Total Points=23
+  16. Player 30: Placement=2, Points Earned=7, Total Points=23
+  17. Player 12: Placement=7, Points Earned=2, Total Points=22
+  18. Player 31: Placement=5, Points Earned=4, Total Points=22
+  19. Player 3: Placement=8, Points Earned=1, Total Points=21
+  20. Player 15: Placement=3, Points Earned=6, Total Points=21
+  21. Player 5: Placement=4, Points Earned=5, Total Points=20
+  22. Player 13: Placement=5, Points Earned=4, Total Points=20
+  23. Player 17: Placement=2, Points Earned=7, Total Points=20
+  24. Player 25: Placement=6, Points Earned=3, Total Points=20
+  25. Player 27: Placement=6, Points Earned=3, Total Points=20
+  26. Player 4: Placement=4, Points Earned=5, Total Points=18
+  27. Player 8: Placement=4, Points Earned=5, Total Points=18
+  28. Player 11: Placement=7, Points Earned=2, Total Points=18
+  29. Player 24: Placement=5, Points Earned=4, Total Points=18
+  30. Player 14: Placement=5, Points Earned=4, Total Points=16
+  31. Player 26: Placement=7, Points Earned=2, Total Points=12
+  32. Player 23: Placement=7, Points Earned=2, Total Points=8
+
+--- CUT AFTER ROUND 5 ---
+Cut rule: 32 -> 16 players
+Cut threshold: 22.5 points
+
+Players advancing:
+  1. Player 21 (32 points)
+  2. Player 9 (31 points)
+  3. Player 16 (31 points)
+  4. Player 18 (31 points)
+  5. Player 1 (29 points)
+  6. Player 32 (28 points)
+  7. Player 20 (27 points)
+  8. Player 29 (27 points)
+  9. Player 10 (26 points)
+  10. Player 22 (25 points)
+  11. Player 2 (24 points)
+  12. Player 6 (23 points)
+  13. Player 7 (23 points)
+  14. Player 19 (23 points)
+  15. Player 28 (23 points)
+  16. Player 30 (23 points)
+
+Players eliminated:
+  ✗ Player 12 (22 points)
+  ✗ Player 31 (22 points)
+  ✗ Player 3 (21 points)
+  ✗ Player 15 (21 points)
+  ✗ Player 5 (20 points)
+  ✗ Player 13 (20 points)
+  ✗ Player 17 (20 points)
+  ✗ Player 25 (20 points)
+  ✗ Player 27 (20 points)
+  ✗ Player 4 (18 points)
+  ✗ Player 8 (18 points)
+  ✗ Player 11 (18 points)
+  ✗ Player 24 (18 points)
+  ✗ Player 14 (16 points)
+  ✗ Player 26 (12 points)
+  ✗ Player 23 (8 points)
+Cut complete: 16 players remaining
+
+--- LOBBY ASSIGNMENT FOR ROUND 6 ---
+Players: 16, Shuffle type: snake
+  Lobby A: ['Player 21', 'Player 18', 'Player 1', 'Player 29', 'Player 10', 'Player 6', 'Player 7', 'Player 30']
+  Lobby B: ['Player 9', 'Player 16', 'Player 32', 'Player 20', 'Player 22', 'Player 2', 'Player 19', 'Player 28']
+
+============================================================
+SIMULATING ROUND 6
+============================================================
+
+Looking for round 6 entries...
+  Player 21: Found round 6 entry with lobby 'A'
+  Player 9: Found round 6 entry with lobby 'B'
+  Player 16: Found round 6 entry with lobby 'B'
+  Player 18: Found round 6 entry with lobby 'A'
+  Player 1: Found round 6 entry with lobby 'A'
+  Player 32: Found round 6 entry with lobby 'B'
+  Player 20: Found round 6 entry with lobby 'B'
+  Player 29: Found round 6 entry with lobby 'A'
+  Player 10: Found round 6 entry with lobby 'A'
+  Player 22: Found round 6 entry with lobby 'B'
+  Player 2: Found round 6 entry with lobby 'B'
+  Player 6: Found round 6 entry with lobby 'A'
+  Player 7: Found round 6 entry with lobby 'A'
+  Player 19: Found round 6 entry with lobby 'B'
+  Player 28: Found round 6 entry with lobby 'B'
+  Player 30: Found round 6 entry with lobby 'A'
+
+--- ROUND 6 RESULTS ---
+Players after round completion:
+  1. Player 1: Placement=3, Points Earned=6, Total Points=35
+  2. Player 18: Placement=5, Points Earned=4, Total Points=35
+  3. Player 20: Placement=1, Points Earned=8, Total Points=35
+  4. Player 9: Placement=6, Points Earned=3, Total Points=34
+  5. Player 21: Placement=8, Points Earned=1, Total Points=33
+  6. Player 32: Placement=4, Points Earned=5, Total Points=33
+  7. Player 16: Placement=8, Points Earned=1, Total Points=32
+  8. Player 6: Placement=1, Points Earned=8, Total Points=31
+  9. Player 22: Placement=3, Points Earned=6, Total Points=31
+  10. Player 28: Placement=2, Points Earned=7, Total Points=30
+  11. Player 29: Placement=6, Points Earned=3, Total Points=30
+  12. Player 30: Placement=2, Points Earned=7, Total Points=30
+  13. Player 2: Placement=5, Points Earned=4, Total Points=28
+  14. Player 7: Placement=4, Points Earned=5, Total Points=28
+  15. Player 10: Placement=7, Points Earned=2, Total Points=28
+  16. Player 19: Placement=7, Points Earned=2, Total Points=25
+
+--- CUT AFTER ROUND 6 ---
+Cut rule: 16 -> 8 players
+Cut threshold: 31.0 points
+
+Players advancing:
+  1. Player 1 (35 points)
+  2. Player 18 (35 points)
+  3. Player 20 (35 points)
+  4. Player 9 (34 points)
+  5. Player 21 (33 points)
+  6. Player 32 (33 points)
+  7. Player 16 (32 points)
+  8. Player 6 (31 points)
+
+Players eliminated:
+  ✗ Player 22 (31 points)
+  ✗ Player 28 (30 points)
+  ✗ Player 29 (30 points)
+  ✗ Player 30 (30 points)
+  ✗ Player 2 (28 points)
+  ✗ Player 7 (28 points)
+  ✗ Player 10 (28 points)
+  ✗ Player 19 (25 points)
+Cut complete: 8 players remaining
+
+--- LOBBY ASSIGNMENT FOR ROUND 7 ---
+Players: 8, Shuffle type: snake
+  Lobby A: ['Player 1', 'Player 18', 'Player 20', 'Player 9', 'Player 21', 'Player 32', 'Player 16', 'Player 6']
+
+============================================================
+SIMULATING ROUND 7
+============================================================
+
+Looking for round 7 entries...
+  Player 1: Found round 7 entry with lobby 'A'
+  Player 18: Found round 7 entry with lobby 'A'
+  Player 20: Found round 7 entry with lobby 'A'
+  Player 9: Found round 7 entry with lobby 'A'
+  Player 21: Found round 7 entry with lobby 'A'
+  Player 32: Found round 7 entry with lobby 'A'
+  Player 16: Found round 7 entry with lobby 'A'
+  Player 6: Found round 7 entry with lobby 'A'
+
+--- ROUND 7 RESULTS ---
+Players after round completion:
+  1. Player 1: Placement=1, Points Earned=8, Total Points=43
+  2. Player 18: Placement=2, Points Earned=7, Total Points=42
+  3. Player 16: Placement=3, Points Earned=6, Total Points=38
+  4. Player 20: Placement=6, Points Earned=3, Total Points=38
+  5. Player 21: Placement=4, Points Earned=5, Total Points=38
+  6. Player 32: Placement=5, Points Earned=4, Total Points=37
+  7. Player 9: Placement=7, Points Earned=2, Total Points=36
+  8. Player 6: Placement=8, Points Earned=1, Total Points=32
+
+--- CUT AFTER ROUND 7 ---
+Cut rule: 8 -> 4 players
+Cut threshold: 38.0 points
+
+Players advancing:
+  1. Player 1 (43 points)
+  2. Player 18 (42 points)
+  3. Player 16 (38 points)
+  4. Player 20 (38 points)
+
+Players eliminated:
+  ✗ Player 21 (38 points)
+  ✗ Player 32 (37 points)
+  ✗ Player 9 (36 points)
+  ✗ Player 6 (32 points)
+Cut complete: 4 players remaining

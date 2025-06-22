@@ -342,7 +342,8 @@ def parse_csv_to_tourstate(input_file: str, output_file: str, tour_format_file: 
                 continue
         
         # Calculate points using reset-aware logic
-        if completed_rounds > 0 or any(rd.get("no_show", False) for rd in player_data["round_history"]):
+        # Include players if they have any round history (even just lobby assignments)
+        if completed_rounds > 0 or any(rd.get("no_show", False) for rd in player_data["round_history"]) or len(player_data["round_history"]) > 0:
             current_points, total_points = calculate_points_with_resets(player_data["round_history"], reset_rounds, current_round)
             
             player_data["points"] = current_points
