@@ -1,6 +1,6 @@
 {
   "max_iterations": 10000,
-  "max_time_seconds": 30,
+  "max_time_seconds": 120,
   "mode": "time_only",
   "debug_enabled": false,
   "probability_targets": [
