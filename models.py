@@ -38,6 +38,7 @@ class Tiebreakers(BaseModel):
 class EliminatedAt(BaseModel):
     overall_round: int
     reason: str
+    final_position: Optional[int] = None  # Final tournament position when eliminated
 
 class Player(BaseModel):
     id: int

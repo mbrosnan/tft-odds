@@ -509,11 +509,16 @@ def apply_cuts(current_state: TourState, tour_format: TourFormat, completed_roun
     # print(f"\nPlayers eliminated:")
     next_round = completed_round + 1
     # Mark eliminated players and add "cut" round entry for next round
-    for player in players_to_eliminate:
+    # Assign final positions to eliminated players (they are already sorted by standing)
+    for i, player in enumerate(players_to_eliminate):
+        # Final position starts after the players who made the cut
+        final_position = cut_rule.players_remaining + i + 1
+        
         player.is_eliminated = True
         player.eliminated_at = EliminatedAt(
             overall_round=next_round,  # Eliminated before next round
-            reason=f"Cut after round {completed_round}"
+            reason=f"Cut after round {completed_round}",
+            final_position=final_position
         )
         
         # Add a "cut" lobby entry for the next round to show they were eliminated
@@ -884,10 +889,17 @@ def evaluate_probability_targets(final_standings: List[Player], eliminated_playe
     results = {}
     
     # Create mapping of player to their final rank
-    player_rankings = {player.id: i + 1 for i, player in enumerate(final_standings)}
+    # For eliminated players with assigned positions, use those; otherwise use the sorted ranking
+    player_rankings = {}
+    for i, player in enumerate(final_standings):
+        # Check if player has an assigned final position (from elimination)
+        if player.is_eliminated and player.eliminated_at and player.eliminated_at.final_position:
+            player_rankings[player.id] = player.eliminated_at.final_position
+        else:
+            player_rankings[player.id] = i + 1
     
     # Get all players (active + eliminated) for complete evaluation
-    all_players = final_standings + eliminated_players
+    all_players = final_standings
     
     for target in sim_settings.probability_targets:
         target_results = {}
