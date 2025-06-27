@@ -11,3 +11,15 @@ copy from staging to live:
 run streamlit locally
 streamlit run app.py
 
+
+
+python simulation.py --csv "tc3day3/tour_state_initial.csv" --tour-format "tc3day3/tour_format_Set14_NA_TacCup3Day3.json" --sim-settings "tc3day3/sim_settings_Set14_NA_TacCup3Day3.json" --output "staging/probabilities.json"
+
+
+SSH: ssh -i "C:\Users\mitch\Desktop\tft-odds-key.pem" ubuntu@ec2-3-14-29-73.us-east-2.compute.amazonaws.com
+
+stop streamlit in EC2: sudo systemctl stop streamlit.service
+
+start streamlit in EC2: sudo systemctl start streamlit.service
+
+

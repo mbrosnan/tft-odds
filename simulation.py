@@ -121,8 +121,16 @@ def get_last_reset_round(tour_format: TourFormat, current_round: int) -> int:
     
     return max(reset_rounds) if reset_rounds else 0
 
-def update_player_stats(player, round_history: List[RoundHistory], tour_format: TourFormat = None):
-    """Update player statistics based on round history."""
+def update_player_stats(player, round_history: List[RoundHistory], tour_format: TourFormat = None, include_current_round_reset: bool = True):
+    """Update player statistics based on round history.
+    
+    Args:
+        player: The player to update
+        round_history: The player's round history
+        tour_format: Tournament format (optional, for point reset handling)
+        include_current_round_reset: If False, don't include the current round's reset in calculations
+                                    (used during round simulation before cuts are processed)
+    """
     # Calculate total_points (all points from all rounds - survives resets)
     total_points = sum(rd.points for rd in round_history if rd.points is not None)
     
@@ -134,7 +142,9 @@ def update_player_stats(player, round_history: List[RoundHistory], tour_format: 
     if tour_format and tour_format.round_structure:
         # Get the current round from the round history
         current_round = max((rd.overall_round for rd in round_history if rd.points is not None), default=0)
-        last_reset_round = get_last_reset_round(tour_format, current_round + 1)
+        # When called during round simulation (before cuts), don't include current round's reset
+        round_for_reset_check = current_round + 1 if include_current_round_reset else current_round
+        last_reset_round = get_last_reset_round(tour_format, round_for_reset_check)
         
         if last_reset_round > 0:
             # Calculate points only from rounds after the reset
@@ -162,7 +172,9 @@ def update_player_stats(player, round_history: List[RoundHistory], tour_format: 
     if tour_format:
         # Get the current round from the round history
         current_round = max((rd.overall_round for rd in round_history if rd.points is not None), default=0)
-        last_reset_round = get_last_reset_round(tour_format, current_round + 1)  # +1 because we want resets that have occurred
+        # Use the same logic as above for determining which resets to include
+        round_for_reset_check = current_round + 1 if include_current_round_reset else current_round
+        last_reset_round = get_last_reset_round(tour_format, round_for_reset_check)
     
     tiebreakers = calculate_tiebreakers(round_history, last_reset_round)
     
@@ -304,8 +316,9 @@ def simulate_next_round(current_state: TourState, tour_format: TourFormat, debug
                         round_entry.points = points
         
     # Update all player stats after round completion
+    # Don't include current round's reset yet - cuts need to be processed first
     for player in current_state.players:
-        update_player_stats(player, player.round_history, tour_format)
+        update_player_stats(player, player.round_history, tour_format, include_current_round_reset=False)
     
     if debug_file:
         debug_file.write(f"\n--- ROUND {current_round_num} RESULTS ---\n")
@@ -391,10 +404,7 @@ def process_post_round_actions(current_state: TourState, tour_format: TourFormat
                     # total_points is NOT reset - it survives the reset
                     all_players = current_state.players + current_state.eliminated_players
                     
-                    print(f"DEBUG: Point reset triggered after round {completed_round}")
-                    print(f"DEBUG: Before reset - first 3 players:")
-                    for i, player in enumerate(current_state.players[:3]):
-                        print(f"  {player.name}: points={player.points}, total_points={player.total_points}")
+                    # Debug output removed - point reset is working correctly
                     
                     for player in all_players:
                         old_points = player.points  # Capture old points before reset
@@ -424,10 +434,7 @@ def process_post_round_actions(current_state: TourState, tour_format: TourFormat
                                 'total_points': total_points_value  # Preserve total_points
                             }
                         
-                        if old_points > 0:  # Only print for players who had points
-                            print(f"DEBUG: Reset {player.name}: {old_points} -> 0 points (total_points: {player.total_points})")
-                    
-                    print(f"DEBUG: Point reset complete for round {completed_round}")
+                        # Debug output removed - was causing too much noise
                 break
     
     return current_state, cut_history
@@ -1236,13 +1243,10 @@ def simulate_tournament(tour_format: TourFormat, tour_state: TourState, sim_sett
     if sim_settings.debug_enabled:
         debug_file = open('simulation_debug.txt', 'w')
         
-        # DEBUG: Check initial player points
-        print("DEBUG: Initial player points at start of simulation:")
         debug_file.write("=== SIMULATION DEBUG LOG ===\n")
         debug_file.write(f"Starting simulation at round {tour_state.current_round.overall_round}\n")
         debug_file.write("\nInitial player points:\n")
         for i, player in enumerate(tour_state.players[:5]):  # Show first 5 players
-            print(f"  {player.name}: points={player.points}, total_points={player.total_points}")
             debug_file.write(f"  {player.name}: points={player.points}, total_points={player.total_points}\n")
     
     # Filter probability targets to only include future events

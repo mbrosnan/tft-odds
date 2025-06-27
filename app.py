@@ -259,6 +259,9 @@ def create_player_dataframe(player_probabilities: Dict[str, Dict[str, Dict[str, 
                 # Skip total_points since we're showing our calculated version
                 if tiebreaker_name == "total_points":
                     continue
+                # Skip prior_day_points in the display
+                if tiebreaker_name == "prior_day_points":
+                    continue
                 # Create a readable column name for the tiebreaker
                 tiebreaker_display_name = tiebreaker_name.replace("_", " ").title()
                 tiebreaker_value = player_tiebreakers.get(tiebreaker_name, 0)
@@ -440,8 +443,8 @@ if data is not None:
                     width="small"
                 )
             
-            # Configure tiebreaker columns (look for columns that might be tiebreakers)
-            tiebreaker_columns = [col for col in df.columns if any(keyword in col.lower() for keyword in ["firsts", "top4s", "seconds", "thirds", "fourths", "fifths", "sixths", "sevenths", "eighths", "prior day points"]) and col != "Total Points (incl. Prior Days)"]
+            # Configure tiebreaker columns (look for columns that might be tiebreakers) - exclude prior day points
+            tiebreaker_columns = [col for col in df.columns if any(keyword in col.lower() for keyword in ["firsts", "top4s", "seconds", "thirds", "fourths", "fifths", "sixths", "sevenths", "eighths"]) and col != "Total Points (incl. Prior Days)" and "prior day" not in col.lower()]
             for col in tiebreaker_columns:
                 column_config[col] = st.column_config.NumberColumn(
                     col,
@@ -460,11 +463,32 @@ if data is not None:
                         max_value=100
                     )
             
+            # Add checkbox to filter eliminated players
+            show_eliminated = st.checkbox(
+                "Hide eliminated players",
+                value=True,
+                help="Hide players who have been eliminated from the tournament"
+            )
+            
+            # Filter dataframe if needed
+            display_df = df.copy()
+            if show_eliminated and not csv_results_df.empty:
+                # Get list of eliminated players from CSV data
+                eliminated_players = set()
+                for _, row in csv_results_df.iterrows():
+                    if row.get("Is Eliminated", False):
+                        eliminated_players.add(row["Player"])
+                
+                # Filter out eliminated players
+                if eliminated_players:
+                    display_df = display_df[~display_df["Player"].isin(eliminated_players)]
+            
             st.dataframe(
-                df,
+                display_df,
                 use_container_width=True,
                 hide_index=True,
-                column_config=column_config
+                column_config=column_config,
+                height=800  # Make table longer to show all 32 players
             )
             
             # Add tiebreaker display control under the table
@@ -494,8 +518,8 @@ if data is not None:
                 # Current Standings
                 st.subheader("Current Standings")
                 
-                # Create a standings dataframe with essential columns
-                standings_columns = ["Player", "Prior Day Points", "Current Points", "Total Points (incl. Prior Days)", "Completed Rounds", "Average Placement"]
+                # Create a standings dataframe with essential columns (exclude Prior Day Points)
+                standings_columns = ["Player", "Current Points", "Total Points (incl. Prior Days)", "Completed Rounds", "Average Placement"]
                 if "Is Eliminated" in csv_results_df.columns:
                     standings_columns.append("Is Eliminated")
                 
@@ -504,7 +528,6 @@ if data is not None:
                 # Create column configuration for standings
                 standings_config = {
                     "Player": st.column_config.TextColumn("Player", width="medium"),
-                    "Prior Day Points": st.column_config.NumberColumn("Prior Day Pts", format="%d", width="small"),
                     "Current Points": st.column_config.NumberColumn("Current Pts", format="%d", width="small"),
                     "Total Points (incl. Prior Days)": st.column_config.NumberColumn("Total Pts", format="%d", width="small"),
                     "Completed Rounds": st.column_config.NumberColumn("Rounds", format="%d", width="small"),
@@ -550,8 +573,10 @@ if data is not None:
                         "Status": "Eliminated" if player_row["Is Eliminated"] else "Active"
                     }
                     
-                    # Add all tiebreaker values (including total_points)
+                    # Add all tiebreaker values (including total_points) - exclude prior_day_points
                     for tiebreaker_name, tiebreaker_value in player_tiebreakers.items():
+                        if tiebreaker_name == "prior_day_points":
+                            continue
                         tiebreaker_display_name = tiebreaker_name.replace('_', ' ').title()
                         detail_row[tiebreaker_display_name] = tiebreaker_value
                     
@@ -630,8 +655,8 @@ if data is not None:
                         "Status": st.column_config.TextColumn("Status", width="small")
                     }
                     
-                    # Configure tiebreaker columns
-                    tiebreaker_columns = [col for col in round_details_df.columns if any(keyword in col.lower() for keyword in ["firsts", "top4s", "seconds", "thirds", "fourths", "fifths", "sixths", "sevenths", "eighths", "total points"]) and not col.startswith("R")]
+                    # Configure tiebreaker columns - exclude prior day points
+                    tiebreaker_columns = [col for col in round_details_df.columns if any(keyword in col.lower() for keyword in ["firsts", "top4s", "seconds", "thirds", "fourths", "fifths", "sixths", "sevenths", "eighths", "total points"]) and not col.startswith("R") and "prior day" not in col.lower()]
                     for col in tiebreaker_columns:
                         round_details_config[col] = st.column_config.NumberColumn(
                             col,
