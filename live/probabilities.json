@@ -1,18 +1,18 @@
 {
   "player_probabilities": {
-    "Player 1": {
-      "current_points": 0,
+    "Chunington": {
+      "current_points": 14,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 14,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
+        "firsts_plus_top4s": 2,
         "firsts": 0,
-        "seconds": 0,
+        "seconds": 1,
         "thirds": 0,
-        "fourths": 0,
+        "fourths": 1,
         "fifths": 0,
         "sixths": 0,
-        "sevenths": 0,
+        "sevenths": 1,
         "eighths": 0,
         "avg_placement": 0
       },
@@ -31,41 +31,41 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7520783963326988,
-        "count": 77437,
-        "total": 102964
+        "probability": 0.8527835502570272,
+        "count": 15594,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.5004370459578105,
-        "count": 51527,
-        "total": 102964
+        "probability": 0.5435305698348464,
+        "count": 9939,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.2510683345635368,
-        "count": 25851,
-        "total": 102964
+        "probability": 0.24286339275948812,
+        "count": 4441,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12748144982712403,
-        "count": 13126,
-        "total": 102964
+        "probability": 0.11724816799737504,
+        "count": 2144,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.031739248669437864,
-        "count": 3268,
-        "total": 102964
+        "probability": 0.030405774909767036,
+        "count": 556,
+        "total": 18286
       }
     },
-    "Player 2": {
-      "current_points": 0,
+    "CTG robinsongz": {
+      "current_points": 17,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 17,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
+        "firsts_plus_top4s": 3,
         "firsts": 0,
         "seconds": 0,
-        "thirds": 0,
-        "fourths": 0,
+        "thirds": 2,
+        "fourths": 1,
         "fifths": 0,
         "sixths": 0,
         "sevenths": 0,
@@ -87,44 +87,44 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7512528650790568,
-        "count": 77352,
-        "total": 102964
+        "probability": 0.9651099201574975,
+        "count": 17648,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.4984072102870906,
-        "count": 51318,
-        "total": 102964
+        "probability": 0.7310510773269168,
+        "count": 13368,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.24911619595198323,
-        "count": 25650,
-        "total": 102964
+        "probability": 0.39872033249480476,
+        "count": 7291,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12391709723786955,
-        "count": 12759,
-        "total": 102964
+        "probability": 0.1994968828612053,
+        "count": 3648,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.02971912513111379,
-        "count": 3060,
-        "total": 102964
+        "probability": 0.04768675489445477,
+        "count": 872,
+        "total": 18286
       }
     },
-    "Player 3": {
-      "current_points": 0,
+    "dehua": {
+      "current_points": 12,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 12,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
-        "firsts": 0,
+        "firsts_plus_top4s": 2,
+        "firsts": 1,
         "seconds": 0,
         "thirds": 0,
         "fourths": 0,
         "fifths": 0,
         "sixths": 0,
-        "sevenths": 0,
+        "sevenths": 2,
         "eighths": 0,
         "avg_placement": 0
       },
@@ -143,42 +143,42 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7503205003690611,
-        "count": 77256,
-        "total": 102964
+        "probability": 0.7390900142185278,
+        "count": 13515,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.49906763529000425,
-        "count": 51386,
-        "total": 102964
+        "probability": 0.42196215684129934,
+        "count": 7716,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.2497571966901053,
-        "count": 25716,
-        "total": 102964
+        "probability": 0.1705129607349885,
+        "count": 3118,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.1248300376830737,
-        "count": 12853,
-        "total": 102964
+        "probability": 0.08492836049436728,
+        "count": 1553,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.03130220271162736,
-        "count": 3223,
-        "total": 102964
+        "probability": 0.021163731816690363,
+        "count": 387,
+        "total": 18286
       }
     },
-    "Player 4": {
-      "current_points": 0,
+    "Kurumx": {
+      "current_points": 14,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 14,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
+        "firsts_plus_top4s": 2,
         "firsts": 0,
         "seconds": 0,
         "thirds": 0,
-        "fourths": 0,
-        "fifths": 0,
+        "fourths": 2,
+        "fifths": 1,
         "sixths": 0,
         "sevenths": 0,
         "eighths": 0,
@@ -199,45 +199,45 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7522046540538441,
-        "count": 77450,
-        "total": 102964
+        "probability": 0.8448539866564585,
+        "count": 15449,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.5029330639835282,
-        "count": 51784,
-        "total": 102964
+        "probability": 0.5353822596521929,
+        "count": 9790,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.25281651839477876,
-        "count": 26031,
-        "total": 102964
+        "probability": 0.2425899595318823,
+        "count": 4436,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12596635717338098,
-        "count": 12970,
-        "total": 102964
+        "probability": 0.11965438040030625,
+        "count": 2188,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.031564430286313665,
-        "count": 3250,
-        "total": 102964
+        "probability": 0.029640161872470743,
+        "count": 542,
+        "total": 18286
       }
     },
-    "Player 5": {
-      "current_points": 0,
+    "PockyGom": {
+      "current_points": 13,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 13,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
-        "firsts": 0,
+        "firsts_plus_top4s": 2,
+        "firsts": 1,
         "seconds": 0,
         "thirds": 0,
         "fourths": 0,
-        "fifths": 0,
+        "fifths": 1,
         "sixths": 0,
         "sevenths": 0,
-        "eighths": 0,
+        "eighths": 1,
         "avg_placement": 0
       },
       "tiebreaker_order": [
@@ -255,45 +255,45 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7502039547803115,
-        "count": 77244,
-        "total": 102964
+        "probability": 0.8062452149185169,
+        "count": 14743,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.5014082591973894,
-        "count": 51627,
-        "total": 102964
+        "probability": 0.4859455321010609,
+        "count": 8886,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.25125286507905675,
-        "count": 25870,
-        "total": 102964
+        "probability": 0.20983265886470523,
+        "count": 3837,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12545161415640418,
-        "count": 12917,
-        "total": 102964
+        "probability": 0.10160778737832221,
+        "count": 1858,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.031389611903189465,
-        "count": 3232,
-        "total": 102964
+        "probability": 0.02313245105545226,
+        "count": 423,
+        "total": 18286
       }
     },
-    "Player 6": {
-      "current_points": 0,
+    "Taliyent": {
+      "current_points": 12,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 12,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
+        "firsts_plus_top4s": 1,
         "firsts": 0,
-        "seconds": 0,
+        "seconds": 1,
         "thirds": 0,
         "fourths": 0,
-        "fifths": 0,
+        "fifths": 1,
         "sixths": 0,
         "sevenths": 0,
-        "eighths": 0,
+        "eighths": 1,
         "avg_placement": 0
       },
       "tiebreaker_order": [
@@ -311,43 +311,43 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7520395478031157,
-        "count": 77433,
-        "total": 102964
+        "probability": 0.7091764191184513,
+        "count": 12968,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.5010003496367662,
-        "count": 51585,
-        "total": 102964
+        "probability": 0.39543913376353496,
+        "count": 7231,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.24963093896896002,
-        "count": 25703,
-        "total": 102964
+        "probability": 0.15536475992562615,
+        "count": 2841,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.1239559457674527,
-        "count": 12763,
-        "total": 102964
+        "probability": 0.0756863174012906,
+        "count": 1384,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.03145759682995999,
-        "count": 3239,
-        "total": 102964
+        "probability": 0.018593459477195668,
+        "count": 340,
+        "total": 18286
       }
     },
-    "Player 7": {
-      "current_points": 0,
+    "TexSummers": {
+      "current_points": 18,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 18,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
-        "firsts": 0,
-        "seconds": 0,
+        "firsts_plus_top4s": 3,
+        "firsts": 1,
+        "seconds": 1,
         "thirds": 0,
         "fourths": 0,
         "fifths": 0,
-        "sixths": 0,
+        "sixths": 1,
         "sevenths": 0,
         "eighths": 0,
         "avg_placement": 0
@@ -367,45 +367,45 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7509712132395788,
-        "count": 77323,
-        "total": 102964
+        "probability": 0.9856720988734551,
+        "count": 18024,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.49909677168719163,
-        "count": 51389,
-        "total": 102964
+        "probability": 0.792573553538226,
+        "count": 14493,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.25014568198593684,
-        "count": 25756,
-        "total": 102964
+        "probability": 0.4601881220605928,
+        "count": 8415,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12537391709723786,
-        "count": 12909,
-        "total": 102964
+        "probability": 0.23121513726348025,
+        "count": 4228,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.030971990210170545,
-        "count": 3189,
-        "total": 102964
+        "probability": 0.05889751722629334,
+        "count": 1077,
+        "total": 18286
       }
     },
-    "Player 8": {
-      "current_points": 0,
+    "TL VCLF": {
+      "current_points": 8,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 8,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
+        "firsts_plus_top4s": 1,
         "firsts": 0,
         "seconds": 0,
         "thirds": 0,
-        "fourths": 0,
+        "fourths": 1,
         "fifths": 0,
         "sixths": 0,
-        "sevenths": 0,
-        "eighths": 0,
+        "sevenths": 1,
+        "eighths": 1,
         "avg_placement": 0
       },
       "tiebreaker_order": [
@@ -423,42 +423,42 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7501165455887495,
-        "count": 77235,
-        "total": 102964
+        "probability": 0.35863502132779174,
+        "count": 6558,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.5011266073579115,
-        "count": 51598,
-        "total": 102964
+        "probability": 0.16580990922016844,
+        "count": 3032,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.2504856066197894,
-        "count": 25791,
-        "total": 102964
+        "probability": 0.05561631849502351,
+        "count": 1017,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12526708364088418,
-        "count": 12898,
-        "total": 102964
+        "probability": 0.02827299573444165,
+        "count": 517,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.03058350491433899,
-        "count": 3149,
-        "total": 102964
+        "probability": 0.00689051733566663,
+        "count": 126,
+        "total": 18286
       }
     },
-    "Player 9": {
-      "current_points": 0,
+    "100T Dishsoap": {
+      "current_points": 19,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 19,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
-        "firsts": 0,
-        "seconds": 0,
+        "firsts_plus_top4s": 3,
+        "firsts": 1,
+        "seconds": 1,
         "thirds": 0,
         "fourths": 0,
-        "fifths": 0,
+        "fifths": 1,
         "sixths": 0,
         "sevenths": 0,
         "eighths": 0,
@@ -479,44 +479,44 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7513985470649935,
-        "count": 77367,
-        "total": 102964
+        "probability": 0.9942579022202778,
+        "count": 18181,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.5033506856765472,
-        "count": 51827,
-        "total": 102964
+        "probability": 0.8363228699551569,
+        "count": 15293,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.2521075327298862,
-        "count": 25958,
-        "total": 102964
+        "probability": 0.5143279011265449,
+        "count": 9405,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.1260537663649431,
-        "count": 12979,
-        "total": 102964
+        "probability": 0.25598818768456744,
+        "count": 4681,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.03134105124121052,
-        "count": 3227,
-        "total": 102964
+        "probability": 0.06655364759925626,
+        "count": 1217,
+        "total": 18286
       }
     },
-    "Player 10": {
-      "current_points": 0,
+    "Cash": {
+      "current_points": 11,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 11,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
+        "firsts_plus_top4s": 1,
         "firsts": 0,
         "seconds": 0,
         "thirds": 0,
-        "fourths": 0,
-        "fifths": 0,
+        "fourths": 1,
+        "fifths": 1,
         "sixths": 0,
-        "sevenths": 0,
+        "sevenths": 1,
         "eighths": 0,
         "avg_placement": 0
       },
@@ -535,44 +535,44 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7490093624956295,
-        "count": 77121,
-        "total": 102964
+        "probability": 0.6136935360384994,
+        "count": 11222,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.4995823783069811,
-        "count": 51439,
-        "total": 102964
+        "probability": 0.32144810237340044,
+        "count": 5878,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.24953381764500213,
-        "count": 25693,
-        "total": 102964
+        "probability": 0.1224433993218856,
+        "count": 2239,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12457752224078318,
-        "count": 12827,
-        "total": 102964
+        "probability": 0.058952203871814504,
+        "count": 1078,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.030806883959442134,
-        "count": 3172,
-        "total": 102964
+        "probability": 0.014984140872798863,
+        "count": 274,
+        "total": 18286
       }
     },
-    "Player 11": {
-      "current_points": 0,
+    "Grea": {
+      "current_points": 11,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 11,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
+        "firsts_plus_top4s": 1,
         "firsts": 0,
         "seconds": 0,
-        "thirds": 0,
+        "thirds": 1,
         "fourths": 0,
         "fifths": 0,
-        "sixths": 0,
-        "sevenths": 0,
+        "sixths": 1,
+        "sevenths": 1,
         "eighths": 0,
         "avg_placement": 0
       },
@@ -591,44 +591,44 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7509420768423916,
-        "count": 77320,
-        "total": 102964
+        "probability": 0.6173028546428962,
+        "count": 11288,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.4999708636028126,
-        "count": 51479,
-        "total": 102964
+        "probability": 0.3313463852127311,
+        "count": 6059,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.2493978477914611,
-        "count": 25679,
-        "total": 102964
+        "probability": 0.12643552444493056,
+        "count": 2312,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.1239656578998485,
-        "count": 12764,
-        "total": 102964
+        "probability": 0.06157716285683036,
+        "count": 1126,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.03036983800163164,
-        "count": 3127,
-        "total": 102964
+        "probability": 0.014327901126544898,
+        "count": 262,
+        "total": 18286
       }
     },
-    "Player 12": {
-      "current_points": 0,
+    "J or C": {
+      "current_points": 10,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 10,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
+        "firsts_plus_top4s": 1,
         "firsts": 0,
         "seconds": 0,
         "thirds": 0,
-        "fourths": 0,
+        "fourths": 1,
         "fifths": 0,
-        "sixths": 0,
-        "sevenths": 0,
+        "sixths": 1,
+        "sevenths": 1,
         "eighths": 0,
         "avg_placement": 0
       },
@@ -647,40 +647,40 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7485237558758401,
-        "count": 77071,
-        "total": 102964
+        "probability": 0.5252652302307776,
+        "count": 9605,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.49750398197428225,
-        "count": 51225,
-        "total": 102964
+        "probability": 0.26123810565459915,
+        "count": 4777,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.24955324190979372,
-        "count": 25695,
-        "total": 102964
+        "probability": 0.09373291042327464,
+        "count": 1714,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12381026378151587,
-        "count": 12748,
-        "total": 102964
+        "probability": 0.04686645521163732,
+        "count": 857,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.031156520725690532,
-        "count": 3208,
-        "total": 102964
+        "probability": 0.011538882204965547,
+        "count": 211,
+        "total": 18286
       }
     },
-    "Player 13": {
-      "current_points": 0,
+    "setsuko": {
+      "current_points": 20,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 20,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
+        "firsts_plus_top4s": 3,
         "firsts": 0,
-        "seconds": 0,
-        "thirds": 0,
+        "seconds": 2,
+        "thirds": 1,
         "fourths": 0,
         "fifths": 0,
         "sixths": 0,
@@ -703,35 +703,35 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.75018453051552,
-        "count": 77242,
-        "total": 102964
+        "probability": 0.9977031608881112,
+        "count": 18244,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.4983780738899033,
-        "count": 51315,
-        "total": 102964
+        "probability": 0.8678770644208684,
+        "count": 15870,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.2480867099180296,
-        "count": 25544,
-        "total": 102964
+        "probability": 0.562124029312042,
+        "count": 10279,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12467464356474108,
-        "count": 12837,
-        "total": 102964
+        "probability": 0.28458930329213605,
+        "count": 5204,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.03184608212579154,
-        "count": 3279,
-        "total": 102964
+        "probability": 0.07470195778190966,
+        "count": 1366,
+        "total": 18286
       }
     },
-    "Player 14": {
-      "current_points": 0,
+    "Upsetmax1": {
+      "current_points": 6,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 6,
         "prior_day_points": 0,
         "firsts_plus_top4s": 0,
         "firsts": 0,
@@ -739,9 +739,9 @@
         "thirds": 0,
         "fourths": 0,
         "fifths": 0,
-        "sixths": 0,
-        "sevenths": 0,
-        "eighths": 0,
+        "sixths": 1,
+        "sevenths": 1,
+        "eighths": 1,
         "avg_placement": 0
       },
       "tiebreaker_order": [
@@ -759,44 +759,44 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7517676080960336,
-        "count": 77405,
-        "total": 102964
+        "probability": 0.1993328229246418,
+        "count": 3645,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.5011751680198905,
-        "count": 51603,
-        "total": 102964
+        "probability": 0.0758503773378541,
+        "count": 1387,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.25060215220853893,
-        "count": 25803,
-        "total": 102964
+        "probability": 0.022530897954719457,
+        "count": 412,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12411133988578532,
-        "count": 12779,
-        "total": 102964
+        "probability": 0.011757628787050202,
+        "count": 215,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.030777747562254768,
-        "count": 3169,
-        "total": 102964
+        "probability": 0.0031718254402274965,
+        "count": 58,
+        "total": 18286
       }
     },
-    "Player 15": {
-      "current_points": 0,
+    "wasianiverson": {
+      "current_points": 14,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 14,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
+        "firsts_plus_top4s": 2,
         "firsts": 0,
         "seconds": 0,
-        "thirds": 0,
+        "thirds": 2,
         "fourths": 0,
         "fifths": 0,
         "sixths": 0,
-        "sevenths": 0,
+        "sevenths": 1,
         "eighths": 0,
         "avg_placement": 0
       },
@@ -815,42 +815,42 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7485334680082358,
-        "count": 77072,
-        "total": 102964
+        "probability": 0.8542600896860987,
+        "count": 15621,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.4985431801406317,
-        "count": 51332,
-        "total": 102964
+        "probability": 0.5453352291370447,
+        "count": 9972,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.25031078823666525,
-        "count": 25773,
-        "total": 102964
+        "probability": 0.2433555725691786,
+        "count": 4450,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12354803620682957,
-        "count": 12721,
-        "total": 102964
+        "probability": 0.12206059280323744,
+        "count": 2232,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.030952565945378967,
-        "count": 3187,
-        "total": 102964
+        "probability": 0.03133544788362682,
+        "count": 573,
+        "total": 18286
       }
     },
-    "Player 16": {
-      "current_points": 0,
+    "Z10 bossoskills": {
+      "current_points": 18,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 18,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
-        "firsts": 0,
+        "firsts_plus_top4s": 3,
+        "firsts": 1,
         "seconds": 0,
-        "thirds": 0,
+        "thirds": 1,
         "fourths": 0,
-        "fifths": 0,
+        "fifths": 1,
         "sixths": 0,
         "sevenths": 0,
         "eighths": 0,
@@ -871,45 +871,45 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7487471349209432,
-        "count": 77094,
-        "total": 102964
+        "probability": 0.9857267855189763,
+        "count": 18025,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.49871799852375587,
-        "count": 51350,
-        "total": 102964
+        "probability": 0.7884173684786175,
+        "count": 14417,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.24788275513771804,
-        "count": 25523,
-        "total": 102964
+        "probability": 0.45553975719129386,
+        "count": 8330,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.1235188998096422,
-        "count": 12718,
-        "total": 102964
+        "probability": 0.23083233074483211,
+        "count": 4221,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.03127306631444,
-        "count": 3220,
-        "total": 102964
+        "probability": 0.05873345728972985,
+        "count": 1074,
+        "total": 18286
       }
     },
-    "Player 17": {
-      "current_points": 0,
+    "100T Rereplay": {
+      "current_points": 14,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 14,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
-        "firsts": 0,
+        "firsts_plus_top4s": 3,
+        "firsts": 1,
         "seconds": 0,
         "thirds": 0,
-        "fourths": 0,
+        "fourths": 1,
         "fifths": 0,
         "sixths": 0,
         "sevenths": 0,
-        "eighths": 0,
+        "eighths": 1,
         "avg_placement": 0
       },
       "tiebreaker_order": [
@@ -927,45 +927,45 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7492910143351074,
-        "count": 77150,
-        "total": 102964
+        "probability": 0.869408290495461,
+        "count": 15898,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.499679499630939,
-        "count": 51449,
-        "total": 102964
+        "probability": 0.5607021765284917,
+        "count": 10253,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.25069927353249677,
-        "count": 25813,
-        "total": 102964
+        "probability": 0.25341791534507274,
+        "count": 4634,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12563614467192416,
-        "count": 12936,
-        "total": 102964
+        "probability": 0.12654489773597288,
+        "count": 2314,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.0310108387397537,
-        "count": 3193,
-        "total": 102964
+        "probability": 0.030733894782894018,
+        "count": 562,
+        "total": 18286
       }
     },
-    "Player 18": {
-      "current_points": 0,
+    "ArtixRx": {
+      "current_points": 10,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 10,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
-        "firsts": 0,
+        "firsts_plus_top4s": 2,
+        "firsts": 1,
         "seconds": 0,
         "thirds": 0,
         "fourths": 0,
         "fifths": 0,
         "sixths": 0,
         "sevenths": 0,
-        "eighths": 0,
+        "eighths": 2,
         "avg_placement": 0
       },
       "tiebreaker_order": [
@@ -983,45 +983,45 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7502913639718737,
-        "count": 77253,
-        "total": 102964
+        "probability": 0.5685770534835394,
+        "count": 10397,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.5010683345635367,
-        "count": 51592,
-        "total": 102964
+        "probability": 0.28568303620255936,
+        "count": 5224,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.25135969853541046,
-        "count": 25881,
-        "total": 102964
+        "probability": 0.10209996718801269,
+        "count": 1867,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.1275202983567072,
-        "count": 13130,
-        "total": 102964
+        "probability": 0.04894454774144154,
+        "count": 895,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.03255506779068412,
-        "count": 3352,
-        "total": 102964
+        "probability": 0.012249808596740675,
+        "count": 224,
+        "total": 18286
       }
     },
-    "Player 19": {
-      "current_points": 0,
+    "BrosephTFT": {
+      "current_points": 14,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 14,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
+        "firsts_plus_top4s": 2,
         "firsts": 0,
-        "seconds": 0,
-        "thirds": 0,
+        "seconds": 1,
+        "thirds": 1,
         "fourths": 0,
         "fifths": 0,
         "sixths": 0,
         "sevenths": 0,
-        "eighths": 0,
+        "eighths": 1,
         "avg_placement": 0
       },
       "tiebreaker_order": [
@@ -1039,40 +1039,40 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.748620877199798,
-        "count": 77081,
-        "total": 102964
+        "probability": 0.8513070108279558,
+        "count": 15567,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.4995726661745853,
-        "count": 51438,
-        "total": 102964
+        "probability": 0.5448430493273543,
+        "count": 9963,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.24929101433510742,
-        "count": 25668,
-        "total": 102964
+        "probability": 0.2474570709832659,
+        "count": 4525,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.1252573715084884,
-        "count": 12897,
-        "total": 102964
+        "probability": 0.12523241824346495,
+        "count": 2290,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.031263354182044206,
-        "count": 3219,
-        "total": 102964
+        "probability": 0.030405774909767036,
+        "count": 556,
+        "total": 18286
       }
     },
-    "Player 20": {
-      "current_points": 0,
+    "Cambulee": {
+      "current_points": 21,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 21,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
-        "firsts": 0,
-        "seconds": 0,
-        "thirds": 0,
+        "firsts_plus_top4s": 4,
+        "firsts": 1,
+        "seconds": 1,
+        "thirds": 1,
         "fourths": 0,
         "fifths": 0,
         "sixths": 0,
@@ -1095,45 +1095,45 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7519909871411367,
-        "count": 77428,
-        "total": 102964
+        "probability": 0.9997812534179153,
+        "count": 18282,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.5035740647216503,
-        "count": 51850,
-        "total": 102964
+        "probability": 0.9023843377447227,
+        "count": 16501,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.25115574375509886,
-        "count": 25860,
-        "total": 102964
+        "probability": 0.6259980312807613,
+        "count": 11447,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12581096305504835,
-        "count": 12954,
-        "total": 102964
+        "probability": 0.31854971016077877,
+        "count": 5825,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.030641777708713725,
-        "count": 3155,
-        "total": 102964
+        "probability": 0.08011593568850486,
+        "count": 1465,
+        "total": 18286
       }
     },
-    "Player 21": {
-      "current_points": 0,
+    "Darth Nub": {
+      "current_points": 8,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 8,
         "prior_day_points": 0,
         "firsts_plus_top4s": 0,
         "firsts": 0,
         "seconds": 0,
         "thirds": 0,
         "fourths": 0,
-        "fifths": 0,
-        "sixths": 0,
+        "fifths": 1,
+        "sixths": 1,
         "sevenths": 0,
-        "eighths": 0,
+        "eighths": 1,
         "avg_placement": 0
       },
       "tiebreaker_order": [
@@ -1151,43 +1151,43 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7477564974165728,
-        "count": 76992,
-        "total": 102964
+        "probability": 0.3426118341900908,
+        "count": 6265,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.4976205275630317,
-        "count": 51237,
-        "total": 102964
+        "probability": 0.15208356119435634,
+        "count": 2781,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.25014568198593684,
-        "count": 25756,
-        "total": 102964
+        "probability": 0.04730394837580663,
+        "count": 865,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12541276562682102,
-        "count": 12913,
-        "total": 102964
+        "probability": 0.022312151372634804,
+        "count": 408,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.03187521852297891,
-        "count": 3282,
-        "total": 102964
+        "probability": 0.00541397790659521,
+        "count": 99,
+        "total": 18286
       }
     },
-    "Player 22": {
-      "current_points": 0,
+    "Macmeno": {
+      "current_points": 12,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 12,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
+        "firsts_plus_top4s": 1,
         "firsts": 0,
         "seconds": 0,
         "thirds": 0,
-        "fourths": 0,
-        "fifths": 0,
-        "sixths": 0,
+        "fourths": 1,
+        "fifths": 1,
+        "sixths": 1,
         "sevenths": 0,
         "eighths": 0,
         "avg_placement": 0
@@ -1207,40 +1207,40 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.74963093896896,
-        "count": 77185,
-        "total": 102964
+        "probability": 0.6898720332494804,
+        "count": 12615,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.4991161959519832,
-        "count": 51391,
-        "total": 102964
+        "probability": 0.3834080717488789,
+        "count": 7011,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.248941377568859,
-        "count": 25632,
-        "total": 102964
+        "probability": 0.15525538663458383,
+        "count": 2839,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12519909871411367,
-        "count": 12891,
-        "total": 102964
+        "probability": 0.07863939625943345,
+        "count": 1438,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.03189464278777048,
-        "count": 3284,
-        "total": 102964
+        "probability": 0.02121841846221153,
+        "count": 388,
+        "total": 18286
       }
     },
-    "Player 23": {
-      "current_points": 0,
+    "VA PA CASA": {
+      "current_points": 20,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 20,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
+        "firsts_plus_top4s": 3,
         "firsts": 0,
-        "seconds": 0,
-        "thirds": 0,
+        "seconds": 2,
+        "thirds": 1,
         "fourths": 0,
         "fifths": 0,
         "sixths": 0,
@@ -1263,44 +1263,44 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7487665591857349,
-        "count": 77096,
-        "total": 102964
+        "probability": 0.9974297276605053,
+        "count": 18239,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.4966104657938697,
-        "count": 51133,
-        "total": 102964
+        "probability": 0.8681504976484743,
+        "count": 15875,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.2481935433743833,
-        "count": 25555,
-        "total": 102964
+        "probability": 0.5591709504538992,
+        "count": 10225,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12451924944640845,
-        "count": 12821,
-        "total": 102964
+        "probability": 0.28327682379962815,
+        "count": 5180,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.03177809719902102,
-        "count": 3272,
-        "total": 102964
+        "probability": 0.07174887892376682,
+        "count": 1312,
+        "total": 18286
       }
     },
-    "Player 24": {
-      "current_points": 0,
+    "VIT MILK": {
+      "current_points": 8,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 8,
         "prior_day_points": 0,
         "firsts_plus_top4s": 0,
         "firsts": 0,
         "seconds": 0,
         "thirds": 0,
         "fourths": 0,
-        "fifths": 0,
+        "fifths": 1,
         "sixths": 0,
-        "sevenths": 0,
+        "sevenths": 2,
         "eighths": 0,
         "avg_placement": 0
       },
@@ -1319,44 +1319,44 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7489802260984422,
-        "count": 77118,
-        "total": 102964
+        "probability": 0.332658864705239,
+        "count": 6083,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.5008352433860378,
-        "count": 51568,
-        "total": 102964
+        "probability": 0.15038827518320028,
+        "count": 2750,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.2501748183831242,
-        "count": 25759,
-        "total": 102964
+        "probability": 0.05091326698020343,
+        "count": 931,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12618973621848414,
-        "count": 12993,
-        "total": 102964
+        "probability": 0.024991797003171827,
+        "count": 457,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.03211802183287363,
-        "count": 3307,
-        "total": 102964
+        "probability": 0.006671770753581975,
+        "count": 122,
+        "total": 18286
       }
     },
-    "Player 25": {
-      "current_points": 0,
+    "Filup": {
+      "current_points": 15,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 15,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
+        "firsts_plus_top4s": 2,
         "firsts": 0,
-        "seconds": 0,
-        "thirds": 0,
+        "seconds": 1,
+        "thirds": 1,
         "fourths": 0,
         "fifths": 0,
         "sixths": 0,
-        "sevenths": 0,
+        "sevenths": 1,
         "eighths": 0,
         "avg_placement": 0
       },
@@ -1375,45 +1375,45 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7525445786876966,
-        "count": 77485,
-        "total": 102964
+        "probability": 0.9002515585693973,
+        "count": 16462,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.5013111378734315,
-        "count": 51617,
-        "total": 102964
+        "probability": 0.6087717379415947,
+        "count": 11132,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.25037877316343576,
-        "count": 25780,
-        "total": 102964
+        "probability": 0.2917532538554085,
+        "count": 5335,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.1256070082747368,
-        "count": 12933,
-        "total": 102964
+        "probability": 0.14420868423930877,
+        "count": 2637,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.03183636999339575,
-        "count": 3278,
-        "total": 102964
+        "probability": 0.034780706551460136,
+        "count": 636,
+        "total": 18286
       }
     },
-    "Player 26": {
-      "current_points": 0,
+    "TT arkjow": {
+      "current_points": 14,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 14,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
-        "firsts": 0,
+        "firsts_plus_top4s": 3,
+        "firsts": 1,
         "seconds": 0,
         "thirds": 0,
-        "fourths": 0,
+        "fourths": 1,
         "fifths": 0,
         "sixths": 0,
         "sevenths": 0,
-        "eighths": 0,
+        "eighths": 1,
         "avg_placement": 0
       },
       "tiebreaker_order": [
@@ -1431,43 +1431,43 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7481546948448001,
-        "count": 77033,
-        "total": 102964
+        "probability": 0.8688614240402494,
+        "count": 15888,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.4991356202167748,
-        "count": 51393,
-        "total": 102964
+        "probability": 0.5634911954500711,
+        "count": 10304,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.24815469484480013,
-        "count": 25551,
-        "total": 102964
+        "probability": 0.2567538007218637,
+        "count": 4695,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12462608290276213,
-        "count": 12832,
-        "total": 102964
+        "probability": 0.12736519741879032,
+        "count": 2329,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.03124392991725263,
-        "count": 3217,
-        "total": 102964
+        "probability": 0.03177294104779613,
+        "count": 581,
+        "total": 18286
       }
     },
-    "Player 27": {
-      "current_points": 0,
+    "AnkallE": {
+      "current_points": 12,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 12,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
+        "firsts_plus_top4s": 1,
         "firsts": 0,
         "seconds": 0,
         "thirds": 0,
-        "fourths": 0,
-        "fifths": 0,
-        "sixths": 0,
+        "fourths": 1,
+        "fifths": 1,
+        "sixths": 1,
         "sevenths": 0,
         "eighths": 0,
         "avg_placement": 0
@@ -1487,42 +1487,42 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7501651062507284,
-        "count": 77240,
-        "total": 102964
+        "probability": 0.6865908345182107,
+        "count": 12555,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.5021852297890524,
-        "count": 51707,
-        "total": 102964
+        "probability": 0.388439243136826,
+        "count": 7103,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.25033992463385263,
-        "count": 25776,
-        "total": 102964
+        "probability": 0.15809909220168436,
+        "count": 2891,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12470377996192844,
-        "count": 12840,
-        "total": 102964
+        "probability": 0.07880345619599693,
+        "count": 1441,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.0310108387397537,
-        "count": 3193,
-        "total": 102964
+        "probability": 0.01892157935032265,
+        "count": 346,
+        "total": 18286
       }
     },
-    "Player 28": {
-      "current_points": 0,
+    "Bapzera": {
+      "current_points": 13,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 13,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
+        "firsts_plus_top4s": 1,
         "firsts": 0,
         "seconds": 0,
         "thirds": 0,
-        "fourths": 0,
-        "fifths": 0,
+        "fourths": 1,
+        "fifths": 2,
         "sixths": 0,
         "sevenths": 0,
         "eighths": 0,
@@ -1543,45 +1543,45 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.748436346684278,
-        "count": 77062,
-        "total": 102964
+        "probability": 0.7650661708410806,
+        "count": 13990,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.49942698418864845,
-        "count": 51423,
-        "total": 102964
+        "probability": 0.4518757519413759,
+        "count": 8263,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.25220465405384407,
-        "count": 25968,
-        "total": 102964
+        "probability": 0.19047358635021328,
+        "count": 3483,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12577211452546522,
-        "count": 12950,
-        "total": 102964
+        "probability": 0.09870939516570054,
+        "count": 1805,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.030981702342566333,
-        "count": 3190,
-        "total": 102964
+        "probability": 0.02318713770097342,
+        "count": 424,
+        "total": 18286
       }
     },
-    "Player 29": {
-      "current_points": 0,
+    "bopster": {
+      "current_points": 17,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 17,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
-        "firsts": 0,
+        "firsts_plus_top4s": 4,
+        "firsts": 2,
         "seconds": 0,
         "thirds": 0,
         "fourths": 0,
         "fifths": 0,
         "sixths": 0,
         "sevenths": 0,
-        "eighths": 0,
+        "eighths": 1,
         "avg_placement": 0
       },
       "tiebreaker_order": [
@@ -1599,45 +1599,45 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7475331183714696,
-        "count": 76969,
-        "total": 102964
+        "probability": 0.9723832440118123,
+        "count": 17781,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.4987859834505264,
-        "count": 51357,
-        "total": 102964
+        "probability": 0.7568084873673849,
+        "count": 13839,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.24885396837729692,
-        "count": 25623,
-        "total": 102964
+        "probability": 0.4219074701957782,
+        "count": 7715,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12530593217046734,
-        "count": 12902,
-        "total": 102964
+        "probability": 0.20682489336104123,
+        "count": 3782,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.03102055087214949,
-        "count": 3194,
-        "total": 102964
+        "probability": 0.05167888001749973,
+        "count": 945,
+        "total": 18286
       }
     },
-    "Player 30": {
-      "current_points": 0,
+    "Marcel P": {
+      "current_points": 15,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 15,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
-        "firsts": 0,
+        "firsts_plus_top4s": 3,
+        "firsts": 1,
         "seconds": 0,
-        "thirds": 0,
+        "thirds": 1,
         "fourths": 0,
         "fifths": 0,
         "sixths": 0,
         "sevenths": 0,
-        "eighths": 0,
+        "eighths": 1,
         "avg_placement": 0
       },
       "tiebreaker_order": [
@@ -1655,43 +1655,43 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7521560933918651,
-        "count": 77445,
-        "total": 102964
+        "probability": 0.9144700864048999,
+        "count": 16722,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.5013596985354104,
-        "count": 51622,
-        "total": 102964
+        "probability": 0.6338182215902877,
+        "count": 11590,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.2498251816168758,
-        "count": 25723,
-        "total": 102964
+        "probability": 0.30826862080279993,
+        "count": 5637,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12366458179557904,
-        "count": 12733,
-        "total": 102964
+        "probability": 0.15388822049655473,
+        "count": 2814,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.031865506390583116,
-        "count": 3281,
-        "total": 102964
+        "probability": 0.03806190528272996,
+        "count": 696,
+        "total": 18286
       }
     },
-    "Player 31": {
-      "current_points": 0,
+    "Quintaliha": {
+      "current_points": 13,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 13,
         "prior_day_points": 0,
-        "firsts_plus_top4s": 0,
+        "firsts_plus_top4s": 1,
         "firsts": 0,
-        "seconds": 0,
+        "seconds": 1,
         "thirds": 0,
         "fourths": 0,
         "fifths": 0,
-        "sixths": 0,
+        "sixths": 2,
         "sevenths": 0,
         "eighths": 0,
         "avg_placement": 0
@@ -1711,35 +1711,35 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7481644069771959,
-        "count": 77034,
-        "total": 102964
+        "probability": 0.7766597396915673,
+        "count": 14202,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.5004273338254147,
-        "count": 51526,
-        "total": 102964
+        "probability": 0.4600240621240293,
+        "count": 8412,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.2508158191212463,
-        "count": 25825,
-        "total": 102964
+        "probability": 0.19118451274198842,
+        "count": 3496,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12532535643525894,
-        "count": 12904,
-        "total": 102964
+        "probability": 0.09898282839330635,
+        "count": 1810,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.03167126374266734,
-        "count": 3261,
-        "total": 102964
+        "probability": 0.024007437383790877,
+        "count": 439,
+        "total": 18286
       }
     },
-    "Player 32": {
-      "current_points": 0,
+    "trivisan": {
+      "current_points": 9,
       "tiebreakers": {
-        "total_points": 0,
+        "total_points": 9,
         "prior_day_points": 0,
         "firsts_plus_top4s": 0,
         "firsts": 0,
@@ -1747,7 +1747,7 @@
         "thirds": 0,
         "fourths": 0,
         "fifths": 0,
-        "sixths": 0,
+        "sixths": 3,
         "sevenths": 0,
         "eighths": 0,
         "avg_placement": 0
@@ -1767,164 +1767,157 @@
         "avg_placement"
       ],
       "Made Top 24": {
-        "probability": 0.7492230294083368,
-        "count": 77143,
-        "total": 102964
+        "probability": 0.41496226621459037,
+        "count": 7588,
+        "total": 18286
       },
       "Made Top 16": {
-        "probability": 0.4985917408026106,
-        "count": 51337,
-        "total": 102964
+        "probability": 0.18959860002187465,
+        "count": 3467,
+        "total": 18286
       },
       "Made Top 8": {
-        "probability": 0.24771764888698963,
-        "count": 25506,
-        "total": 102964
+        "probability": 0.0637646286776769,
+        "count": 1166,
+        "total": 18286
       },
       "Top 4 Finish": {
-        "probability": 0.12294588399829066,
-        "count": 12659,
-        "total": 102964
+        "probability": 0.031991687629880784,
+        "count": 585,
+        "total": 18286
       },
       "Tournament Winner": {
-        "probability": 0.029981352705800084,
-        "count": 3087,
-        "total": 102964
+        "probability": 0.007273323854314776,
+        "count": 133,
+        "total": 18286
       }
     }
   },
   "cut_threshold_statistics": {
     "round_6_cut_to_24": {
-      "mean": 23.0947904121829,
-      "min": 18.0,
+      "mean": 23.165399759378758,
+      "min": 20.0,
       "max": 26.0,
-      "count": 102964,
+      "count": 18286,
       "cut_types": {
         "clean_cuts": {
-          "count": 41904,
-          "percentage": 40.69771959131347
+          "count": 7399,
+          "percentage": 40.462649021109044
         },
         "tiebreaker_cuts": {
-          "count": 61060,
-          "percentage": 59.302280408686535
+          "count": 10887,
+          "percentage": 59.537350978890956
         }
       },
       "most_common": {
         "threshold": 23.0,
-        "probability": 0.254554990093625,
-        "count": 26210
+        "probability": 0.2664333369791097,
+        "count": 4872
       },
       "distribution": {
-        "23.0": 0.254554990093625,
-        "22.0": 0.11519560234645118,
-        "23.5": 0.16941843751214017,
-        "24.0": 0.1733032904704557,
-        "21.0": 0.020181811118449168,
-        "22.5": 0.14076764694456315,
-        "24.5": 0.04998834544112506,
-        "25.0": 0.027650440930810767,
-        "21.5": 0.03931471193815314,
-        "20.5": 0.004554990093624956,
-        "25.5": 0.0026417000116545587,
-        "20.0": 0.0014568198593683229,
-        "18.0": 9.71213239578882e-06,
-        "26.0": 0.0006215764733304845,
-        "19.5": 0.0002525154422905093,
-        "19.0": 4.8560661978944096e-05,
-        "18.5": 3.884852958315528e-05
+        "23.0": 0.2664333369791097,
+        "23.5": 0.1801924969922345,
+        "22.5": 0.13595100076561303,
+        "22.0": 0.10089686098654709,
+        "25.0": 0.02696051624193372,
+        "24.0": 0.1851689817346604,
+        "24.5": 0.05342885267417696,
+        "21.5": 0.029968281745597725,
+        "21.0": 0.014929454227277698,
+        "25.5": 0.002624958985015859,
+        "20.0": 0.000601553100732801,
+        "20.5": 0.002460899048452368,
+        "26.0": 0.0003828065186481461
       }
     },
     "round_10_cut_to_16": {
-      "mean": 44.467508061069886,
-      "min": 39.5,
-      "max": 48.5,
-      "count": 102964,
+      "mean": 44.38904079623756,
+      "min": 40.0,
+      "max": 48.0,
+      "count": 18286,
       "cut_types": {
         "clean_cuts": {
-          "count": 44945,
-          "percentage": 43.65117905287285
+          "count": 7990,
+          "percentage": 43.69462977140982
         },
         "tiebreaker_cuts": {
-          "count": 58019,
-          "percentage": 56.34882094712715
+          "count": 10296,
+          "percentage": 56.30537022859018
         }
       },
       "most_common": {
         "threshold": 45.0,
-        "probability": 0.1973505302824288,
-        "count": 20320
+        "probability": 0.19386415837252544,
+        "count": 3545
       },
       "distribution": {
-        "43.5": 0.10544462142107922,
-        "42.0": 0.014208849695039043,
-        "46.0": 0.07494852569830232,
-        "43.0": 0.07564779923079912,
-        "44.0": 0.18889126296569675,
-        "44.5": 0.1699040441319296,
-        "45.5": 0.10419175634202245,
-        "46.5": 0.022658404879375316,
-        "45.0": 0.1973505302824288,
-        "42.5": 0.028194320344974943,
-        "41.0": 0.0015345169185346334,
-        "47.0": 0.010421118060681403,
-        "41.5": 0.004253913989355503,
-        "47.5": 0.0014762441241599005,
-        "40.5": 0.0003010761042694534,
-        "48.0": 0.0003690610310399751,
-        "39.5": 9.71213239578882e-06,
-        "40.0": 0.00011654558874946584,
-        "48.5": 7.769705916631056e-05
+        "44.5": 0.171005140544679,
+        "45.0": 0.19386415837252544,
+        "43.5": 0.11451383572131685,
+        "43.0": 0.08427212074811331,
+        "44.0": 0.1922782456524117,
+        "46.0": 0.06677239418134091,
+        "45.5": 0.09657661599037515,
+        "42.5": 0.03089795471945751,
+        "42.0": 0.01711692004812425,
+        "46.5": 0.017827846439899375,
+        "47.0": 0.00689051733566663,
+        "41.5": 0.004538991578256589,
+        "47.5": 0.0010937329104232746,
+        "40.5": 0.0004921798096904736,
+        "41.0": 0.0013124794925079295,
+        "48.0": 0.0004374931641693099,
+        "40.0": 0.00010937329104232747
       }
     },
     "round_12_cut_to_8": {
-      "mean": 59.24730002719397,
+      "mean": 59.169200481242484,
       "min": 54.5,
-      "max": 65.0,
-      "count": 102964,
+      "max": 64.5,
+      "count": 18286,
       "cut_types": {
         "clean_cuts": {
-          "count": 47464,
-          "percentage": 46.09766520337205
+          "count": 8436,
+          "percentage": 46.13365416165372
         },
         "tiebreaker_cuts": {
-          "count": 55500,
-          "percentage": 53.90233479662795
+          "count": 9850,
+          "percentage": 53.86634583834628
         }
       },
       "most_common": {
         "threshold": 59.0,
-        "probability": 0.18256866477603823,
-        "count": 18798
+        "probability": 0.18713770097342228,
+        "count": 3422
       },
       "distribution": {
-        "59.0": 0.18256866477603823,
-        "58.5": 0.13293966823355735,
-        "60.0": 0.1444679693873587,
-        "58.0": 0.10783380599044326,
-        "59.5": 0.15407326832679383,
-        "63.0": 0.0019327143467619751,
-        "61.5": 0.02434831591624257,
-        "60.5": 0.0846897944912785,
-        "61.0": 0.05626238296880463,
-        "57.5": 0.050988695077891305,
-        "57.0": 0.02920438211413698,
-        "56.5": 0.008294161066003652,
-        "63.5": 0.0007186977972883726,
-        "62.0": 0.013218212190668583,
-        "64.0": 0.0002428033098947205,
-        "62.5": 0.004283050386542869,
-        "55.5": 0.0005535915465599627,
-        "56.0": 0.0030981702342566335,
-        "64.5": 6.798492677052174e-05,
-        "54.5": 1.942426479157764e-05,
-        "55.0": 0.00017481838312419874,
-        "65.0": 1.942426479157764e-05
+        "58.5": 0.1350760144372744,
+        "58.0": 0.11812315432571366,
+        "59.5": 0.15268511429508913,
+        "59.0": 0.18713770097342228,
+        "62.0": 0.011374822268402056,
+        "57.5": 0.05742097779722192,
+        "61.0": 0.04867111451383572,
+        "60.5": 0.07951438258777206,
+        "60.0": 0.13819315323198075,
+        "57.0": 0.029640161872470743,
+        "61.5": 0.021765284917423165,
+        "56.5": 0.010171716066936454,
+        "55.5": 0.0006562397462539647,
+        "63.0": 0.0012577928469867659,
+        "62.5": 0.003445258667833315,
+        "64.5": 0.00010937329104232747,
+        "56.0": 0.003992125123044953,
+        "55.0": 5.4686645521163735e-05,
+        "64.0": 0.00021874658208465494,
+        "63.5": 0.0004374931641693099,
+        "54.5": 5.4686645521163735e-05
       }
     }
   },
   "simulation_metadata": {
-    "total_simulations": 102964,
-    "simulation_time_seconds": 600.0067753791809,
+    "total_simulations": 18286,
+    "simulation_time_seconds": 100.0031988620758,
     "probability_targets": [
       {
         "probability_name": "Made Top 24",
@@ -1964,9 +1957,9 @@
     ],
     "tournament_title": "S14 NA Golden Spatula",
     "current_round": {
-      "overall_round": 1,
+      "overall_round": 4,
       "day": 1,
-      "round_in_day": 1,
+      "round_in_day": 4,
       "round_status": "not_started"
     }
   }
