@@ -244,13 +244,12 @@ def create_player_dataframe(player_probabilities: Dict[str, Dict[str, Dict[str, 
         if "current_points" in probabilities:
             row["Current Points"] = probabilities["current_points"]
         
-        # Calculate total points including prior days
-        total_points_with_prior = 0
-        if "current_points" in probabilities:
-            total_points_with_prior = probabilities["current_points"]
-        if "tiebreakers" in probabilities and "prior_day_points" in probabilities["tiebreakers"]:
-            total_points_with_prior += probabilities["tiebreakers"]["prior_day_points"]
-        row["Total Points (incl. Prior Days)"] = total_points_with_prior
+        # Use total_points from tiebreakers which survives point resets
+        if "tiebreakers" in probabilities and "total_points" in probabilities["tiebreakers"]:
+            row["Total Points"] = probabilities["tiebreakers"]["total_points"]
+        else:
+            # Fallback to current_points if total_points not available
+            row["Total Points"] = probabilities.get("current_points", 0)
         
         # Add tiebreakers if available
         if "tiebreakers" in probabilities and tiebreaker_order:
@@ -283,8 +282,8 @@ def create_player_dataframe(player_probabilities: Dict[str, Dict[str, Dict[str, 
     df = pd.DataFrame(table_data)
     
     # Sort by total points first (if available), then by current points, then by the first probability column
-    if "Total Points (incl. Prior Days)" in df.columns:
-        df = df.sort_values(by="Total Points (incl. Prior Days)", ascending=False).reset_index(drop=True)
+    if "Total Points" in df.columns:
+        df = df.sort_values(by="Total Points", ascending=False).reset_index(drop=True)
     elif "Current Points" in df.columns:
         df = df.sort_values(by="Current Points", ascending=False).reset_index(drop=True)
     elif len(df.columns) > 1:
@@ -435,16 +434,16 @@ if data is not None:
                 )
             
             # Configure Total Points column if it exists
-            if "Total Points (incl. Prior Days)" in df.columns:
-                column_config["Total Points (incl. Prior Days)"] = st.column_config.NumberColumn(
-                    "Total Points (incl. Prior Days)",
+            if "Total Points" in df.columns:
+                column_config["Total Points"] = st.column_config.NumberColumn(
+                    "Total Points",
                     format="%d",
                     min_value=0,
                     width="small"
                 )
             
             # Configure tiebreaker columns (look for columns that might be tiebreakers) - exclude prior day points
-            tiebreaker_columns = [col for col in df.columns if any(keyword in col.lower() for keyword in ["firsts", "top4s", "seconds", "thirds", "fourths", "fifths", "sixths", "sevenths", "eighths"]) and col != "Total Points (incl. Prior Days)" and "prior day" not in col.lower()]
+            tiebreaker_columns = [col for col in df.columns if any(keyword in col.lower() for keyword in ["firsts", "top4s", "seconds", "thirds", "fourths", "fifths", "sixths", "sevenths", "eighths"]) and col != "Total Points" and "prior day" not in col.lower()]
             for col in tiebreaker_columns:
                 column_config[col] = st.column_config.NumberColumn(
                     col,
@@ -455,7 +454,7 @@ if data is not None:
             
             # Configure all probability columns as percentages
             for col in df.columns:
-                if col not in ["Player", "Current Points", "Total Points (incl. Prior Days)"] and col not in tiebreaker_columns:
+                if col not in ["Player", "Current Points", "Total Points"] and col not in tiebreaker_columns:
                     column_config[col] = st.column_config.NumberColumn(
                         col,
                         format="%.1f%%",
