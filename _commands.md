@@ -23,3 +23,4 @@ stop streamlit in EC2: sudo systemctl stop streamlit.service
 start streamlit in EC2: sudo systemctl start streamlit.service
 
 
+post-round unified:  python3 process_round.py s14_na_gs/tour_state_pre_round1.csv --no-preview --auto-deploy
