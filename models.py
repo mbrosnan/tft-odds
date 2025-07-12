@@ -1,6 +1,6 @@
 from typing import Dict, List, Optional
 from enum import Enum
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, model_validator, validator
 
 class RoundStatus(str, Enum):
     NOT_STARTED = "not_started"
@@ -52,11 +52,13 @@ class Player(BaseModel):
     tiebreakers: Tiebreakers = Field(default_factory=Tiebreakers)
     is_eliminated: bool = False
     eliminated_at: Optional[EliminatedAt] = None
+    advancing_to_round: Optional[int] = None  # For split cuts - which round this player advances to
 
 class TourState(BaseModel):
     current_round: CurrentRound
     players: List[Player] = []
     eliminated_players: List[Player] = []
+    advancing_players: Dict[int, List[Player]] = Field(default_factory=dict)  # Round number -> players advancing to that round
 
 class CutRule(BaseModel):
     after_round: int
@@ -65,11 +67,32 @@ class CutRule(BaseModel):
 class PostRoundActions(BaseModel):
     cut: bool = False
     cut_to: Optional[int] = None
+    # Split cut parameters
+    top_x_advance: Optional[int] = None
+    advance_to_round: Optional[int] = None
+    bottom_y_eliminated: Optional[int] = None
     snake_shuffle: bool = False
     random_shuffle: bool = False
     check_victory: bool = False
     end_tournament: bool = False
     point_reset: bool = False
+    
+    @validator('bottom_y_eliminated')
+    def validate_split_cut(cls, v, values):
+        """Validate that split cut parameters are consistent."""
+        top_x = values.get('top_x_advance')
+        advance_to = values.get('advance_to_round')
+        
+        # If any split cut parameter is set, all must be set
+        if (top_x is not None or advance_to is not None or v is not None):
+            if not all([top_x is not None, advance_to is not None, v is not None]):
+                raise ValueError("All split cut parameters must be set together (top_x_advance, advance_to_round, bottom_y_eliminated)")
+            
+            # Validate X + Y = 8 (full lobbies)
+            if (top_x + v) % 8 != 0:
+                raise ValueError(f"top_x_advance ({top_x}) + bottom_y_eliminated ({v}) must be divisible by 8 for full lobbies")
+                
+        return v
 
 class RoundStructure(BaseModel):
     overall_round: int

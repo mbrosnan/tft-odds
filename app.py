@@ -751,9 +751,87 @@ if data is not None:
                 """)
                 
                 for cut_name, stats in cut_threshold_stats.items():
-                    if stats["count"] == 0:
+                    # Skip empty stats
+                    if "type" not in stats and stats.get("count", 0) == 0:
                         continue
                     
+                    # Check if this is a split cut
+                    if stats.get("type") == "split_cut":
+                        # Handle split cut display
+                        round_num = cut_name.split("_")[1]
+                        st.markdown(f"### Round {round_num} - Split Cut")
+                        
+                        # Display split cut info
+                        col1, col2, col3 = st.columns(3)
+                        with col1:
+                            st.info(f"🚀 **Top {stats['top_x']} advance** to Round {stats['advance_to_round']}")
+                        with col2:
+                            st.warning(f"➡️ **{stats['continuing']} continue** to next round")
+                        with col3:
+                            st.error(f"❌ **Bottom {stats['bottom_y']} eliminated**")
+                        
+                        # Display advancement thresholds
+                        if "advancement" in stats:
+                            adv_stats = stats["advancement"]
+                            st.subheader("🎯 Advancement Threshold (Top Players)")
+                            col1, col2, col3, col4 = st.columns(4)
+                            with col1:
+                                st.metric("Mean Threshold", f"{adv_stats['mean']:.1f}")
+                            with col2:
+                                if "most_common" in adv_stats:
+                                    st.metric("Most Common", f"{adv_stats['most_common']['threshold']:.1f}")
+                            with col3:
+                                st.metric("Range", f"{adv_stats['min']:.1f} - {adv_stats['max']:.1f}")
+                            with col4:
+                                if "most_common" in adv_stats:
+                                    most_common_pct = adv_stats['most_common']['probability'] * 100
+                                    st.metric("Most Common %", f"{most_common_pct:.1f}%")
+                            
+                            # Cut type analysis for advancement
+                            if "cut_types" in adv_stats:
+                                cut_types = adv_stats["cut_types"]
+                                clean_pct = cut_types["clean_cuts"]["percentage"]
+                                tiebreaker_pct = cut_types["tiebreaker_cuts"]["percentage"]
+                                
+                                col1, col2 = st.columns(2)
+                                with col1:
+                                    st.info(f"🎯 **Clean advances:** {clean_pct:.1f}%")
+                                with col2:
+                                    st.warning(f"⚔️ **Tiebreaker advances:** {tiebreaker_pct:.1f}%")
+                        
+                        # Display elimination thresholds
+                        if "elimination" in stats:
+                            elim_stats = stats["elimination"]
+                            st.subheader("💀 Elimination Threshold (Bottom Players)")
+                            col1, col2, col3, col4 = st.columns(4)
+                            with col1:
+                                st.metric("Mean Threshold", f"{elim_stats['mean']:.1f}")
+                            with col2:
+                                if "most_common" in elim_stats:
+                                    st.metric("Most Common", f"{elim_stats['most_common']['threshold']:.1f}")
+                            with col3:
+                                st.metric("Range", f"{elim_stats['min']:.1f} - {elim_stats['max']:.1f}")
+                            with col4:
+                                if "most_common" in elim_stats:
+                                    most_common_pct = elim_stats['most_common']['probability'] * 100
+                                    st.metric("Most Common %", f"{most_common_pct:.1f}%")
+                            
+                            # Cut type analysis for elimination
+                            if "cut_types" in elim_stats:
+                                cut_types = elim_stats["cut_types"]
+                                clean_pct = cut_types["clean_cuts"]["percentage"]
+                                tiebreaker_pct = cut_types["tiebreaker_cuts"]["percentage"]
+                                
+                                col1, col2 = st.columns(2)
+                                with col1:
+                                    st.info(f"🎯 **Clean cuts:** {clean_pct:.1f}%")
+                                with col2:
+                                    st.warning(f"⚔️ **Tiebreaker cuts:** {tiebreaker_pct:.1f}%")
+                        
+                        st.divider()
+                        continue
+                    
+                    # Regular cut handling
                     # Clean up cut name for display
                     clean_name = cut_name.replace("_", " ").replace("round ", "Round ").replace("cut to", "→")
                     

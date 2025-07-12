@@ -1,0 +1,181 @@
+{
+  "tournament_name": "Example Split Cut Tournament",
+  "starting_players": 32,
+  "total_rounds": 10,
+  "round_structure": [
+    {
+      "overall_round": 1,
+      "day": 1,
+      "round_in_day": 1,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "top_x_advance": null,
+        "advance_to_round": null,
+        "bottom_y_eliminated": null,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 2,
+      "day": 1,
+      "round_in_day": 2,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "top_x_advance": null,
+        "advance_to_round": null,
+        "bottom_y_eliminated": null,
+        "snake_shuffle": true,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 3,
+      "day": 1,
+      "round_in_day": 3,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "top_x_advance": null,
+        "advance_to_round": null,
+        "bottom_y_eliminated": null,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 4,
+      "day": 1,
+      "round_in_day": 4,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "top_x_advance": null,
+        "advance_to_round": null,
+        "bottom_y_eliminated": null,
+        "snake_shuffle": true,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 5,
+      "day": 1,
+      "round_in_day": 5,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "top_x_advance": null,
+        "advance_to_round": null,
+        "bottom_y_eliminated": null,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 6,
+      "day": 1,
+      "round_in_day": 6,
+      "post_round_actions": {
+        "cut": true,
+        "cut_to": null,
+        "top_x_advance": 4,
+        "advance_to_round": 9,
+        "bottom_y_eliminated": 4,
+        "snake_shuffle": true,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 7,
+      "day": 2,
+      "round_in_day": 1,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "top_x_advance": null,
+        "advance_to_round": null,
+        "bottom_y_eliminated": null,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 8,
+      "day": 2,
+      "round_in_day": 2,
+      "post_round_actions": {
+        "cut": true,
+        "cut_to": null,
+        "top_x_advance": 4,
+        "advance_to_round": 9,
+        "bottom_y_eliminated": 4,
+        "snake_shuffle": true,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 9,
+      "day": 3,
+      "round_in_day": 1,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "top_x_advance": null,
+        "advance_to_round": null,
+        "bottom_y_eliminated": null,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": false,
+        "point_reset": false
+      }
+    },
+    {
+      "overall_round": 10,
+      "day": 3,
+      "round_in_day": 2,
+      "post_round_actions": {
+        "cut": false,
+        "cut_to": null,
+        "top_x_advance": null,
+        "advance_to_round": null,
+        "bottom_y_eliminated": null,
+        "snake_shuffle": false,
+        "random_shuffle": false,
+        "check_victory": false,
+        "end_tournament": true,
+        "point_reset": false
+      }
+    }
+  ],
+  "cut_rules": [],
+  "advancement_type": "top4",
+  "track_points_distribution": true,
+  "track_elimination_probabilities": true
+}

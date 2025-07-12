@@ -356,7 +356,26 @@ def process_post_round_actions(current_state: TourState, tour_format: TourFormat
     
     # Step 3b: Apply cuts if there are any for this round (BEFORE checking end_tournament)
     players_before_cut = current_state.players.copy()  # Save players before cut
-    current_state, cut_threshold = apply_cuts(current_state, tour_format, completed_round, debug_file)
+    
+    # Check if this round has a split cut or regular cut
+    has_split_cut = False
+    advancing_players = []  # Initialize for later use
+    
+    if tour_format.round_structure:
+        for round_info in tour_format.round_structure:
+            if round_info.overall_round == completed_round:
+                post_actions = round_info.post_round_actions
+                if post_actions.top_x_advance is not None:
+                    # Apply split cut
+                    has_split_cut = True
+                    current_state, cut_threshold, advancing_players = apply_split_cuts(
+                        current_state, tour_format, completed_round, post_actions, debug_file
+                    )
+                break
+    
+    # Apply regular cut if no split cut was applied
+    if not has_split_cut:
+        current_state, cut_threshold = apply_cuts(current_state, tour_format, completed_round, debug_file)
     
     # Track cut history if a cut was applied
     if len(current_state.players) < len(players_before_cut):
@@ -365,14 +384,49 @@ def process_post_round_actions(current_state: TourState, tour_format: TourFormat
     
     # Step 3c: Store cut threshold data if we have one and results dict
     if cut_threshold is not None and results is not None:
-        if "cut_thresholds" not in results:
-            results["cut_thresholds"] = {}
-        
-        cut_name = f"round_{completed_round}_cut_to_{len(current_state.players)}"
-        if cut_name not in results["cut_thresholds"]:
-            results["cut_thresholds"][cut_name] = []
-        
-        results["cut_thresholds"][cut_name].append(cut_threshold)
+        if has_split_cut:
+            # Store split cut data separately
+            if "split_cuts" not in results:
+                results["split_cuts"] = {}
+            
+            # Get the split cut info from round structure
+            for round_info in tour_format.round_structure:
+                if round_info.overall_round == completed_round:
+                    post_actions = round_info.post_round_actions
+                    if post_actions.top_x_advance is not None:
+                        split_cut_name = f"round_{completed_round}_split"
+                        if split_cut_name not in results["split_cuts"]:
+                            results["split_cuts"][split_cut_name] = {
+                                "advancement_thresholds": [],
+                                "cut_thresholds": [],
+                                "top_x": post_actions.top_x_advance,
+                                "advance_to_round": post_actions.advance_to_round,
+                                "bottom_y": post_actions.bottom_y_eliminated,
+                                "continuing": len(current_state.players)
+                            }
+                        
+                        # Calculate advancement threshold (between top X and continuing players)
+                        if len(advancing_players) > 0 and len(current_state.players) > 0:
+                            # Get the lowest scoring advancing player and highest scoring continuing player
+                            lowest_advancing = advancing_players[-1]
+                            highest_continuing = current_state.players[0] if current_state.players else None
+                            
+                            if highest_continuing:
+                                advancement_threshold = (lowest_advancing.points + highest_continuing.points) / 2.0
+                                results["split_cuts"][split_cut_name]["advancement_thresholds"].append(advancement_threshold)
+                        
+                        results["split_cuts"][split_cut_name]["cut_thresholds"].append(cut_threshold)
+                    break
+        else:
+            # Regular cut tracking
+            if "cut_thresholds" not in results:
+                results["cut_thresholds"] = {}
+            
+            cut_name = f"round_{completed_round}_cut_to_{len(current_state.players)}"
+            if cut_name not in results["cut_thresholds"]:
+                results["cut_thresholds"][cut_name] = []
+            
+            results["cut_thresholds"][cut_name].append(cut_threshold)
     
     # Step 3d: Check if tournament should end after this round (AFTER processing cuts)
     if tour_format.round_structure:
@@ -554,6 +608,107 @@ def apply_cuts(current_state: TourState, tour_format: TourFormat, completed_roun
     # print(f"\nCut complete: {len(current_state.players)} players remaining")
     return current_state, cut_threshold
 
+def apply_split_cuts(current_state: TourState, tour_format: TourFormat, completed_round: int, post_round_actions: PostRoundActions, debug_file=None) -> tuple[TourState, float, List]:
+    """Apply split cuts where top X advance to future round and bottom Y are eliminated."""
+    # Get split cut parameters
+    top_x = post_round_actions.top_x_advance
+    advance_to_round = post_round_actions.advance_to_round
+    bottom_y = post_round_actions.bottom_y_eliminated
+    
+    # Sort all active players by standing
+    sorted_players = sort_players_by_standing(current_state.players)
+    
+    # Split players into three groups
+    advancing_players = sorted_players[:top_x]
+    continuing_players = sorted_players[top_x:len(sorted_players)-bottom_y]
+    eliminated_players = sorted_players[len(sorted_players)-bottom_y:]
+    
+    # Calculate cut threshold (between continuing and eliminated)
+    if continuing_players and eliminated_players:
+        cut_threshold = calculate_cut_threshold(continuing_players + eliminated_players, len(continuing_players))
+    else:
+        cut_threshold = None
+    
+    # Handle advancing players - mark them as advancing to future round
+    for player in advancing_players:
+        # Add a special marker to indicate they're advancing
+        player.advancing_to_round = advance_to_round
+        # They skip intermediate rounds - add placeholder entries
+        for round_num in range(completed_round + 1, advance_to_round):
+            # Get day/round info from tour_format if available
+            day = 0
+            round_in_day = 0
+            if tour_format.round_structure:
+                for r in tour_format.round_structure:
+                    if r.overall_round == round_num:
+                        day = r.day
+                        round_in_day = r.round_in_day
+                        break
+            
+            skip_round_entry = RoundHistory(
+                overall_round=round_num,
+                day=day,
+                round_in_day=round_in_day,
+                lobby="advancing",  # Special lobby indicator
+                placement=None,
+                points=None,
+                no_show=False
+            )
+            player.round_history.append(skip_round_entry)
+    
+    # Handle eliminated players
+    next_round = completed_round + 1
+    for i, player in enumerate(eliminated_players):
+        # Final position starts after continuing and advancing players
+        final_position = len(continuing_players) + len(advancing_players) + i + 1
+        
+        player.is_eliminated = True
+        player.eliminated_at = EliminatedAt(
+            overall_round=next_round,
+            reason=f"Split cut after round {completed_round} (bottom {bottom_y})",
+            final_position=final_position
+        )
+        
+        # Add a "cut" lobby entry
+        cut_round_entry = RoundHistory(
+            overall_round=next_round,
+            day=current_state.current_round.day,
+            round_in_day=current_state.current_round.round_in_day + 1,
+            lobby="cut",
+            placement=None,
+            points=None,
+            no_show=False
+        )
+        player.round_history.append(cut_round_entry)
+    
+    # Update state
+    current_state.players = continuing_players  # Only continuing players remain active
+    current_state.eliminated_players.extend(eliminated_players)
+    
+    # Store advancing players separately - they'll rejoin in the advance_to_round
+    if not hasattr(current_state, 'advancing_players'):
+        current_state.advancing_players = {}
+    if advance_to_round not in current_state.advancing_players:
+        current_state.advancing_players[advance_to_round] = []
+    current_state.advancing_players[advance_to_round].extend(advancing_players)
+    
+    if debug_file:
+        debug_file.write(f"\n--- SPLIT CUT AFTER ROUND {completed_round} ---\n")
+        debug_file.write(f"Top {top_x} advance to round {advance_to_round}\n")
+        debug_file.write(f"Bottom {bottom_y} eliminated\n")
+        debug_file.write(f"{len(continuing_players)} continue to next round\n")
+        debug_file.write(f"\nPlayers advancing to round {advance_to_round}:\n")
+        for i, player in enumerate(advancing_players):
+            debug_file.write(f"  {i+1}. {player.name} ({player.points} points)\n")
+        debug_file.write(f"\nPlayers continuing to round {next_round}:\n")
+        for i, player in enumerate(continuing_players):
+            debug_file.write(f"  {i+1}. {player.name} ({player.points} points)\n")
+        debug_file.write(f"\nPlayers eliminated:\n")
+        for player in eliminated_players:
+            debug_file.write(f"  ✗ {player.name} ({player.points} points)\n")
+    
+    return current_state, cut_threshold, advancing_players
+
 def sort_players_by_standing(players: List) -> List:
     """Sort players by tournament standing (points desc, then tiebreakers)."""
     def standing_key(player):
@@ -623,6 +778,26 @@ def advance_to_next_round(current_state: TourState, tour_format: TourFormat) -> 
     """Advance the tournament to the next round."""
     # Increment round counter
     current_state.current_round.overall_round += 1
+    
+    # Check if any advancing players should rejoin in this round
+    if hasattr(current_state, 'advancing_players'):
+        next_round = current_state.current_round.overall_round
+        if next_round in current_state.advancing_players:
+            # Add advancing players back to active players
+            advancing_now = current_state.advancing_players[next_round]
+            for player in advancing_now:
+                # Remove the advancing marker
+                if hasattr(player, 'advancing_to_round'):
+                    player.advancing_to_round = None
+            
+            # Add them back to active players
+            current_state.players.extend(advancing_now)
+            
+            # Remove from advancing players dict
+            del current_state.advancing_players[next_round]
+            
+            # Log this for debugging
+            # print(f"Re-integrated {len(advancing_now)} advancing players in round {next_round}")
     
     # Update round status
     if current_state.current_round.overall_round <= tour_format.total_rounds:
@@ -1043,6 +1218,115 @@ def calculate_cut_threshold_statistics(results: Dict) -> Dict:
         
         stats["distribution"] = threshold_distribution
         cut_stats[cut_name] = stats
+    
+    # Process split cuts if they exist
+    if "split_cuts" in results:
+        for split_cut_name, split_data in results["split_cuts"].items():
+            advancement_thresholds = split_data.get("advancement_thresholds", [])
+            cut_thresholds = split_data.get("cut_thresholds", [])
+            
+            if not advancement_thresholds and not cut_thresholds:
+                continue
+            
+            split_stats = {
+                "type": "split_cut",
+                "top_x": split_data["top_x"],
+                "advance_to_round": split_data["advance_to_round"],
+                "bottom_y": split_data["bottom_y"],
+                "continuing": split_data["continuing"]
+            }
+            
+            # Process advancement thresholds
+            if advancement_thresholds:
+                adv_stats = {
+                    "mean": sum(advancement_thresholds) / len(advancement_thresholds),
+                    "min": min(advancement_thresholds),
+                    "max": max(advancement_thresholds),
+                    "count": len(advancement_thresholds)
+                }
+                
+                # Count types
+                adv_clean = sum(1 for t in advancement_thresholds if t % 1 == 0.5)
+                adv_tiebreaker = len(advancement_thresholds) - adv_clean
+                
+                adv_stats["cut_types"] = {
+                    "clean_cuts": {
+                        "count": adv_clean,
+                        "percentage": (adv_clean / len(advancement_thresholds)) * 100
+                    },
+                    "tiebreaker_cuts": {
+                        "count": adv_tiebreaker,
+                        "percentage": (adv_tiebreaker / len(advancement_thresholds)) * 100
+                    }
+                }
+                
+                # Distribution
+                adv_counts = {}
+                for threshold in advancement_thresholds:
+                    adv_counts[threshold] = adv_counts.get(threshold, 0) + 1
+                
+                adv_distribution = {
+                    threshold: count / len(advancement_thresholds)
+                    for threshold, count in adv_counts.items()
+                }
+                
+                if adv_counts:
+                    most_common_adv = max(adv_counts.items(), key=lambda x: x[1])
+                    adv_stats["most_common"] = {
+                        "threshold": most_common_adv[0],
+                        "probability": most_common_adv[1] / len(advancement_thresholds),
+                        "count": most_common_adv[1]
+                    }
+                
+                adv_stats["distribution"] = adv_distribution
+                split_stats["advancement"] = adv_stats
+            
+            # Process cut thresholds
+            if cut_thresholds:
+                cut_stats_data = {
+                    "mean": sum(cut_thresholds) / len(cut_thresholds),
+                    "min": min(cut_thresholds),
+                    "max": max(cut_thresholds),
+                    "count": len(cut_thresholds)
+                }
+                
+                # Count types
+                cut_clean = sum(1 for t in cut_thresholds if t % 1 == 0.5)
+                cut_tiebreaker = len(cut_thresholds) - cut_clean
+                
+                cut_stats_data["cut_types"] = {
+                    "clean_cuts": {
+                        "count": cut_clean,
+                        "percentage": (cut_clean / len(cut_thresholds)) * 100
+                    },
+                    "tiebreaker_cuts": {
+                        "count": cut_tiebreaker,
+                        "percentage": (cut_tiebreaker / len(cut_thresholds)) * 100
+                    }
+                }
+                
+                # Distribution
+                cut_counts = {}
+                for threshold in cut_thresholds:
+                    cut_counts[threshold] = cut_counts.get(threshold, 0) + 1
+                
+                cut_distribution = {
+                    threshold: count / len(cut_thresholds)
+                    for threshold, count in cut_counts.items()
+                }
+                
+                if cut_counts:
+                    most_common_cut = max(cut_counts.items(), key=lambda x: x[1])
+                    cut_stats_data["most_common"] = {
+                        "threshold": most_common_cut[0],
+                        "probability": most_common_cut[1] / len(cut_thresholds),
+                        "count": most_common_cut[1]
+                    }
+                
+                cut_stats_data["distribution"] = cut_distribution
+                split_stats["elimination"] = cut_stats_data
+            
+            cut_stats[split_cut_name] = split_stats
     
     return cut_stats
 
