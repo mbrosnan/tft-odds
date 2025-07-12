@@ -18,8 +18,8 @@ import shutil
 from pathlib import Path
 
 # Default paths for NA Golden Spatula tournament
-DEFAULT_TOUR_FORMAT = "s14_na_gs/tour_format.json"
-DEFAULT_SIM_SETTINGS = "s14_na_gs/sim_settings.json"
+DEFAULT_TOUR_FORMAT = "s14_crown/tour_format.json"
+DEFAULT_SIM_SETTINGS = "s14_crown/sim_settings.json"
 
 
 def get_python_command():

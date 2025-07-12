@@ -1,5 +1,5 @@
 going into venv:
-.\.venv\Scripts\activate
+source venv/bin/activate
 
 running the simulation: 
 python simulation.py --csv "s14tt3/before_r02/TT3_Live_beforer2.csv" --tour-format "s14tt3/tour_format_Set14_NA_TacTrials3.json" --sim-settings "s14tt3/sim_settings_Set14_NA_TacTrials3.json" --output "staging/probabilities.json"
@@ -24,3 +24,7 @@ start streamlit in EC2: sudo systemctl start streamlit.service
 
 
 post-round unified:  python3 process_round.py s14_na_gs/tour_state_pre_round1.csv --no-preview --auto-deploy
+
+
+
+python3 process_round.py s14_crown/tour_state_pre_round1.csv --no-preview

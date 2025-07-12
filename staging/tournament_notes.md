@@ -4,6 +4,8 @@ Probabilities are estimates based on many rounds of simulating the tournament.  
 
 You may have to reload your page to get new results when they come out a few minutes after a round has finished.  Data entry is manual at this point, so it's not going to be immediate.
 
+NOTE: cuts to 16 and 8 are not fully correct.  The logic for "top 4 advance, buttom 4 eliminated" is not yet implemented.
+
 Thanks,
 
 Mitch

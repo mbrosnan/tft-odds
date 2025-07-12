@@ -1,7 +1,7 @@
 {
-  "tournament_name": "S14 NA Golden Spatula",
-  "starting_players": 32,
-  "total_rounds": 18,
+  "tournament_name": "S14 Crown",
+  "starting_players": 40,
+  "total_rounds": 14,
   "round_structure": [
     {
       "overall_round": 1,
@@ -79,7 +79,7 @@
       "round_in_day": 6,
       "post_round_actions": {
         "cut": true,
-        "cut_to": 24,
+        "cut_to": 32,
         "snake_shuffle": true,
         "random_shuffle": false,
         "check_victory": false,
@@ -106,8 +106,8 @@
       "day": 2,
       "round_in_day": 2,
       "post_round_actions": {
-        "cut": false,
-        "cut_to": null,
+        "cut": true,
+        "cut_to": 24,
         "snake_shuffle": true,
         "random_shuffle": false,
         "check_victory": false,
@@ -181,76 +181,6 @@
         "snake_shuffle": false,
         "random_shuffle": false,
         "check_victory": false,
-        "end_tournament": false,
-        "point_reset": false
-      }
-    },
-    {
-      "overall_round": 14,
-      "day": 3,
-      "round_in_day": 2,
-      "post_round_actions": {
-        "cut": false,
-        "cut_to": null,
-        "snake_shuffle": true,
-        "random_shuffle": false,
-        "check_victory": false,
-        "end_tournament": false,
-        "point_reset": false
-      }
-    },
-    {
-      "overall_round": 15,
-      "day": 3,
-      "round_in_day": 3,
-      "post_round_actions": {
-        "cut": false,
-        "cut_to": null,
-        "snake_shuffle": false,
-        "random_shuffle": false,
-        "check_victory": false,
-        "end_tournament": false,
-        "point_reset": false
-      }
-    },
-    {
-      "overall_round": 16,
-      "day": 3,
-      "round_in_day": 4,
-      "post_round_actions": {
-        "cut": false,
-        "cut_to": null,
-        "snake_shuffle": true,
-        "random_shuffle": false,
-        "check_victory": false,
-        "end_tournament": false,
-        "point_reset": false
-      }
-    },
-    {
-      "overall_round": 17,
-      "day": 3,
-      "round_in_day": 5,
-      "post_round_actions": {
-        "cut": false,
-        "cut_to": null,
-        "snake_shuffle": false,
-        "random_shuffle": false,
-        "check_victory": false,
-        "end_tournament": false,
-        "point_reset": false
-      }
-    },
-    {
-      "overall_round": 18,
-      "day": 3,
-      "round_in_day": 6,
-      "post_round_actions": {
-        "cut": false,
-        "cut_to": null,
-        "snake_shuffle": true,
-        "random_shuffle": false,
-        "check_victory": false,
         "end_tournament": true,
         "point_reset": false
       }
@@ -259,6 +189,10 @@
   "cut_rules": [
     {
       "after_round": 6,
+      "players_remaining": 32
+    },
+    {
+      "after_round": 8,
       "players_remaining": 24
     },
     {
@@ -286,8 +220,7 @@
     "avg_placement"
   ],
   "checkmate_conditions": {
-    "enabled": false,
-    "threshold_percentage": 0.5
+    "enabled": false
   },
   "track_placement_probabilities": true,
   "track_points_distribution": true,
